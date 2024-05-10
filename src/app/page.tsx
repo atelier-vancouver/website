@@ -98,6 +98,15 @@ export default function Home() {
               <p className="font-hahmlet font-bold text-4xl text-[#005F04]">
                 (+ free snacks, always)
               </p>
+
+              <Image
+                src="/images/green_mascot.svg"
+                alt="green mascot"
+                width={199}
+                height={268}
+                className="absolute left-0 -bottom-8"
+                style={{ zIndex: 1000 }}
+              />
             </div>
           </div>
           <div className="w-1/4">
