@@ -141,7 +141,7 @@ export default function Home() {
               Pushing off that side project?
             </p>
             <p className="mt-4 font-handwriting font-bold text-5xl text-black-grey uppercase">
-              It's time to start.
+              It&apos;s time to start.
             </p>
 
             <div className="mt-8 relative flex space-x-4">
