@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 export default function Home() {
   return (
     <div
@@ -5,7 +7,7 @@ export default function Home() {
       style={{ backgroundImage: `url('images/Paper 4.svg')` }}
     >
       <div className="absolute top-[11%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center z-10">
-        <img src="images/mascots.svg" alt="mascots" />
+        <Image src="/images/mascots.svg" alt="mascots" width={462} height={154} />
         <h1 className="font-hahmlet font-semibold text-9xl text-off-black tracking-tighter -mt-8">
           atelier
         </h1>
@@ -17,15 +19,18 @@ export default function Home() {
         </button>
         <p className="mt-4 font-ibm font-light uppercase">📍 Vancouver, BC</p>
       </div>
-      <img
-        src="images/background.svg"
+      <Image
+        src="/images/background.svg"
         alt="background"
+        width={933}
+        height={884}
         className="h-[100vh] w-[95vw] z-20"
       />
-
-      <img
-        src="images/strip.svg"
+      <Image
+        src="/images/strip.svg"
         alt="strip"
+        width={1230}
+        height={748}
         className="w-full mt-2 z-10 mr-[5%]"
       />
 
@@ -51,10 +56,12 @@ export default function Home() {
             </p>
           </div>
           <div className="w-1/4 relative">
-            <img src="images/lightbulb.svg" alt="lightbulb" className="z-20" />
-            <img
-              src="images/background2.svg"
+            <Image src="/images/lightbulb.svg" alt="lightbulb" width={200} height={328} className="z-20" />
+            <Image
+              src="/images/background2.svg"
               alt="background2"
+              width={380}
+              height={549}
               className="absolute left-[0%] bottom-0"
             />
           </div>
@@ -94,7 +101,7 @@ export default function Home() {
             </div>
           </div>
           <div className="w-1/4">
-            <img src="images/food.svg" alt="food" className="w-full" />
+            <Image src="/images/food.svg" alt="food" width={298} height={399} className="w-full" />
           </div>
         </div>
 
@@ -108,17 +115,17 @@ export default function Home() {
       </div>
 
       <div className="mt-80 pb-40 relative">
-        {/* Add "background3" image absolutely */}
-        <img
-          src="images/background3.svg"
+
+        <Image
+          src="/images/background3.svg"
           alt="background3"
+          width={1247}
+          height={563}
           className="absolute inset-0 w-full h-full z-0 object-cover"
         />
 
-        {/* Absolute black line */}
         <div className="absolute left-[2%] right-0 -top-24 h-[0.5px] bg-black z-10" />
 
-        {/* Main content positioned relative to the parent */}
         <div className="pl-32 pr-24 relative flex z-20">
           <div className="w-3/4 mt-16">
             <p className="font-hahmlet font-bold text-4xl text-black-grey">
@@ -139,7 +146,7 @@ export default function Home() {
           </div>
 
           <div className="w-1/4">
-            <img src="images/easel.svg" alt="easel" />
+            <Image src="/images/easel.svg" alt="easel" width={261} height={366} />
           </div>
         </div>
       </div>
