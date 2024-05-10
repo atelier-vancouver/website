@@ -1,4 +1,6 @@
 import Image from 'next/image';
+import BlackButton from './components/BlackButton';
+import WhiteButton from './components/WhiteButton';
 
 export default function Home() {
   return (
@@ -6,7 +8,7 @@ export default function Home() {
       className="min-h-screen min-w-full relative bg-cover bg-no-repeat"
       style={{ backgroundImage: `url('images/Paper 4.svg')` }}
     >
-      <div className="absolute top-[11%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center z-10">
+      <div className="absolute top-[10%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center z-10">
         <Image src="/images/mascots.svg" alt="mascots" width={462} height={154} />
         <h1 className="font-hahmlet font-semibold text-9xl text-off-black tracking-tighter -mt-8">
           atelier
@@ -14,9 +16,7 @@ export default function Home() {
         <p className="font-hahmlet font-bold text-2xl text-off-black text-center mt-2">
           we gather weekly to <span className="font-handwriting">CREATE</span>
         </p>
-        <button className="relative font-handwriting font-semibold text-2xl text-off-black bg-off-white hover:bg-[#706F6B] transition-colors duration-500 ease-in-out px-6 py-2 mt-4 border-[0.5px] border-black rounded-md shadow-lg after:absolute after:-bottom-[4px] after:-right-[4px] after:w-[calc(100%+4px)] after:h-[calc(100%+4px)] after:border-b-4 after:border-r-4 after:border-black after:rounded-md after:bg-off-white after:z-[-1]">
-          JOIN US THIS SUNDAY
-        </button>
+        <WhiteButton text="JOIN US THIS SUNDAY" />
         <p className="mt-4 font-ibm font-light uppercase">📍 Vancouver, BC</p>
       </div>
       <Image
@@ -123,7 +123,7 @@ export default function Home() {
         </p>
       </div>
 
-      <div className="mt-80 pb-40 relative">
+      <div className="mt-80 pb-48 relative">
 
         <Image
           src="/images/background3.svg"
@@ -145,12 +145,8 @@ export default function Home() {
             </p>
 
             <div className="mt-8 relative flex space-x-4">
-              <button className="relative font-handwriting font-semibold text-2xl text-off-white bg-black hover:bg-[#706F6B] transition-colors duration-500 ease-in-out px-6 py-2 mt-4 border-[0.5px] border-black-grey rounded-md shadow-lg after:absolute after:-bottom-[4px] after:-right-[4px] after:w-[calc(100%+4px)] after:h-[calc(100%+4px)] after:border-b-4 after:border-r-4 after:border-black-grey after:rounded-md after:bg-off-black after:z-[-1]">
-                JOIN US THIS SUNDAY
-              </button>
-              <button className="relative font-handwriting font-semibold text-2xl text-off-black bg-off-white hover:bg-[#706F6B] transition-colors duration-500 ease-in-out px-6 py-2 mt-4 border-[0.5px] border-black rounded-md shadow-lg after:absolute after:-bottom-[4px] after:-right-[4px] after:w-[calc(100%+4px)] after:h-[calc(100%+4px)] after:border-b-4 after:border-r-4 after:border-black after:rounded-md after:bg-off-white after:z-[-1]">
-                GET UPDATES ON INSTAGRAM
-              </button>
+              <BlackButton text="JOIN US THIS SUNDAY" />
+              <WhiteButton text="GET UPDATES ON INSTAGRAM" />
             </div>
           </div>
 
