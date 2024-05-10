@@ -16,6 +16,9 @@ const config: Config = {
         hahmlet: ["Hahmlet", "sans-serif"],
         ibm: ["IBM Plex Mono", "sans-serif"],
       },
+      letterSpacing: {
+        tighter: '-0.04em',
+      },
       colors: {
         "off-white": "#FFFDF5",
         "off-black": "#1A1A1A",

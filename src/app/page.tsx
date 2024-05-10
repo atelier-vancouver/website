@@ -10,10 +10,10 @@ export default function Home() {
     >
       <div className="absolute top-[10%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center z-10">
         <Image src="/images/mascots.svg" alt="mascots" width={462} height={154} />
-        <h1 className="font-hahmlet font-semibold text-9xl text-off-black tracking-tighter -mt-8">
+        <h1 className="font-hahmlet tracking-tighter font-semibold text-9xl text-off-black tracking-tighter -mt-8">
           atelier
         </h1>
-        <p className="font-hahmlet font-bold text-2xl text-off-black text-center mt-2">
+        <p className="font-hahmlet tracking-tighter font-bold text-2xl text-off-black text-center mt-2">
           we gather weekly to <span className="font-handwriting">CREATE</span>
         </p>
         <WhiteButton text="JOIN US THIS SUNDAY" />
@@ -41,17 +41,17 @@ export default function Home() {
 
         <div className="flex justify-between mt-4 relative">
           <div className="mt-8 w-3/4">
-            <p className="font-hahmlet font-semibold text-5xl text-black-grey leading-snug">
+            <p className="font-hahmlet tracking-tighter font-semibold text-5xl text-black-grey leading-snug">
               Atelier is an open co-working session for the curious.
             </p>
-            <p className="font-hahmlet text-3xl text-black-grey mt-8">
+            <p className="font-hahmlet tracking-tighter text-3xl text-black-grey mt-8">
               to be creative,
             </p>
-            <p className="font-hahmlet font-semibold text-3xl text-black-grey mt-0.5">
+            <p className="font-hahmlet tracking-tighter font-semibold text-3xl text-black-grey mt-0.5">
               you need dedicated time to create.
             </p>
-            <p className="font-hahmlet text-3xl text-black-grey mt-6">
-              we explore our curiousity by{" "}
+            <p className="font-hahmlet tracking-tighter text-3xl text-black-grey mt-6">
+              we explore our curiosity by{" "}
               <span className="font-semibold">making</span> things:
             </p>
           </div>
@@ -68,12 +68,26 @@ export default function Home() {
         </div>
       </div>
 
-      <p className="font-hahmlet font-semibold text-7xl mt-12 whitespace-nowrap text-center text-black-grey mx-auto">
-        software, paintings, drawings, research
-      </p>
-      {/* <p className="font-hahmlet font-semibold text-7xl mt-12 whitespace-nowrap text-center absolute left-1/2 transform -translate-x-1/2">
+      {/* <p className="font-hahmlet font-semibold text-7xl mt-12 whitespace-nowrap text-center text-black-grey mx-auto">
         software, paintings, drawings, research
       </p> */}
+      
+      <div className="overflow-hidden w-full mt-12">
+        <div className="flex animate-scroll-left" style={{ width: '200%' }}>
+          <p className="font-hahmlet tracking-tighter font-semibold text-7xl text-black-grey whitespace-nowrap mx-auto">
+            software, paintings, drawings, research,&nbsp;
+          </p>
+          <p className="font-hahmlet tracking-tighter font-semibold text-7xl text-black-grey whitespace-nowrap mx-auto">
+            software, paintings, drawings, research,&nbsp;
+          </p>
+          <p className="font-hahmlet tracking-tighter font-semibold text-7xl text-black-grey whitespace-nowrap mx-auto">
+            software, paintings, drawings, research,&nbsp;
+          </p>
+          <p className="font-hahmlet tracking-tighter font-semibold text-7xl text-black-grey whitespace-nowrap mx-auto">
+            software, paintings, drawings, research,&nbsp;
+          </p>
+        </div>
+      </div>
 
       <div className="mt-40 pl-32 pr-24 relative">
         <div className="bg-black py-1.5 px-3 inline-block">
@@ -82,20 +96,20 @@ export default function Home() {
 
         <div className="border-2 border-black flex mt-8">
           <div className="w-3/4 px-8 py-12 flex flex-col justify-between">
-            <p className="font-hahmlet font-bold text-5xl text-black-grey">
+            <p className="font-hahmlet tracking-tighter font-bold text-5xl text-black-grey">
               <span className="text-[#5721A0]">50 minutes</span> of work* time.
             </p>
-            <p className="font-hahmlet font-bold text-5xl text-black-grey">
+            <p className="font-hahmlet tracking-tighter font-bold text-5xl text-black-grey">
               <span className="text-[#2B6ECE]">10 minute</span> break.
             </p>
-            <p className="font-hahmlet font-bold text-5xl text-black-grey">
+            <p className="font-hahmlet tracking-tighter font-bold text-5xl text-black-grey">
               Another 50 minute block.
             </p>
             <div className="flex flex-col justify-end space-y-1">
-              <p className="font-hahmlet font-bold text-5xl text-black-grey">
+              <p className="font-hahmlet tracking-tighter font-bold text-5xl text-black-grey">
                 <span className="text-[#BC004C]">Demos</span> after!
               </p>
-              <p className="font-hahmlet font-bold text-4xl text-[#005F04]">
+              <p className="font-hahmlet tracking-tighter font-bold text-4xl text-[#005F04]">
                 (+ free snacks, always)
               </p>
 
@@ -114,7 +128,7 @@ export default function Home() {
           </div>
         </div>
 
-        <p className="mt-4 mx-auto mx-8 text-[#555555] text-lg font-hahmlet leading-snug">
+        <p className="mt-4 mx-auto mx-8 text-[#555555] text-lg font-hahmlet tracking-tighter leading-snug">
           <span className="font-bold">*NO</span> school or co-op work is
           allowed! There are other co-working spaces that exist for studying,
           working, etc. This space is not one of them. We do this to encourage
@@ -137,7 +151,7 @@ export default function Home() {
 
         <div className="pl-32 pr-24 relative flex z-20">
           <div className="w-3/4 mt-16">
-            <p className="font-hahmlet font-bold text-4xl text-black-grey">
+            <p className="font-hahmlet tracking-tighter font-bold text-4xl text-black-grey">
               Pushing off that side project?
             </p>
             <p className="mt-4 font-handwriting font-bold text-5xl text-black-grey uppercase">
