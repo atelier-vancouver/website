@@ -73,7 +73,7 @@ export default function Home() {
       </p> */}
       
       <div className="overflow-hidden w-full mt-12">
-        <div className="flex animate-scroll-left" style={{ width: '200%' }}>
+        <div className="flex animate-scroll-left" style={{ height: 'auto', minHeight: 'calc(1.5em * 7)' }}>
           <p className="font-hahmlet tracking-tighter font-semibold text-7xl text-black-grey whitespace-nowrap mx-auto">
             software, paintings, drawings, research,&nbsp;
           </p>
