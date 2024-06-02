@@ -3,6 +3,13 @@
 @tailwind utilities;
 
 @font-face {
+  font-family: "IBM Plex Mono";
+  src: url("/fonts/IBMPlexMono-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
   font-family: "Hahmlet";
   src: url("/fonts/Hahmlet-VariableFont_wght.ttf") format("truetype");
   font-weight: normal;

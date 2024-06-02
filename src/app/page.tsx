@@ -1,20 +1,40 @@
+"use client";
+import { useState, useEffect } from "react";
+import { useMediaQuery } from 'react-responsive';
+
 import Image from 'next/image';
 import BlackButton from './components/BlackButton';
 import WhiteButton from './components/WhiteButton';
 
+
 export default function Home() {
+
+  const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
+  const [word, setWord] = useState('CREATE');
+  const words = ['CREATE', 'BUILD', 'DREAM', 'PLAY'];
+
+  useEffect(() => {
+    let index = 0;
+    const intervalId = setInterval(() => {
+      index = index + 1 === words.length ? 0 : index + 1;
+      setWord(words[index]);
+    }, 2500);
+
+    return () => clearInterval(intervalId);
+  }, []);
+
   return (
     <div
       className="min-h-screen min-w-full relative bg-cover bg-no-repeat"
       style={{ backgroundImage: `url('images/Paper 4.svg')` }}
     >
       <div className="absolute top-[10%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center z-10">
-        <Image src="/images/mascots.svg" alt="mascots" width={462} height={154} />
-        <h1 className="font-hahmlet tracking-tighter font-semibold text-9xl text-off-black tracking-tighter -mt-8">
+        <Image src="/images/mascots.svg" alt="mascots" width={isMobile ? 239: 462} height={isMobile ? 79: 154} />
+        <h1 className="font-hahmlet tracking-tighter font-semibold text-7xl md:text-9xl text-off-black tracking-tighter mt-0 md:-mt-8">
           atelier
         </h1>
         <p className="font-hahmlet tracking-tighter font-bold text-2xl text-off-black text-center mt-2">
-          we gather weekly to <span className="font-handwriting">CREATE</span>
+          we gather weekly to <span className="font-handwriting">{word}</span>
         </p>
         <WhiteButton text="JOIN US THIS SUNDAY" />
         <p className="mt-4 font-ibm font-light uppercase">📍 Vancouver, BC</p>
@@ -22,16 +42,38 @@ export default function Home() {
       <Image
         src="/images/background.svg"
         alt="background"
-        width={933}
-        height={884}
+        width={isMobile ? 450 : 933}
+        height={isMobile ? 450 : 884}
         className="h-[100vh] w-[95vw] z-20"
       />
       <Image
-        src="/images/strip.svg"
+        src="/images/white_strip.svg"
         alt="strip"
         width={1230}
         height={748}
         className="w-full mt-2 z-10 mr-[5%]"
+      />
+
+      <Image
+        src="/images/people1.svg"
+        alt="people1"
+        width={704}
+        height={509}
+        className="absolute top-[21%] left-[10%] transform -rotate-4"
+      />
+      <Image
+        src="/images/people2.svg"
+        alt="people2"
+        width={569}
+        height={438}
+        className="absolute top-[23%] left-[50%] transform rotate-0"
+      />
+      <Image
+        src="/images/people3.svg"
+        alt="people3"
+        width={646}
+        height={398}
+        className="absolute top-[28.5%] left-[27%]"
       />
 
       <div className="mt-40 pl-32 pr-0 relative">

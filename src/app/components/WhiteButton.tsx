@@ -16,7 +16,7 @@ export default function WhiteButton({ text }: WhiteButtonProps) {
       const y = ((event.clientY - top) / height) * 100;
 
       setGradientStyle({
-        background: `radial-gradient(circle at ${x}% ${y}%, #F5ECFF, #FFFDF5)`,
+        background: `radial-gradient(circle at ${x}% ${y}%, #E9E1FF, #FFFDF5)`,
       });
     }
   };
