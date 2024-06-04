@@ -67,21 +67,21 @@ export default function Home() {
         alt="people1"
         width={isMobile ? 302 : 704}
         height={isMobile ? 170 : 509}
-        className="absolute top-[16%] left-[0%] md:top-[21%] md:left-[10%] transform -rotate-1"
+        className="absolute top-[14%] left-[-2%] md:top-[21%] md:left-[10%] transform -rotate-4"
       />
       <Image
         src="/images/people2.webp"
         alt="people2"
         width={isMobile ? 253 : 569}
         height={isMobile ? 163 : 438}
-        className="absolute top-[20%] left-[40%] md:top-[23%] md:left-[50%] transform rotate-0"
+        className="absolute top-[18%] left-[38%] md:top-[23%] md:left-[50%] transform rotate-0"
       />
       <Image
         src="/images/people3.webp"
         alt="people3"
         width={isMobile ? 292 : 646}
         height={isMobile ? 172 : 398}
-        className="absolute top-[24%] left-[9%] md:top-[28.5%] md:left-[27%] transform rotate-3"
+        className="absolute top-[22%] left-[7%] md:top-[28.5%] md:left-[27%] transform rotate-3"
       />
 
       <div className="mt-[30rem] md:mt-40 pl-4 md:pl-32 pr-0 relative">
