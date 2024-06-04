@@ -11,7 +11,8 @@ export default function BlackButton({ text }: BlackButtonProps) {
 
   const handleMouseMove = (event: MouseEvent) => {
     if (buttonRef.current) {
-      const { left, top, width, height } = buttonRef.current.getBoundingClientRect();
+      const { left, top, width, height } =
+        buttonRef.current.getBoundingClientRect();
       const x = ((event.clientX - left) / width) * 100;
       const y = ((event.clientY - top) / height) * 100;
 
@@ -27,7 +28,8 @@ export default function BlackButton({ text }: BlackButtonProps) {
     if (buttonElement) {
       buttonElement.addEventListener("mousemove", handleMouseMove);
 
-      return () => buttonElement.removeEventListener("mousemove", handleMouseMove);
+      return () =>
+        buttonElement.removeEventListener("mousemove", handleMouseMove);
     }
   }, []);
 

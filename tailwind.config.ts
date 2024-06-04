@@ -17,7 +17,7 @@ const config: Config = {
         ibm: ["IBM Plex Mono", "sans-serif"],
       },
       letterSpacing: {
-        tighter: '-0.04em',
+        tighter: "-0.04em",
       },
       colors: {
         "off-white": "#FFFDF5",
