@@ -39,7 +39,10 @@ export default function Home() {
         <p className="font-hahmlet tracking-tighter font-bold text-md md:text-2xl text-off-black text-center mt-2">
           we gather weekly to <span className="font-handwriting">{word}</span>
         </p>
-        <WhiteButton text="JOIN US THIS SUNDAY" />
+        <WhiteButton
+          text="JOIN US THIS SUNDAY"
+          href="https://lu.ma/atelier.ubc"
+        />
         <p className="mt-4 font-ibm font-light uppercase">📍 Vancouver, BC</p>
       </div>
       <Image
@@ -257,8 +260,14 @@ export default function Home() {
             <div
               className={`${isMobile ? "flex flex-col space-y-4" : "mt-8 relative flex space-x-4"}`}
             >
-              <BlackButton text="JOIN US THIS SUNDAY" />
-              <WhiteButton text="GET UPDATES ON INSTAGRAM" />
+              <BlackButton
+                text="JOIN US THIS SUNDAY"
+                href="https://lu.ma/atelier.ubc"
+              />
+              <WhiteButton
+                text="GET UPDATES ON INSTAGRAM"
+                href="https://www.instagram.com/atelier.ubc"
+              />
             </div>
 
             {isMobile && (
