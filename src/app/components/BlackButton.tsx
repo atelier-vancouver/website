@@ -35,7 +35,7 @@ export default function BlackButton({ text }: BlackButtonProps) {
     <button
       ref={buttonRef}
       style={gradientStyle}
-      className="relative font-handwriting font-semibold text-lg md:text-2xl text-off-white bg-black hover:bg-[#706F6B] transition-colors duration-500 ease-in-out px-6 py-2 mt-4 border-[0.5px] border-black-grey rounded-md shadow-lg after:absolute after:-bottom-[4px] after:-right-[4px] after:w-[calc(100%+4px)] after:h-[calc(100%+4px)] after:border-b-4 after:border-r-4 after:border-black-grey after:rounded-md after:bg-off-black after:z-[-1]"
+      className="relative inline-block font-handwriting font-semibold text-lg md:text-2xl text-off-white bg-black hover:bg-[#706F6B] transition-colors duration-500 ease-in-out px-3 py-1 md:px-6 md:py-2 mt-4 border-[0.5px] border-black-grey rounded-md shadow-lg after:absolute after:-bottom-[4px] after:-right-[4px] after:w-[calc(100%+4px)] after:h-[calc(100%+4px)] after:border-b-4 after:border-r-4 after:border-black-grey after:rounded-md after:bg-off-black after:z-[-1]"
     >
       {text}
     </button>

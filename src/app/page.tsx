@@ -28,7 +28,7 @@ export default function Home() {
       className="min-h-screen min-w-full relative bg-cover bg-no-repeat bg-center overflow-x-hidden"
       style={{ backgroundImage: `url('images/Paper 4.svg')` }}
     >
-      <div className="absolute top-[10%] md:top-[10%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center z-10">
+      <div className="absolute top-[8%] md:top-[10%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center z-10">
         <Image src="/images/mascots.svg" alt="mascots" width={isMobile ? 239: 462} height={isMobile ? 79: 154} />
         <h1 className="font-hahmlet tracking-tighter font-semibold text-7xl md:text-9xl text-off-black tracking-tighter -mt-4 md:-mt-8">
           atelier
@@ -76,7 +76,7 @@ export default function Home() {
         className="absolute top-[24%] left-[9%] md:top-[28.5%] md:left-[27%] transform rotate-3"
       />
 
-      <div className="mt-[28rem] md:mt-40 pl-4 md:pl-32 pr-0 relative">
+      <div className="mt-[30rem] md:mt-40 pl-4 md:pl-32 pr-0 relative">
         <div className="bg-black py-1.5 px-3 inline-block">
           <h2 className="font-handwriting text-white text-lg md:text-2xl">WHAT WE DO</h2>
         </div>
