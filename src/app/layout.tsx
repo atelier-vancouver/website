@@ -6,7 +6,8 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Atelier",
-  description: "A website for Atelier",
+  description:
+    "Atelier is a place where you have the freedom to explore your curiosity. We gather weekly to create things: software apps, blogs, paintings, videos, music, games, graphics, and so on.",
 };
 
 export default function RootLayout({
@@ -16,7 +17,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <link rel="icon" href="/images/favicon.avif" sizes="any" />
+        {children}
+      </body>
     </html>
   );
 }
