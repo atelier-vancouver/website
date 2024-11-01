@@ -1,6 +1,8 @@
 @use "../../colors.scss";
 
 a.button {
+  width: fit-content;
+
   text-decoration: none;
 
   display: inline-block;

@@ -29,11 +29,19 @@ import Layout from "../layouts/Layout.astro";
             client:idle
           />
         </p>
-        <Button
-          text="JOIN US THIS SUNDAY"
-          href="https://lu.ma/atelier.ubc"
-          client:idle
-        />
+        <div class="buttons">
+          <Button
+            text="JOIN US THIS SUNDAY"
+            href="https://lu.ma/atelier.ubc"
+            client:idle
+          />
+          <Button
+            text="DONATE"
+            href="https://opencollective.com/atelier"
+            colorSchemeName="black"
+            client:idle
+          />
+        </div>
         <p class="location">📍 Vancouver, BC</p>
       </div>
     </section>
@@ -192,7 +200,6 @@ import Layout from "../layouts/Layout.astro";
 
       .subtitle {
         margin-top: 0.5rem;
-        margin-bottom: 1rem;
         font-weight: 700;
         letter-spacing: -0.04em;
         text-align: center;
@@ -200,6 +207,14 @@ import Layout from "../layouts/Layout.astro";
         @media (min-width: constants.$breakpoint-md) {
           font-size: 1.5rem;
           line-height: 2rem;
+        }
+      }
+
+      .buttons {
+        :global(a) {
+          display: block;
+          margin: 0 auto;
+          margin-top: 1rem;
         }
       }
 
