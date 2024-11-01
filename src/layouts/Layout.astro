@@ -1,0 +1,93 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/images/favicon.avif" sizes="any" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
+<style is:global>
+  @font-face {
+    font-family: "IBM Plex Mono";
+    src: url("../assets/fonts/IBMPlexMono-Regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Hahmlet";
+    src: url("../assets/fonts/Hahmlet-VariableFont_wght.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "handwriting";
+    src: url("../assets/fonts/KellyChongV2-Regular.ttf") format("truetype");
+    font-weight: bold;
+    font-style: normal;
+  }
+</style>
+<style lang="scss" is:global>
+  @use "../colors.scss";
+
+  body {
+    -webkit-tap-highlight-color: transparent;
+
+    font-family: Hahmlet, sans-serif;
+    color: colors.$black-grey;
+    background-color: colors.$off-white;
+
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+  }
+
+  blockquote,
+  dd,
+  dl,
+  figure,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  hr,
+  p,
+  pre {
+    margin: 0;
+  }
+
+  *,
+  :after,
+  :before {
+    box-sizing: border-box;
+  }
+
+  audio,
+  canvas,
+  embed,
+  iframe,
+  img,
+  object,
+  svg,
+  video {
+    display: block;
+    vertical-align: middle;
+  }
+</style>

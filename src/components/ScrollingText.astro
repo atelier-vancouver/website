@@ -1,0 +1,43 @@
+---
+interface Props {
+  text: string;
+}
+
+const { text } = Astro.props;
+
+const repeatedText = text.repeat(4);
+---
+
+<div class="scrolling-text">
+  <div class="text">
+    {repeatedText}
+  </div>
+</div>
+
+<style lang="scss">
+  @use "../constants.scss";
+
+  .scrolling-text {
+    overflow: hidden;
+
+    .text {
+      display: flex;
+      white-space: nowrap;
+      animation: scroll-left 30s linear infinite;
+      line-height: 1.5;
+
+      @media (min-width: constants.$breakpoint-md) {
+        animation: scroll-left 15s linear infinite;
+      }
+    }
+  }
+
+  @keyframes scroll-left {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+</style>
