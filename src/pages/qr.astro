@@ -1,0 +1,59 @@
+---
+import opencollective from "../assets/images/opencollective-qr.svg";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+  title="atelier"
+  description="Atelier Vancouver, started at UBC, is a unique creative space where curiosity meets action. Designed for those who want to explore personal projects beyond work or school, Atelier fosters a vibrant community of creators in Vancouver. We gather weekly to dive into passion projects, from software apps and blogs to art, music, game development, graphic design, and video production. More than a co-working space, Atelier is a launchpad for innovation, collaboration, and exploration. If you’re looking for an inspiring environment in Vancouver to create, experiment, and connect, Atelier is where ideas come to life."
+>
+  <main>
+    <div class="content">
+      <h1 style="font-size: 3rem;">Donate to Atelier</h1>
+      <div style="font-size: 1.5rem;">
+        To fund snacks, food, and other expenses.
+      </div>
+
+      <img src={opencollective.src} alt="QR code" />
+
+      <a href="https://opencollective.com/atelier/donate" target="_blank">
+        <img
+          src="https://opencollective.com/atelier/donate/button@2x.png?color=blue"
+          width="300"
+        />
+      </a>
+
+      <script src="https://opencollective.com/atelier/banner.js"></script>
+    </div>
+  </main>
+</Layout>
+
+<style lang="scss">
+  body {
+    background-image: url("../assets/images/paper.webp");
+    background-position: center;
+    background-size: cover;
+  }
+
+  main {
+    width: 100%;
+    height: 100vh;
+
+    display: grid;
+    place-items: center;
+
+    text-align: center;
+    letter-spacing: -0.04em;
+
+    .content {
+      display: grid;
+      gap: 2rem;
+      place-items: center;
+
+      img {
+        width: 400px;
+        height: auto;
+      }
+    }
+  }
+</style>
