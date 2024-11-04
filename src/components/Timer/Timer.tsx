@@ -38,7 +38,7 @@ export function Timer() {
     }
   }, [isRunning]);
 
-  const seconds = secondsRemaining % 60;
+  const seconds = Math.floor(secondsRemaining) % 60;
   const minutes = Math.floor(secondsRemaining / 60);
   const secondsString = seconds.toString().padStart(2, "0");
   const minutesString = minutes.toString().padStart(2, "0");
