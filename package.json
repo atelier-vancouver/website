@@ -12,6 +12,8 @@
   "dependencies": {
     "@astrojs/react": "^3.6.2",
     "astro": "^4.16.8",
+    "auto-text-size": "^0.2.3",
+    "inter-ui": "^4.0.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
