@@ -1,7 +1,8 @@
 import { AutoTextSize } from "auto-text-size";
 import { useCallback, useEffect, useRef, useState } from "react";
 import "./Timer.scss";
-import wrapUpWav from "./wrap-up.wav";
+// import wrapUpWav from "./wrap-up.wav";
+import dingMp3 from "./ding.mp3";
 
 const searchParams = new URLSearchParams(window.location.search);
 if (!searchParams.has("m")) {
@@ -26,10 +27,7 @@ export function Timer() {
         const elapsedTime = Math.floor((currentTime - startTime) / 1000);
 
         setSecondsRemaining((prev) => {
-          const next = totalSeconds - elapsedTime;
-          if (next < 0) {
-            return 0;
-          }
+          const next = Math.floor(totalSeconds - elapsedTime);
           return next;
         });
       }, 100);
@@ -38,16 +36,15 @@ export function Timer() {
     }
   }, [isRunning]);
 
-  const seconds = Math.floor(secondsRemaining) % 60;
-  const minutes = Math.floor(secondsRemaining / 60);
+  const seconds = Math.floor(Math.abs(secondsRemaining)) % 60;
+  const minutes = Math.floor(Math.abs(secondsRemaining) / 60);
   const secondsString = seconds.toString().padStart(2, "0");
   const minutesString = minutes.toString().padStart(2, "0");
 
   useEffect(() => {
+    console.log(secondsRemaining);
     if (secondsRemaining === 0) {
-      setIsRunning(false);
-
-      const audio = new Audio(wrapUpWav);
+      const audio = new Audio(dingMp3);
       audio.play();
     }
   }, [secondsRemaining]);
@@ -81,7 +78,7 @@ export function Timer() {
         height: "100vh",
         alignContent: "center",
 
-        animation: secondsRemaining === 0 ? "flash-red 1s infinite" : "none",
+        animation: secondsRemaining <= 0 ? "flash-red 1s infinite" : "none",
       }}
     >
       <div
