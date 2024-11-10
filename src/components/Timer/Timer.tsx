@@ -66,6 +66,11 @@ export function Timer() {
       if (e.key === " ") {
         onButtonPress();
       }
+
+      if (e.key === "d") {
+        const audio = new Audio(dingMp3);
+        audio.play();
+      }
     }
 
     window.addEventListener("keydown", onKeyDown);
