@@ -36,13 +36,13 @@ export function Timer() {
     }
   }, [isRunning]);
 
-  const seconds = Math.floor(Math.abs(secondsRemaining)) % 60;
-  const minutes = Math.floor(Math.abs(secondsRemaining) / 60);
+  const secondsRemainingAbs = Math.abs(secondsRemaining);
+  const seconds = Math.floor(secondsRemainingAbs) % 60;
+  const minutes = Math.floor(secondsRemainingAbs / 60);
   const secondsString = seconds.toString().padStart(2, "0");
   const minutesString = minutes.toString().padStart(2, "0");
 
   useEffect(() => {
-    console.log(secondsRemaining);
     if (secondsRemaining === 0) {
       const audio = new Audio(dingMp3);
       audio.play();
