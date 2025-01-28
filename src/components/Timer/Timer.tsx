@@ -1,5 +1,5 @@
 import { AutoTextSize } from "auto-text-size";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import "./Timer.scss";
 // import wrapUpWav from "./wrap-up.wav";
 import dingMp3 from "./ding.mp3";
@@ -12,30 +12,54 @@ if (!searchParams.has("m")) {
 const totalSeconds = Number(searchParams.get("m")) * 60;
 
 export function Timer() {
-  const [secondsRemaining, setSecondsRemaining] = useState(totalSeconds);
+  const [elapsedTime, setElapsedTime] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
-
-  const [fontSize, setFontSize] = useState(100);
-  const timerTextRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (isRunning) {
-      let startTime = Date.now();
+      let lastTime = Date.now();
 
       const interval = setInterval(() => {
         const currentTime = Date.now();
-        const elapsedTime = Math.floor((currentTime - startTime) / 1000);
+        // the amount of time that has passed since the last interval
+        const elapsedTime = (currentTime - lastTime) / 1000;
+        lastTime = currentTime;
 
-        setSecondsRemaining((prev) => {
-          const next = Math.floor(totalSeconds - elapsedTime);
-          return next;
-        });
+        setElapsedTime((prevElapsedTime) => prevElapsedTime + elapsedTime);
       }, 100);
 
       return () => clearInterval(interval);
     }
   }, [isRunning]);
 
+  const [screenVisible, setScreenVisible] = useState(true);
+
+  useEffect(() => {
+    function onVisibilityChange() {
+      setScreenVisible(!document.hidden);
+    }
+
+    document.addEventListener("visibilitychange", onVisibilityChange);
+    return () =>
+      document.removeEventListener("visibilitychange", onVisibilityChange);
+  }, []);
+
+  useEffect(() => {
+    if (isRunning && screenVisible) {
+      let screenLock: Promise<WakeLockSentinel>;
+      try {
+        screenLock = navigator.wakeLock.request("screen");
+      } catch (error) {
+        console.log(error);
+      }
+
+      return () => {
+        screenLock.then((s) => s.release());
+      };
+    }
+  }, [isRunning, screenVisible]);
+
+  const secondsRemaining = Math.floor(totalSeconds - elapsedTime);
   const secondsRemainingAbs = Math.abs(secondsRemaining);
   const seconds = Math.floor(secondsRemainingAbs) % 60;
   const minutes = Math.floor(secondsRemainingAbs / 60);
@@ -53,13 +77,17 @@ export function Timer() {
     if (isRunning) {
       setIsRunning(false);
     } else if (secondsRemaining !== totalSeconds) {
-      setSecondsRemaining(totalSeconds);
+      setElapsedTime(0);
       setIsRunning(false);
     } else {
-      setSecondsRemaining(totalSeconds);
+      setElapsedTime(0);
       setIsRunning(true);
     }
   }, [isRunning, secondsRemaining, totalSeconds]);
+
+  const onResumePress = useCallback(() => {
+    setIsRunning(true);
+  }, [isRunning]);
 
   useEffect(() => {
     function onKeyDown(e: KeyboardEvent) {
@@ -87,16 +115,17 @@ export function Timer() {
       }}
     >
       <div
-        ref={timerTextRef}
         style={{
-          fontSize: `${fontSize}px`,
           boxSizing: "border-box",
           padding: "10px",
 
           fontFeatureSettings: "'tnum'",
         }}
       >
-        <AutoTextSize maxFontSizePx={window.document.body.clientHeight}>
+        <AutoTextSize
+          mode="oneline"
+          maxFontSizePx={window.document.body.clientHeight}
+        >
           <span>{minutesString}</span>
           <span>:</span>
           <span>{secondsString}</span>
@@ -117,6 +146,38 @@ export function Timer() {
             ? "Reset"
             : "Start"}
       </button>
+
+      <button
+        style={{
+          display: "block",
+          marginTop: "1em",
+          marginLeft: "auto",
+          marginRight: "auto",
+          visibility:
+            !isRunning && secondsRemaining !== totalSeconds
+              ? "visible"
+              : "hidden",
+        }}
+        onClick={(e) => {
+          if (e.screenX === 0 && e.screenY === 0) {
+            return;
+          }
+          onResumePress();
+        }}
+      >
+        Resume
+      </button>
+
+      <div
+        style={{ position: "fixed", bottom: "0", right: "0", padding: "10px" }}
+      >
+        <div>
+          <kbd>D</kbd> to ding
+        </div>
+        <div>
+          <kbd>space</kbd> to pause and reset
+        </div>
+      </div>
     </div>
   );
 }
