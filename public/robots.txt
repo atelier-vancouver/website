@@ -1,4 +1,4 @@
 User-agent: *
-Disallow: /qr/
-Disallow: /timer/
-Disallow: /l/
+Disallow: /qr
+Disallow: /timer
+Disallow: /l
