@@ -66,12 +66,14 @@ export function Timer() {
   const secondsString = seconds.toString().padStart(2, "0");
   const minutesString = minutes.toString().padStart(2, "0");
 
+  const isOutOfTime = secondsRemaining <= 0;
+
   useEffect(() => {
-    if (secondsRemaining === 0) {
+    if (isOutOfTime) {
       const audio = new Audio(dingMp3);
       audio.play();
     }
-  }, [secondsRemaining]);
+  }, [isOutOfTime]);
 
   const onButtonPress = useCallback(() => {
     if (isRunning) {
@@ -93,11 +95,13 @@ export function Timer() {
     function onKeyDown(e: KeyboardEvent) {
       if (e.key === " ") {
         onButtonPress();
-      }
-
-      if (e.key === "d") {
+      } else if (e.key === "d") {
         const audio = new Audio(dingMp3);
         audio.play();
+      } else if (e.key === "ArrowUp") {
+        setElapsedTime((prevElapsedTime) => prevElapsedTime - 10);
+      } else if (e.key === "ArrowDown") {
+        setElapsedTime((prevElapsedTime) => prevElapsedTime + 10);
       }
     }
 
@@ -111,7 +115,7 @@ export function Timer() {
         height: "100vh",
         alignContent: "center",
 
-        animation: secondsRemaining <= 0 ? "flash-red 1s infinite" : "none",
+        animation: isOutOfTime ? "flash-red 1s infinite" : "none",
       }}
     >
       <div
@@ -171,6 +175,12 @@ export function Timer() {
       <div
         style={{ position: "fixed", bottom: "0", right: "0", padding: "10px" }}
       >
+        <div>
+          <kbd>↑</kbd> +10s
+        </div>
+        <div>
+          <kbd>↓</kbd> −10s
+        </div>
         <div>
           <kbd>D</kbd> to ding
         </div>
