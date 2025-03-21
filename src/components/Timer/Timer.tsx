@@ -136,7 +136,7 @@ export function Timer() {
         </AutoTextSize>
       </div>
       <button
-        style={{ display: "block", margin: "auto", fontSize: "100px" }}
+        style={{ display: "block", margin: "auto", fontSize: "1.5em" }}
         onClick={(e) => {
           if (e.screenX === 0 && e.screenY === 0) {
             return;
@@ -173,19 +173,48 @@ export function Timer() {
       </button>
 
       <div
-        style={{ position: "fixed", bottom: "0", right: "0", padding: "10px" }}
+        style={{
+          position: "fixed",
+          bottom: 0,
+          left: 0,
+          right: 0,
+
+          display: "flex",
+          justifyContent: "space-between",
+          flexWrap: "wrap-reverse",
+        }}
       >
-        <div>
-          <kbd>↑</kbd> +10s
+        <div
+          style={{
+            paddingLeft: "0.625em",
+            paddingRight: "0.625em",
+            paddingBottom: "0.625em",
+            alignSelf: "flex-start",
+            opacity: 0.5,
+          }}
+        >
+          made by <a href="https://calvin.sh">calvin</a>, message me for bug
+          reports or feature requests
         </div>
-        <div>
-          <kbd>↓</kbd> −10s
-        </div>
-        <div>
-          <kbd>D</kbd> to ding
-        </div>
-        <div>
-          <kbd>space</kbd> to pause and reset
+        <div
+          style={{
+            paddingLeft: "0.625em",
+            paddingRight: "0.625em",
+            paddingBottom: "0.625em",
+          }}
+        >
+          <div>
+            <kbd>↑</kbd> +10s
+          </div>
+          <div>
+            <kbd>↓</kbd> −10s
+          </div>
+          <div>
+            <kbd>D</kbd> to ding
+          </div>
+          <div>
+            <kbd>space</kbd> to pause and reset
+          </div>
         </div>
       </div>
     </div>
