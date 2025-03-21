@@ -193,8 +193,8 @@ export function Timer() {
             opacity: 0.5,
           }}
         >
-          made by <a href="https://calvin.sh">calvin</a>, message me for bug
-          reports or feature requests
+          made by <a href="https://calvin.sh">calvin</a>. got a bug or feature
+          request? let me know!
         </div>
         <div
           style={{
