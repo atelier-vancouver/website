@@ -193,8 +193,11 @@ export function Timer() {
             opacity: 0.5,
           }}
         >
-          made by <a href="https://calvin.sh">calvin</a>. got a bug or feature
-          request? let me know!
+          made by{" "}
+          <a href="https://calvin.sh" style={{ color: "currentcolor" }}>
+            calvin
+          </a>
+          . got a bug or feature request? let me know!
         </div>
         <div
           style={{
