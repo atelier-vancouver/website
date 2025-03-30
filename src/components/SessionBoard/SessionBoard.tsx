@@ -80,7 +80,7 @@ function SessionBoardContent({
 
   const [mainContentState, setMainContentState] = useQueryParam(
     "mainContent",
-    withDefault(createEnumParam(["QOTD", "timer"]), "QOTD")
+    withDefault(createEnumParam(["QOTD", "timer", "text"]), "QOTD")
   );
   const [qotd, setQotd] = useQueryParam("qotd", withDefault(StringParam, ""));
 
@@ -91,6 +91,11 @@ function SessionBoardContent({
   const [countdownToTime, setCountdownToTime] = useQueryParam(
     "countdownToTime",
     withDefault(StringParam, "13:20")
+  );
+
+  const [centerText, setCenterText] = useQueryParam(
+    "centerText",
+    withDefault(StringParam, "")
   );
 
   const [leftNotes, setLeftNotes] = useQueryParam(
@@ -147,7 +152,7 @@ function SessionBoardContent({
               <h1>QUESTION OF THE DAY</h1>
               <p>{qotd}</p>
             </div>
-          ) : (
+          ) : mainContentState === "timer" ? (
             <div className="timer">
               <h1>{countdownTitle}</h1>
               <div className="countdown">
@@ -162,6 +167,10 @@ function SessionBoardContent({
                   {countdownToTime.split(":")[1]}
                 </span>
               </div>
+            </div>
+          ) : (
+            <div className="text">
+              <p>{centerText}</p>
             </div>
           )}
         </div>
@@ -182,6 +191,135 @@ function SessionBoardContent({
         </div>
       </div>
       <div className="session-board-config gaps">
+        <div>presets:</div>
+        <div>
+          sundays:
+          <a href="/session?topRight=UBC&qotd=%5BTODO%5D&countdownToTime=14%3A21&countdownTitle=Break+starts+in&rightNotes=Welcome+to+Atelier+%E2%9D%A4%EF%B8%8F&leftNotesSize=2&leftNotes=%23+Hosts%0A%0A1.+Calvin%0A1.+Kai%0A1.+Rae">
+            <button>welcome</button>
+          </a>
+          <a
+            href={toChangedParam({
+              rightNotes: `# Intro
+1. Name
+1. What are you working on?
+1. Question of the day`,
+            })}
+          >
+            <button>intro</button>
+          </a>
+          <a
+            href={toChangedParam({
+              rightNotes: `Talk to a host for demos (short max 2 min show and tell)`,
+              mainContent: "timer",
+              countdownToTime: "13:20",
+              countdownTitle: "Break Starts",
+            })}
+          >
+            <button>work-session1</button>
+          </a>
+          <a
+            href={toChangedParam({
+              mainContent: "timer",
+              countdownToTime: "13:30",
+              countdownTitle: "Break Ends",
+            })}
+          >
+            <button>break</button>
+          </a>
+          <a
+            href={toChangedParam({
+              mainContent: "timer",
+              countdownToTime: "14:20",
+              countdownTitle: "Demos Start",
+            })}
+          >
+            <button>work-session2</button>
+          </a>
+          <a
+            href={toChangedParam({
+              mainContent: "text",
+              centerText: "Gather around for demos!",
+              rightNotes: `# Demos
+1. [Name]
+1. [Name]
+1. [Name]
+1. [Name]
+1. [Name]
+1. [Name]
+1. [Name]
+1. [Name]
+1. [Name]
+1. [Name]`,
+              rightNotesSize: "1",
+            })}
+          >
+            <button>demos</button>
+          </a>
+        </div>
+        <div>
+          weeknights:
+          <a href="/session?topRight=V2+House&qotd=%5BTODO%5D&countdownToTime=14%3A21&countdownTitle=Break+starts+in&rightNotes=Welcome+to+Atelier+Weeknights+%E2%9D%A4%EF%B8%8F&leftNotesSize=2&leftNotes=%3Cdiv+class%3D%22size-1%22%3E%0A%3Ch1%3EWIFI%3C%2Fh1%3E%0A%3Cp%3ETELUS3176%3C%2Fp%3E%0A%3Cp%3EH46MdfvtvJK4%3C%2Fp%3E%0A%3C%2Fdiv%3E%0A%0A%0A%3Cbr%2F%3E%0A%3Cbr%2F%3E%0A%0A%23+Hosts%0A%0A1.+Scott%0A1.+Calvin%0A1.+Kai%0A1.+Rae">
+            <button>welcome</button>
+          </a>
+          <a
+            href={toChangedParam({
+              rightNotes: `# Intro
+1. Name
+1. What are you working on?
+1. Question of the day`,
+            })}
+          >
+            <button>intro</button>
+          </a>
+          <a
+            href={toChangedParam({
+              rightNotes: `Talk to a host for demos (short max 2 min show and tell)`,
+              mainContent: "timer",
+              countdownToTime: "19:20",
+              countdownTitle: "Break Starts",
+            })}
+          >
+            <button>work-session1</button>
+          </a>
+          <a
+            href={toChangedParam({
+              mainContent: "timer",
+              countdownToTime: "19:30",
+              countdownTitle: "Break Ends",
+            })}
+          >
+            <button>break</button>
+          </a>
+          <a
+            href={toChangedParam({
+              mainContent: "timer",
+              countdownToTime: "20:20",
+              countdownTitle: "Demos Start",
+            })}
+          >
+            <button>work-session2</button>
+          </a>
+          <a
+            href={toChangedParam({
+              mainContent: "text",
+              centerText: "Gather around for demos!",
+              rightNotes: `# Demos
+1. [Name]
+1. [Name]
+1. [Name]
+1. [Name]
+1. [Name]
+1. [Name]
+1. [Name]
+1. [Name]
+1. [Name]
+1. [Name]`,
+              rightNotesSize: "1",
+            })}
+          >
+            <button>demos</button>
+          </a>
+        </div>
         <details>
           <summary>content:</summary>
           <div className="content-config gaps">
@@ -208,6 +346,17 @@ function SessionBoardContent({
                   }}
                 />
                 timer
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  value="text"
+                  checked={mainContentState === "text"}
+                  onChange={(e) => {
+                    setMainContentState(e.target.value);
+                  }}
+                />
+                text
               </label>
             </div>
             <details>
@@ -250,6 +399,18 @@ function SessionBoardContent({
                     type="time"
                     value={countdownToTime}
                     onChange={(e) => setCountdownToTime(e.target.value)}
+                  />
+                </div>
+              </div>
+            </details>
+            <details>
+              <summary>text:</summary>
+              <div>
+                text:
+                <div>
+                  <textarea
+                    value={centerText}
+                    onChange={(e) => setCenterText(e.target.value)}
                   />
                 </div>
               </div>
@@ -400,6 +561,16 @@ function CountDownText({ countdownTo }: { countdownTo: string }) {
   }, [countdownTo]);
 
   return <>{time}</>;
+}
+
+function toChangedParam(p: Record<string, string>): string {
+  const url = new URL(window.location.href);
+  const params = new URLSearchParams(url.search);
+  Object.entries(p).forEach(([key, value]) => {
+    params.set(key, value);
+  });
+  url.search = params.toString();
+  return url.toString();
 }
 
 function Pill({

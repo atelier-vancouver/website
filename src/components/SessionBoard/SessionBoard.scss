@@ -37,6 +37,11 @@ body {
       text-align: center;
       align-content: center;
 
+      .text {
+        margin-left: 20%;
+        margin-right: 20%;
+      }
+
       h1 {
         margin-bottom: 3rem;
       }
@@ -65,25 +70,26 @@ body {
     }
 
     .notes {
+      .size-1 {
+        p,
+        ol {
+          font-size: 1.7rem;
+          font-weight: 500;
+          color: rgb(from currentColor r g b / 0.8);
+        }
+      }
+      .size-2 {
+        p,
+        ol {
+          font-size: 2rem;
+        }
+      }
+
       .left,
       .right {
         position: absolute;
         bottom: 4rem;
         text-box: trim-both cap alphabetic;
-
-        &.size-1 {
-          p,
-          ol {
-            font-size: 1.7rem;
-            color: rgb(from currentColor r g b / 0.8);
-          }
-        }
-        &.size-2 {
-          p,
-          ol {
-            font-size: 2rem;
-          }
-        }
       }
 
       .left {
