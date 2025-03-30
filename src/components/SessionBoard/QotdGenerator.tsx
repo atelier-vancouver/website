@@ -46,6 +46,7 @@ export function QotdGenerator({
   return (
     <div className="gaps">
       <div>
+        location:
         <input
           type="text"
           value={qotdLocation}
