@@ -143,8 +143,13 @@ function SessionBoardContent({
               <h1>{countdownTitle}</h1>
               <div className="countdown">
                 <span className="tnum">
-                  {Number(countdownToTime.split(":")[0]) % 12}
-                  <span>:</span>
+                  <CountDownText countdownTo={countdownToTime} />
+                </span>
+              </div>
+              <div className="countdown-to">
+                at&nbsp;
+                <span className="tnum">
+                  {Number(countdownToTime.split(":")[0]) % 12}:
                   {countdownToTime.split(":")[1]}
                 </span>
               </div>
@@ -302,54 +307,54 @@ function SessionBoardContent({
   );
 }
 
-// function CountDownText({ countdownTo }: { countdownTo: string }) {
-//   const [time, setTime] = useState<string>("00:00");
+function CountDownText({ countdownTo }: { countdownTo: string }) {
+  const [time, setTime] = useState<string>("00:00");
 
-//   useEffect(() => {
-//     function updateTime() {
-//       const countdownToHour = parseInt(countdownTo.split(":")[0]);
-//       const countdownToMinute = parseInt(countdownTo.split(":")[1]);
+  useEffect(() => {
+    function updateTime() {
+      const countdownToHour = parseInt(countdownTo.split(":")[0]);
+      const countdownToMinute = parseInt(countdownTo.split(":")[1]);
 
-//       const countdownToDate = new Date();
-//       countdownToDate.setHours(countdownToHour);
-//       countdownToDate.setMinutes(countdownToMinute);
-//       countdownToDate.setSeconds(0);
-//       countdownToDate.setMilliseconds(0);
+      const countdownToDate = new Date();
+      countdownToDate.setHours(countdownToHour);
+      countdownToDate.setMinutes(countdownToMinute);
+      countdownToDate.setSeconds(0);
+      countdownToDate.setMilliseconds(0);
 
-//       const now = new Date();
-//       const diff = countdownToDate.getTime() - now.getTime();
-//       const absDiff = Math.abs(diff);
+      const now = new Date();
+      const diff = countdownToDate.getTime() - now.getTime();
+      const absDiff = Math.abs(diff);
 
-//       const hours = Math.floor(absDiff / (1000 * 60 * 60));
-//       const minutes = Math.floor((absDiff % (1000 * 60 * 60)) / (1000 * 60));
-//       const seconds = Math.floor((absDiff % (1000 * 60)) / 1000);
+      const hours = Math.floor(absDiff / (1000 * 60 * 60));
+      const minutes = Math.floor((absDiff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((absDiff % (1000 * 60)) / 1000);
 
-//       let timeString = diff < 0 ? "-" : "";
-//       setTime(
-//         new Intl.DurationFormat("en", { style: "short" }).format({
-//           hours,
-//           minutes,
-//         })
-//       );
-//       // if (hours > 0) {
-//       //   timeString += hours.toString().padStart(2, "0") + ":";
-//       // }
-//       // timeString += minutes.toString().padStart(2, "0") + ":";
-//       // timeString += seconds.toString().padStart(2, "0");
-//       // setTime(timeString);
-//     }
+      let timeString = diff < 0 ? "-" : "";
+      // setTime(
+      //   new Intl.DurationFormat("en", { style: "short" }).format({
+      //     hours,
+      //     minutes,
+      //   })
+      // );
+      if (hours > 0) {
+        timeString += hours.toString().padStart(2, "0") + ":";
+      }
+      timeString += minutes.toString().padStart(2, "0") + ":";
+      timeString += seconds.toString().padStart(2, "0");
+      setTime(timeString);
+    }
 
-//     // Update immediately
-//     updateTime();
+    // Update immediately
+    updateTime();
 
-//     // Update every minute
-//     const intervalId = setInterval(updateTime, 1000);
+    // Update every minute
+    const intervalId = setInterval(updateTime, 1000);
 
-//     return () => clearInterval(intervalId);
-//   }, [countdownTo]);
+    return () => clearInterval(intervalId);
+  }, [countdownTo]);
 
-//   return <>{time}</>;
-// }
+  return <>{time}</>;
+}
 
 function Pill({
   position,
