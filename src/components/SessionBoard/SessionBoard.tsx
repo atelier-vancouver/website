@@ -173,16 +173,29 @@ function SessionBoardContent({
           <summary>content:</summary>
           <div className="content-config gaps">
             <div>
-              type:
-              <select
-                value={mainContentState}
-                onChange={(e) => {
-                  setMainContentState(e.target.value);
-                }}
-              >
-                <option value="QOTD">QOTD</option>
-                <option value="timer">timer</option>
-              </select>
+              mode:
+              <label>
+                <input
+                  type="radio"
+                  value="QOTD"
+                  checked={mainContentState === "QOTD"}
+                  onChange={(e) => {
+                    setMainContentState(e.target.value);
+                  }}
+                />
+                QOTD
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  value="timer"
+                  checked={mainContentState === "timer"}
+                  onChange={(e) => {
+                    setMainContentState(e.target.value);
+                  }}
+                />
+                timer
+              </label>
             </div>
             <details>
               <summary>QOTD:</summary>
