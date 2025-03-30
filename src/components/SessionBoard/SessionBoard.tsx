@@ -1,4 +1,4 @@
-import { useEffect, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import showdown from "showdown";
 import {
   BooleanParam,
@@ -31,15 +31,27 @@ export function SessionBoard(props: Parameters<typeof SessionBoardContent>[0]) {
 
   useEffect(() => {
     if (screenVisible) {
-      let screenLock: Promise<WakeLockSentinel>;
-      try {
-        screenLock = navigator.wakeLock.request("screen");
-      } catch (error) {
-        console.log(error);
-      }
+      let screenLock: WakeLockSentinel;
+      let retryInterval: number;
+
+      (async () => {
+        try {
+          screenLock = await navigator.wakeLock.request("screen");
+          retryInterval = setInterval(async () => {
+            if (!screenLock.released) {
+              return;
+            }
+            screenLock = await navigator.wakeLock.request("screen");
+          }, 60 * 1000);
+        } catch (error) {
+          console.log(error);
+        }
+      })();
 
       return () => {
-        screenLock.then((s) => s.release());
+        screenLock.release().then(() => {
+          clearInterval(retryInterval);
+        });
       };
     }
   }, [screenVisible]);
@@ -123,13 +135,28 @@ function SessionBoardContent({
     withDefault(BooleanParam, true)
   );
 
+  const [isCursorVisible, setIsCursorVisible] = useState(true);
+  const cursorTimeout = useRef<number | null>(null);
+  const cursorDelay = 5000;
+
   const converter = new showdown.Converter();
   const leftNotesHtml = converter.makeHtml(leftNotes);
   const rightNotesHtml = converter.makeHtml(rightNotes);
 
   return (
     <div className="session-board">
-      <div className="session-board-content">
+      <div
+        className={`session-board-content ${isCursorVisible ? "" : "no-cursor"}`}
+        onPointerMove={() => {
+          if (cursorTimeout.current) {
+            clearTimeout(cursorTimeout.current);
+          }
+          setIsCursorVisible(true);
+          cursorTimeout.current = window.setTimeout(() => {
+            setIsCursorVisible(false);
+          }, cursorDelay);
+        }}
+      >
         <Lines />
 
         <Pill position="top-left" text={topLeftText} />
@@ -191,6 +218,15 @@ function SessionBoardContent({
         </div>
       </div>
       <div className="session-board-config gaps">
+        <div>
+          <button
+            onClick={() => {
+              document.documentElement.requestFullscreen();
+            }}
+          >
+            fullscreen
+          </button>
+        </div>
         <div>presets:</div>
         <div>
           sundays:
