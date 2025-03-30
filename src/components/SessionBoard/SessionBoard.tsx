@@ -1,6 +1,7 @@
 import { useEffect, useState, type ReactNode } from "react";
 import showdown from "showdown";
 import {
+  BooleanParam,
   createEnumParam,
   NumberParam,
   QueryParamProvider,
@@ -100,6 +101,10 @@ function SessionBoardContent({
     "leftNotesSize",
     withDefault(NumberParam, 3)
   );
+  const [showLeftNotes, setShowLeftNotes] = useQueryParam(
+    "showLeftNotes",
+    withDefault(BooleanParam, true)
+  );
   const [rightNotes, setRightNotes] = useQueryParam(
     "rightNotes",
     withDefault(StringParam, "")
@@ -107,6 +112,10 @@ function SessionBoardContent({
   const [rightNotesSize, setRightNotesSize] = useQueryParam(
     "rightNotesSize",
     withDefault(NumberParam, 3)
+  );
+  const [showRightNotes, setShowRightNotes] = useQueryParam(
+    "showRightNotes",
+    withDefault(BooleanParam, true)
   );
 
   const converter = new showdown.Converter();
@@ -158,14 +167,18 @@ function SessionBoardContent({
         </div>
 
         <div className="notes">
-          <div
-            className={`left size-${leftNotesSize}`}
-            dangerouslySetInnerHTML={{ __html: leftNotesHtml }}
-          />
-          <div
-            className={`right size-${rightNotesSize}`}
-            dangerouslySetInnerHTML={{ __html: rightNotesHtml }}
-          />
+          {showLeftNotes && (
+            <div
+              className={`left size-${leftNotesSize}`}
+              dangerouslySetInnerHTML={{ __html: leftNotesHtml }}
+            />
+          )}
+          {showRightNotes && (
+            <div
+              className={`right size-${rightNotesSize}`}
+              dangerouslySetInnerHTML={{ __html: rightNotesHtml }}
+            />
+          )}
         </div>
       </div>
       <div className="session-board-config gaps">
@@ -249,6 +262,16 @@ function SessionBoardContent({
             <div>
               left:
               <div>
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={showLeftNotes}
+                    onChange={(e) => setShowLeftNotes(e.target.checked)}
+                  />
+                  show
+                </label>
+              </div>
+              <div>
                 <textarea
                   value={leftNotes}
                   onChange={(e) => setLeftNotes(e.target.value)}
@@ -269,6 +292,16 @@ function SessionBoardContent({
             </div>
             <div>
               right:
+              <div>
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={showRightNotes}
+                    onChange={(e) => setShowRightNotes(e.target.checked)}
+                  />
+                  show
+                </label>
+              </div>
               <div>
                 <textarea
                   value={rightNotes}
