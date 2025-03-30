@@ -1,0 +1,80 @@
+diff --git a/node_modules/use-query-params/.DS_Store b/node_modules/use-query-params/.DS_Store
+new file mode 100644
+index 0000000..967363f
+Binary files /dev/null and b/node_modules/use-query-params/.DS_Store differ
+diff --git a/node_modules/use-query-params/adapters/.DS_Store b/node_modules/use-query-params/adapters/.DS_Store
+new file mode 100644
+index 0000000..96e4acf
+Binary files /dev/null and b/node_modules/use-query-params/adapters/.DS_Store differ
+diff --git a/node_modules/use-query-params/adapters/window/index.cjs.js b/node_modules/use-query-params/adapters/window/index.cjs.js
+index 86cbf5f..12352db 100644
+--- a/node_modules/use-query-params/adapters/window/index.cjs.js
++++ b/node_modules/use-query-params/adapters/window/index.cjs.js
+@@ -24,13 +24,15 @@ __export(src_exports, {
+ });
+ module.exports = __toCommonJS(src_exports);
+ var import_react = require("react");
+-function makeAdapter() {
++function makeAdapter({ onChange }) {
+   const adapter = {
+     replace(location) {
+       window.history.replaceState(location.state, "", location.search || "?");
++      onChange();
+     },
+     push(location) {
+       window.history.pushState(location.state, "", location.search || "?");
++      onChange();
+     },
+     get location() {
+       return window.location;
+@@ -41,6 +43,13 @@ function makeAdapter() {
+ var WindowHistoryAdapter = ({
+   children
+ }) => {
+-  const [adapter] = (0, import_react.useState)(makeAdapter);
++  const handleURLChange = () => setAdapter(makeAdapter({ onChange: handleURLChange }));
++  const [adapter, setAdapter] = (0, import_react.useState)(
++    () => makeAdapter({ onChange: handleURLChange })
++  );
++  (0, import_react.useEffect)(() => {
++    window.addEventListener("popstate", handleURLChange);
++    return () => window.removeEventListener("popstate", handleURLChange);
++  }, []);
+   return children(adapter);
+ };
+diff --git a/node_modules/use-query-params/adapters/window/index.js b/node_modules/use-query-params/adapters/window/index.js
+index 16546dc..5d84c5d 100644
+--- a/node_modules/use-query-params/adapters/window/index.js
++++ b/node_modules/use-query-params/adapters/window/index.js
+@@ -1,11 +1,13 @@
+-import { useState } from "react";
+-function makeAdapter() {
++import { useEffect, useState } from "react";
++function makeAdapter({ onChange }) {
+   const adapter = {
+     replace(location) {
+       window.history.replaceState(location.state, "", location.search || "?");
++      onChange();
+     },
+     push(location) {
+       window.history.pushState(location.state, "", location.search || "?");
++      onChange();
+     },
+     get location() {
+       return window.location;
+@@ -16,7 +18,14 @@ function makeAdapter() {
+ const WindowHistoryAdapter = ({
+   children
+ }) => {
+-  const [adapter] = useState(makeAdapter);
++  const handleURLChange = () => setAdapter(makeAdapter({ onChange: handleURLChange }));
++  const [adapter, setAdapter] = useState(
++    () => makeAdapter({ onChange: handleURLChange })
++  );
++  useEffect(() => {
++    window.addEventListener("popstate", handleURLChange);
++    return () => window.removeEventListener("popstate", handleURLChange);
++  }, []);
+   return children(adapter);
+ };
+ export {

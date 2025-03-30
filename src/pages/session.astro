@@ -1,0 +1,43 @@
+---
+import { Picture } from "astro:assets";
+import grainImage from "../assets/images/session-board/grain.png";
+import lightImage from "../assets/images/session-board/light.png";
+import { SessionBoard } from "../components/SessionBoard/SessionBoard";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="session">
+  <SessionBoard client:only="react">
+    <Picture
+      slot="grain"
+      src={grainImage}
+      formats={["avif", "webp"]}
+      widths={[640, 750, 828, 1080, 1200, 1920, 2048, 3840]}
+      quality="high"
+      alt=""
+      aria-hidden
+    />
+    <Picture
+      slot="light"
+      src={lightImage}
+      formats={["avif", "webp"]}
+      widths={[640, 750, 828, 1080, 1200, 1920, 2048, 3840]}
+      quality="high"
+      alt=""
+      aria-hidden
+    />
+  </SessionBoard>
+</Layout>
+
+<style lang="scss">
+  @use "inter-ui/variable" with (
+    $inter-font-display: swap,
+    $inter-font-path: "inter-ui/variable"
+  );
+
+  @include variable.all;
+
+  body {
+    font-family: "InterVariable", "system-ui";
+  }
+</style>

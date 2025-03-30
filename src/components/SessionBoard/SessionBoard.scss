@@ -1,0 +1,254 @@
+html {
+  scrollbar-width: none;
+}
+
+body {
+  background-color: #f6f2ee;
+}
+
+.session-board {
+  .tnum {
+    font-feature-settings: "tnum";
+  }
+
+  .session-board-content {
+    position: relative;
+    height: 100vh;
+
+    h1 {
+      margin: 0;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: #919191;
+      font-weight: 500;
+    }
+
+    p,
+    ol {
+      margin: 0;
+      font-size: 2.5rem;
+      color: #000;
+      letter-spacing: -0.02em;
+      font-weight: 400;
+    }
+
+    .main-content {
+      height: 100%;
+      text-align: center;
+      align-content: center;
+
+      h1 {
+        margin-bottom: 3rem;
+      }
+
+      p {
+        margin-left: 20%;
+        margin-right: 20%;
+      }
+
+      & > div {
+        margin-top: -5rem;
+      }
+
+      .countdown {
+        font-size: 7rem;
+        font-weight: 600;
+        color: rgb(from currentColor r g b / 0.7);
+      }
+    }
+
+    .notes {
+      .left,
+      .right {
+        position: absolute;
+        bottom: 4rem;
+        text-box: trim-both cap alphabetic;
+
+        &.size-1 {
+          p,
+          ol {
+            font-size: 1.7rem;
+            color: rgb(from currentColor r g b / 0.8);
+          }
+        }
+        &.size-2 {
+          p,
+          ol {
+            font-size: 2rem;
+          }
+        }
+      }
+
+      .left {
+        left: 4rem;
+      }
+
+      .right {
+        right: 4rem;
+      }
+    }
+
+    .grain-container,
+    .light-container {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+
+      img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .light-container {
+      mix-blend-mode: exclusion;
+      opacity: 0.9;
+
+      img {
+        object-position: left top;
+      }
+    }
+
+    .grain-container {
+      mix-blend-mode: soft-light;
+
+      img {
+        object-position: center;
+        mix-blend-mode: soft-light;
+      }
+    }
+
+    .lines-container {
+      position: absolute;
+      inset: 2.5rem;
+      z-index: -2;
+    }
+
+    .pill {
+      position: absolute;
+
+      z-index: -1;
+
+      font-weight: 600;
+      // use inter fixed width numbers
+
+      font-size: 1.2rem;
+      text-box: trim-both cap alphabetic;
+
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: -0.07em;
+      padding: 0.25em 0.5em;
+      border-radius: 9999px;
+      border: 0.15em solid currentColor;
+      color: #1c1c1c;
+
+      width: fit-content;
+
+      &::after {
+        content: "";
+
+        position: absolute;
+        inset: -1rem;
+        z-index: -1;
+        background: radial-gradient(#f6f2ee 60%, transparent);
+        mix-blend-mode: overlay;
+      }
+
+      &.left {
+        left: 1.25rem;
+      }
+      &.right {
+        right: 1.25rem;
+      }
+      &.top {
+        top: 2.5rem;
+        transform: translateY(-50%);
+      }
+      &.bottom {
+        bottom: 2.5rem;
+        transform: translateY(50%);
+      }
+    }
+
+    .logo-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+
+      .logo-wrapper {
+        position: relative;
+        width: fit-content;
+        margin: 0 auto;
+
+        .logo {
+          display: block;
+
+          height: 5rem;
+        }
+
+        &::after {
+          content: "";
+
+          position: absolute;
+          inset: -1rem;
+          z-index: -1;
+          background: radial-gradient(#f6f2ee 60%, transparent);
+        }
+      }
+    }
+  }
+
+  .gaps {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .session-board-config {
+    background-color: white;
+    padding: 1rem;
+
+    textarea {
+      width: 500px;
+      height: 200px;
+    }
+
+    details details {
+      margin-left: 1rem;
+    }
+
+    .notes-config {
+      display: flex;
+      flex-direction: row;
+      gap: 1rem;
+    }
+
+    .pill-config {
+      position: relative;
+      border: 1px solid #000;
+      width: 400px;
+      height: 200px;
+
+      & > input {
+        position: absolute;
+
+        &.top {
+          top: 0;
+        }
+        &.bottom {
+          bottom: 0;
+        }
+        &.left {
+          left: 0;
+        }
+        &.right {
+          right: 0;
+        }
+      }
+    }
+  }
+}
