@@ -229,8 +229,8 @@ function SessionBoardContent({
         </div>
         <div>presets:</div>
         <div>
-          sundays:
-          <a href="/session?topRight=UBC&qotd=%5BTODO%5D&countdownToTime=14%3A21&countdownTitle=Break+starts+in&rightNotes=Welcome+to+Atelier+%E2%9D%A4%EF%B8%8F&leftNotesSize=2&leftNotes=%23+Hosts%0A%0A1.+Calvin%0A1.+Kai%0A1.+Rae">
+          UBC:
+          <a href="/session?topRight=UBC&qotd=%5BTODO%5D&countdownToTime=14%3A21&countdownTitle=Break+starts+in&rightNotes=Welcome+to+Atelier+%E2%9D%A4%EF%B8%8F&leftNotesSize=2&leftNotes=%23+Hosts%0A%0A1.+Calvin%0A1.+Kai%0A1.+Rae&qotdLocation=UBC%2C+Vancouver%2C+BC%2C+Canada">
             <button>welcome</button>
           </a>
           <a
@@ -293,7 +293,7 @@ function SessionBoardContent({
           </a>
         </div>
         <div>
-          weeknights:
+          Weeknights:
           <a href="/session?topRight=V2+House&qotd=%5BTODO%5D&countdownToTime=14%3A21&countdownTitle=Break+starts+in&rightNotes=Welcome+to+Atelier+Weeknights+%E2%9D%A4%EF%B8%8F&leftNotesSize=2&leftNotes=%3Cdiv+class%3D%22size-1%22%3E%0A%3Ch1%3EWIFI%3C%2Fh1%3E%0A%3Cp%3ETELUS3176%3C%2Fp%3E%0A%3Cp%3EH46MdfvtvJK4%3C%2Fp%3E%0A%3C%2Fdiv%3E%0A%0A%0A%3Cbr%2F%3E%0A%3Cbr%2F%3E%0A%0A%23+Hosts%0A%0A1.+Scott%0A1.+Calvin%0A1.+Kai%0A1.+Rae">
             <button>welcome</button>
           </a>
