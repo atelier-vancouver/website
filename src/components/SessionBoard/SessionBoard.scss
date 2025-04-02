@@ -89,11 +89,20 @@ body {
         }
       }
 
+      .top,
+      .bottom,
       .left,
       .right {
         position: absolute;
-        bottom: 4rem;
         text-box: trim-both cap alphabetic;
+      }
+
+      .top {
+        top: 5rem;
+      }
+
+      .bottom {
+        bottom: 4rem;
       }
 
       .left {

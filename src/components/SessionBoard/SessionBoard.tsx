@@ -110,28 +110,52 @@ function SessionBoardContent({
     withDefault(StringParam, "")
   );
 
-  const [leftNotes, setLeftNotes] = useQueryParam(
-    "leftNotes",
+  const [topLeftNotes, setTopLeftNotes] = useQueryParam(
+    "topLeftNotes",
     withDefault(StringParam, "")
   );
-  const [leftNotesSize, setLeftNotesSize] = useQueryParam(
-    "leftNotesSize",
+  const [topLeftNotesSize, setTopLeftNotesSize] = useQueryParam(
+    "topLeftNotesSize",
     withDefault(NumberParam, 3)
   );
-  const [showLeftNotes, setShowLeftNotes] = useQueryParam(
-    "showLeftNotes",
+  const [showTopLeftNotes, setShowTopLeftNotes] = useQueryParam(
+    "showTopLeftNotes",
     withDefault(BooleanParam, true)
   );
-  const [rightNotes, setRightNotes] = useQueryParam(
-    "rightNotes",
+  const [topRightNotes, setTopRightNotes] = useQueryParam(
+    "topRightNotes",
     withDefault(StringParam, "")
   );
-  const [rightNotesSize, setRightNotesSize] = useQueryParam(
-    "rightNotesSize",
+  const [topRightNotesSize, setTopRightNotesSize] = useQueryParam(
+    "topRightNotesSize",
     withDefault(NumberParam, 3)
   );
-  const [showRightNotes, setShowRightNotes] = useQueryParam(
-    "showRightNotes",
+  const [showTopRightNotes, setShowTopRightNotes] = useQueryParam(
+    "showTopRightNotes",
+    withDefault(BooleanParam, true)
+  );
+  const [bottomLeftNotes, setBottomLeftNotes] = useQueryParam(
+    "bottomLeftNotes",
+    withDefault(StringParam, "")
+  );
+  const [bottomLeftNotesSize, setBottomLeftNotesSize] = useQueryParam(
+    "bottomLeftNotesSize",
+    withDefault(NumberParam, 3)
+  );
+  const [showBottomLeftNotes, setShowBottomLeftNotes] = useQueryParam(
+    "showBottomLeftNotes",
+    withDefault(BooleanParam, true)
+  );
+  const [bottomRightNotes, setBottomRightNotes] = useQueryParam(
+    "bottomRightNotes",
+    withDefault(StringParam, "")
+  );
+  const [bottomRightNotesSize, setBottomRightNotesSize] = useQueryParam(
+    "bottomRightNotesSize",
+    withDefault(NumberParam, 3)
+  );
+  const [showBottomRightNotes, setShowBottomRightNotes] = useQueryParam(
+    "showBottomRightNotes",
     withDefault(BooleanParam, true)
   );
 
@@ -140,8 +164,10 @@ function SessionBoardContent({
   const cursorDelay = 5000;
 
   const converter = new showdown.Converter();
-  const leftNotesHtml = converter.makeHtml(leftNotes);
-  const rightNotesHtml = converter.makeHtml(rightNotes);
+  const topLeftNotesHtml = converter.makeHtml(topLeftNotes);
+  const topRightNotesHtml = converter.makeHtml(topRightNotes);
+  const bottomLeftNotesHtml = converter.makeHtml(bottomLeftNotes);
+  const bottomRightNotesHtml = converter.makeHtml(bottomRightNotes);
 
   return (
     <div className="session-board">
@@ -203,16 +229,28 @@ function SessionBoardContent({
         </div>
 
         <div className="notes">
-          {showLeftNotes && (
+          {showTopLeftNotes && (
             <div
-              className={`left size-${leftNotesSize}`}
-              dangerouslySetInnerHTML={{ __html: leftNotesHtml }}
+              className={`top left size-${topLeftNotesSize}`}
+              dangerouslySetInnerHTML={{ __html: topLeftNotesHtml }}
             />
           )}
-          {showRightNotes && (
+          {showTopRightNotes && (
             <div
-              className={`right size-${rightNotesSize}`}
-              dangerouslySetInnerHTML={{ __html: rightNotesHtml }}
+              className={`top right size-${topRightNotesSize}`}
+              dangerouslySetInnerHTML={{ __html: topRightNotesHtml }}
+            />
+          )}
+          {showBottomLeftNotes && (
+            <div
+              className={`bottom left size-${bottomLeftNotesSize}`}
+              dangerouslySetInnerHTML={{ __html: bottomLeftNotesHtml }}
+            />
+          )}
+          {showBottomRightNotes && (
+            <div
+              className={`bottom right size-${bottomRightNotesSize}`}
+              dangerouslySetInnerHTML={{ __html: bottomRightNotesHtml }}
             />
           )}
         </div>
@@ -230,12 +268,12 @@ function SessionBoardContent({
         <div>presets:</div>
         <div>
           UBC:
-          <a href="/session?topRight=UBC&qotd=%5BTODO%5D&countdownToTime=14%3A21&countdownTitle=Break+starts+in&rightNotes=Welcome+to+Atelier+%E2%9D%A4%EF%B8%8F&leftNotesSize=2&leftNotes=%23+Hosts%0A%0A1.+Calvin%0A1.+Kai%0A1.+Rae&qotdLocation=UBC%2C+Vancouver%2C+BC%2C+Canada">
+          <a href="/session?topRight=UBC&qotd=%5BTODO%5D&countdownToTime=14%3A21&countdownTitle=Break+starts+in&bottomRightNotes=Welcome+to+Atelier+%E2%9D%A4%EF%B8%8F&bottomLeftNotesSize=2&bottomLeftNotes=%23+Hosts%0A%0A1.+Calvin%0A1.+Kai%0A1.+Rae&qotdLocation=UBC%2C+Vancouver%2C+BC%2C+Canada">
             <button>welcome</button>
           </a>
           <a
             href={toChangedParam({
-              rightNotes: `# Intro
+              bottomRightNotes: `# Intro
 1. Name
 1. What are you working on?
 1. Question of the day`,
@@ -245,7 +283,7 @@ function SessionBoardContent({
           </a>
           <a
             href={toChangedParam({
-              rightNotes: `Talk to a host for demos (short max 2 min show and tell)`,
+              bottomRightNotes: `Talk to a host for demos (short max 2 min show and tell)`,
               mainContent: "timer",
               countdownToTime: "13:20",
               countdownTitle: "Break Starts",
@@ -275,7 +313,7 @@ function SessionBoardContent({
             href={toChangedParam({
               mainContent: "text",
               centerText: "Gather around for demos!",
-              rightNotes: `# Demos
+              bottomRightNotes: `# Demos
 1. [Name]
 1. [Name]
 1. [Name]
@@ -286,7 +324,7 @@ function SessionBoardContent({
 1. [Name]
 1. [Name]
 1. [Name]`,
-              rightNotesSize: "1",
+              bottomRightNotesSize: "1",
             })}
           >
             <button>demos</button>
@@ -294,12 +332,12 @@ function SessionBoardContent({
         </div>
         <div>
           Weeknights:
-          <a href="/session?topRight=V2+House&qotd=%5BTODO%5D&countdownToTime=14%3A21&countdownTitle=Break+starts+in&rightNotes=Welcome+to+Atelier+Weeknights+%E2%9D%A4%EF%B8%8F&leftNotesSize=2&leftNotes=%3Cdiv+class%3D%22size-1%22%3E%0A%3Ch1%3EWIFI%3C%2Fh1%3E%0A%3Cp%3ETELUS3176%3C%2Fp%3E%0A%3Cp%3EH46MdfvtvJK4%3C%2Fp%3E%0A%3C%2Fdiv%3E%0A%0A%0A%3Cbr%2F%3E%0A%3Cbr%2F%3E%0A%0A%23+Hosts%0A%0A1.+Scott%0A1.+Calvin%0A1.+Kai%0A1.+Rae">
+          <a href="/session?topRight=V2+House&qotd=%5BTODO%5D&countdownToTime=14%3A21&countdownTitle=Break+starts+in&bottomRightNotes=Welcome+to+Atelier+Weeknights+%E2%9D%A4%EF%B8%8F&bottomLeftNotesSize=2&bottomLeftNotes=%23+Hosts%0A%0A1.+Scott%0A1.+Calvin%0A1.+Kai%0A1.+Rae&topLeftNotes=%23+WIFI%0A%0ATELUS3176%0A%0AH46MdfvtvJK4&topLeftNotesSize=1">
             <button>welcome</button>
           </a>
           <a
             href={toChangedParam({
-              rightNotes: `# Intro
+              bottomRightNotes: `# Intro
 1. Name
 1. What are you working on?
 1. Question of the day`,
@@ -309,7 +347,7 @@ function SessionBoardContent({
           </a>
           <a
             href={toChangedParam({
-              rightNotes: `Talk to a host for demos (short max 2 min show and tell)`,
+              bottomRightNotes: `Talk to a host for demos (short max 2 min show and tell)`,
               mainContent: "timer",
               countdownToTime: "19:20",
               countdownTitle: "Break Starts",
@@ -339,7 +377,7 @@ function SessionBoardContent({
             href={toChangedParam({
               mainContent: "text",
               centerText: "Gather around for demos!",
-              rightNotes: `# Demos
+              bottomRightNotes: `# Demos
 1. [Name]
 1. [Name]
 1. [Name]
@@ -350,7 +388,7 @@ function SessionBoardContent({
 1. [Name]
 1. [Name]
 1. [Name]`,
-              rightNotesSize: "1",
+              bottomRightNotesSize: "1",
             })}
           >
             <button>demos</button>
@@ -457,21 +495,21 @@ function SessionBoardContent({
           <summary>notes:</summary>
           <div className="notes-config">
             <div>
-              left:
+              top left:
               <div>
                 <label>
                   <input
                     type="checkbox"
-                    checked={showLeftNotes}
-                    onChange={(e) => setShowLeftNotes(e.target.checked)}
+                    checked={showTopLeftNotes}
+                    onChange={(e) => setShowTopLeftNotes(e.target.checked)}
                   />
                   show
                 </label>
               </div>
               <div>
                 <textarea
-                  value={leftNotes}
-                  onChange={(e) => setLeftNotes(e.target.value)}
+                  value={topLeftNotes}
+                  onChange={(e) => setTopLeftNotes(e.target.value)}
                 />
               </div>
               <div>
@@ -480,29 +518,29 @@ function SessionBoardContent({
                   type="range"
                   min={1}
                   max={3}
-                  value={leftNotesSize}
+                  value={topLeftNotesSize}
                   onChange={(e) => {
-                    setLeftNotesSize(parseInt(e.target.value));
+                    setTopLeftNotesSize(parseInt(e.target.value));
                   }}
                 />
               </div>
             </div>
             <div>
-              right:
+              top right:
               <div>
                 <label>
                   <input
                     type="checkbox"
-                    checked={showRightNotes}
-                    onChange={(e) => setShowRightNotes(e.target.checked)}
+                    checked={showTopRightNotes}
+                    onChange={(e) => setShowTopRightNotes(e.target.checked)}
                   />
                   show
                 </label>
               </div>
               <div>
                 <textarea
-                  value={rightNotes}
-                  onChange={(e) => setRightNotes(e.target.value)}
+                  value={topRightNotes}
+                  onChange={(e) => setTopRightNotes(e.target.value)}
                 />
               </div>
               <div>
@@ -511,9 +549,73 @@ function SessionBoardContent({
                   type="range"
                   min={1}
                   max={3}
-                  value={rightNotesSize}
+                  value={topRightNotesSize}
                   onChange={(e) => {
-                    setRightNotesSize(parseInt(e.target.value));
+                    setTopRightNotesSize(parseInt(e.target.value));
+                  }}
+                />
+              </div>
+            </div>
+          </div>
+          <div className="notes-config">
+            <div>
+              bottom left:
+              <div>
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={showBottomLeftNotes}
+                    onChange={(e) => setShowBottomLeftNotes(e.target.checked)}
+                  />
+                  show
+                </label>
+              </div>
+              <div>
+                <textarea
+                  value={bottomLeftNotes}
+                  onChange={(e) => setBottomLeftNotes(e.target.value)}
+                />
+              </div>
+              <div>
+                size:
+                <input
+                  type="range"
+                  min={1}
+                  max={3}
+                  value={bottomLeftNotesSize}
+                  onChange={(e) => {
+                    setBottomLeftNotesSize(parseInt(e.target.value));
+                  }}
+                />
+              </div>
+            </div>
+            <div>
+              bottom right:
+              <div>
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={showBottomRightNotes}
+                    onChange={(e) => setShowBottomRightNotes(e.target.checked)}
+                  />
+                  show
+                </label>
+              </div>
+              <div>
+                <textarea
+                  value={bottomRightNotes}
+                  onChange={(e) => setBottomRightNotes(e.target.value)}
+                />
+              </div>
+              <div>
+                size:
+                <input
+                  type="range"
+                  min={1}
+                  max={3}
+                  value={bottomRightNotesSize}
+                  onChange={(e) => {
+                    setBottomRightNotesSize(parseInt(e.target.value));
                   }}
                 />
               </div>
