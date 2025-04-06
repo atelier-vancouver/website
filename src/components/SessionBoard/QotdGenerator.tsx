@@ -15,7 +15,7 @@ export function QotdGenerator({
   const getQuestions = useCallback(async () => {
     setState("loading");
     try {
-      const response = await fetch("https://qotd-generator.atelier.ac", {
+      const response = await fetch("/api/qotd", {
         method: "POST",
         body: JSON.stringify({
           location: qotdLocation,

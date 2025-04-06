@@ -6,4 +6,15 @@ import { defineConfig } from "astro/config";
 export default defineConfig({
   integrations: [react()],
   devToolbar: { enabled: false },
+  vite: {
+    server: {
+      proxy: {
+        "/api": {
+          target: "https://atelier.ac/",
+          changeOrigin: true,
+          secure: false,
+        },
+      },
+    },
+  },
 });

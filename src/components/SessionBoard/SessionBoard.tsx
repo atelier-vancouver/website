@@ -32,7 +32,7 @@ export function SessionBoard(props: Parameters<typeof SessionBoardContent>[0]) {
   useEffect(() => {
     if (screenVisible) {
       let screenLock: WakeLockSentinel;
-      let retryInterval: number;
+      let retryInterval: ReturnType<typeof setInterval>;
 
       (async () => {
         try {
