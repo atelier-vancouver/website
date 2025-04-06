@@ -1,4 +1,3 @@
 User-agent: *
-Disallow: /qr
-Disallow: /timer
-Disallow: /l
+Allow: /$
+Disallow: /
