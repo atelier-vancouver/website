@@ -4,13 +4,10 @@ interface Env {
   OPENAI_API_KEY: string;
 }
 
-export const onRequestPost: PagesFunction<Env> = async (context) => {
-  const body = (await context.request.json()) as {
-    location?: string;
-    date?: string;
-  };
-  const userLocation = body.location;
-  const currentDate = body.date;
+export const onRequestGet: PagesFunction<Env> = async (context) => {
+  const searchParams = new URL(context.request.url).searchParams;
+  const userLocation = searchParams.get("location");
+  const currentDate = searchParams.get("date");
   if (!userLocation || !currentDate) {
     return new Response("Missing location or date", { status: 400 });
   }

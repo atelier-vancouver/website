@@ -15,16 +15,15 @@ export function QotdGenerator({
   const getQuestions = useCallback(async () => {
     setState("loading");
     try {
-      const response = await fetch("/api/qotd", {
-        method: "POST",
-        body: JSON.stringify({
-          location: qotdLocation,
-          date: new Intl.DateTimeFormat("en-US", { dateStyle: "full" }).format(
-            new Date()
-          ),
-        }),
-        headers: { "Content-Type": "application/json" },
-      });
+      const requestUrl = new URL("/api/qotd", window.location.origin);
+      requestUrl.searchParams.set("location", qotdLocation);
+      requestUrl.searchParams.set(
+        "date",
+        new Intl.DateTimeFormat("en-US", { dateStyle: "full" }).format(
+          new Date()
+        )
+      );
+      const response = await fetch(requestUrl.toString());
       if (!response.ok) {
         console.error("Error fetching questions:", response.statusText);
         throw new Error("Network response was not ok");
