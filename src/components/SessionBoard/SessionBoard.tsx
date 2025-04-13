@@ -17,44 +17,32 @@ import "./SessionBoard.scss";
 import { TimeText } from "./TimeText.tsx";
 
 export function SessionBoard(props: Parameters<typeof SessionBoardContent>[0]) {
-  const [screenVisible, setScreenVisible] = useState(true);
-
   useEffect(() => {
-    function onVisibilityChange() {
-      setScreenVisible(!document.hidden);
-    }
+    let screenLock: WakeLockSentinel | undefined;
+    let retryInterval: ReturnType<typeof setInterval>;
 
-    document.addEventListener("visibilitychange", onVisibilityChange);
-    return () =>
-      document.removeEventListener("visibilitychange", onVisibilityChange);
-  }, []);
-
-  useEffect(() => {
-    if (screenVisible) {
-      let screenLock: WakeLockSentinel;
-      let retryInterval: ReturnType<typeof setInterval>;
-
-      (async () => {
-        try {
-          screenLock = await navigator.wakeLock.request("screen");
-          retryInterval = setInterval(async () => {
-            if (!screenLock.released) {
-              return;
-            }
+    (async () => {
+      try {
+        retryInterval = setInterval(async () => {
+          if (screenLock && !screenLock.released) {
+            return;
+          }
+          if (document.hidden) {
+            return;
+          }
+          try {
             screenLock = await navigator.wakeLock.request("screen");
-          }, 60 * 1000);
-        } catch (error) {
-          console.log(error);
-        }
-      })();
+          } catch (error) {}
+        }, 10_000); // every 10s
+      } catch (error) {}
+    })();
 
-      return () => {
-        screenLock.release().then(() => {
-          clearInterval(retryInterval);
-        });
-      };
-    }
-  }, [screenVisible]);
+    return () => {
+      screenLock?.release().then(() => {
+        clearInterval(retryInterval);
+      });
+    };
+  });
 
   return (
     <QueryParamProvider
