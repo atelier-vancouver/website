@@ -269,6 +269,7 @@ function SessionBoardContent({
 1. Name
 1. What are you working on?
 1. Question of the day`,
+              bottomLeftNotesSize: "1",
             })}
           >
             <button>intro</button>
@@ -333,6 +334,7 @@ function SessionBoardContent({
 1. Name
 1. What are you working on?
 1. Question of the day`,
+              bottomLeftNotesSize: "1",
             })}
           >
             <button>intro</button>
