@@ -247,7 +247,11 @@ function SessionBoardContent({
         <div>
           <button
             onClick={() => {
-              document.documentElement.requestFullscreen();
+              if (document.fullscreenElement) {
+                document.exitFullscreen();
+              } else {
+                document.documentElement.requestFullscreen();
+              }
             }}
           >
             fullscreen

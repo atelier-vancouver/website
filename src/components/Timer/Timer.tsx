@@ -94,20 +94,46 @@ export function Timer() {
   useEffect(() => {
     function onKeyDown(e: KeyboardEvent) {
       if (e.key === " ") {
-        onButtonPress();
+        onSpacePress();
       } else if (e.key === "d") {
-        const audio = new Audio(dingMp3);
-        audio.play();
+        onDPress();
+      } else if (e.key) {
+        onFPress();
       } else if (e.key === "ArrowUp") {
-        setElapsedTime((prevElapsedTime) => prevElapsedTime - 10);
+        onUpPress();
       } else if (e.key === "ArrowDown") {
-        setElapsedTime((prevElapsedTime) => prevElapsedTime + 10);
+        onDownPress();
       }
     }
 
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [onButtonPress]);
+
+  function onSpacePress() {
+    onButtonPress();
+  }
+
+  function onDPress() {
+    const audio = new Audio(dingMp3);
+    audio.play();
+  }
+
+  function onFPress() {
+    if (document.fullscreenElement) {
+      document.exitFullscreen();
+    } else {
+      document.documentElement.requestFullscreen();
+    }
+  }
+
+  function onUpPress() {
+    setElapsedTime((prevElapsedTime) => prevElapsedTime - 10);
+  }
+
+  function onDownPress() {
+    setElapsedTime((prevElapsedTime) => prevElapsedTime + 10);
+  }
 
   return (
     <div
@@ -200,22 +226,26 @@ export function Timer() {
           . got a bug or feature request? let me know!
         </div>
         <div
+          className="keybinds"
           style={{
             paddingLeft: "0.625em",
             paddingRight: "0.625em",
             paddingBottom: "0.625em",
           }}
         >
-          <div>
+          <div onClick={onUpPress}>
             <kbd>↑</kbd> +10s
           </div>
-          <div>
+          <div onClick={onDownPress}>
             <kbd>↓</kbd> −10s
           </div>
-          <div>
+          <div onClick={onDPress}>
             <kbd>D</kbd> to ding
           </div>
-          <div>
+          <div onClick={onFPress}>
+            <kbd>F</kbd> to toggle fullscreen
+          </div>
+          <div onClick={onSpacePress}>
             <kbd>space</kbd> to pause and reset
           </div>
         </div>
