@@ -136,16 +136,18 @@ export function Timer() {
     setElapsedTime((prevElapsedTime) => prevElapsedTime + 10);
   }
 
-  // fix for the bottom bar not being visible on first load
-  useEffect(() => {
-    setTimeout(() => {
-      bottomBar.current!.style.display = "";
-
+  // fix for the bottom bar not being visible on first load in safari
+  if (navigator.vendor?.includes("Apple")) {
+    useEffect(() => {
       setTimeout(() => {
-        bottomBar.current!.style.display = "flex";
+        bottomBar.current!.style.display = "";
+
+        setTimeout(() => {
+          bottomBar.current!.style.display = "flex";
+        }, 10);
       }, 10);
-    }, 10);
-  }, []);
+    }, []);
+  }
 
   return (
     <div
