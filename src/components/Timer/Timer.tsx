@@ -1,5 +1,5 @@
 import { AutoTextSize } from "auto-text-size";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import "./Timer.scss";
 // import wrapUpWav from "./wrap-up.wav";
 import dingMp3 from "./ding.mp3";
@@ -14,6 +14,7 @@ const totalSeconds = Number(searchParams.get("m")) * 60;
 export function Timer() {
   const [elapsedTime, setElapsedTime] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
+  const bottomBar = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (isRunning) {
@@ -97,7 +98,7 @@ export function Timer() {
         onSpacePress();
       } else if (e.key === "d") {
         onDPress();
-      } else if (e.key) {
+      } else if (e.key === "f") {
         onFPress();
       } else if (e.key === "ArrowUp") {
         onUpPress();
@@ -134,6 +135,17 @@ export function Timer() {
   function onDownPress() {
     setElapsedTime((prevElapsedTime) => prevElapsedTime + 10);
   }
+
+  // fix for the bottom bar not being visible on first load
+  useEffect(() => {
+    setTimeout(() => {
+      bottomBar.current!.style.display = "";
+
+      setTimeout(() => {
+        bottomBar.current!.style.display = "flex";
+      }, 10);
+    }, 10);
+  }, []);
 
   return (
     <div
@@ -199,6 +211,7 @@ export function Timer() {
       </button>
 
       <div
+        ref={bottomBar}
         style={{
           position: "fixed",
           bottom: 0,
