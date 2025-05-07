@@ -149,6 +149,10 @@ export function Timer() {
     }, []);
   }
 
+  const [isCursorVisible, setIsCursorVisible] = useState(true);
+  const cursorTimeout = useRef<number | null>(null);
+  const cursorDelay = 5000;
+
   return (
     <div
       style={{
@@ -156,6 +160,16 @@ export function Timer() {
         alignContent: "center",
 
         animation: isOutOfTime ? "flash-red 1s infinite" : "none",
+      }}
+      className={isCursorVisible ? "" : "no-cursor"}
+      onPointerMove={() => {
+        if (cursorTimeout.current) {
+          clearTimeout(cursorTimeout.current);
+        }
+        setIsCursorVisible(true);
+        cursorTimeout.current = window.setTimeout(() => {
+          setIsCursorVisible(false);
+        }, cursorDelay);
       }}
     >
       <div
