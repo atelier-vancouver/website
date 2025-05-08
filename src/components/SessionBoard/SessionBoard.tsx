@@ -260,7 +260,7 @@ function SessionBoardContent({
         <div>presets:</div>
         <div>
           UBC:
-          <a href="/session?topRight=UBC&qotd=%5BTODO%5D&countdownToTime=14%3A21&countdownTitle=Break+starts+in&bottomRightNotes=Welcome+to+Atelier+%E2%9D%A4%EF%B8%8F&bottomLeftNotesSize=2&bottomLeftNotes=%23+Hosts%0A%0A1.+Calvin%0A1.+Kai%0A1.+Rae&qotdLocation=UBC%2C+Vancouver%2C+BC%2C+Canada">
+          <a href="/session?topRight=UBC&qotd=%5BTODO%5D&countdownToTime=14%3A21&countdownTitle=Break+starts+in&bottomRightNotes=Welcome+to+Atelier+❤%EF%B8%8F&bottomLeftNotesSize=2&bottomLeftNotes=%23+Hosts%0A%0A1.+Rae%0A1.+Clo%0A1.+Iris%0A1.+Jen%0A1.+Stella&qotdLocation=UBC%2C+Vancouver%2C+BC%2C+Canada">
             <button>welcome</button>
           </a>
           <a
@@ -269,16 +269,17 @@ function SessionBoardContent({
 1. Name
 1. What are you working on?
 1. Question of the day`,
-              bottomLeftNotesSize: "1",
+              bottomRightNotesSize: "2",
             })}
           >
             <button>intro</button>
           </a>
           <a
             href={toChangedParam({
-              bottomRightNotes: `Talk to a host for demos (short max 2 min show and tell)`,
+              bottomRightNotes: `Talk to a host for demos (short 2-min max show and tell)`,
               mainContent: "timer",
-              countdownToTime: "13:20",
+              countdownToTime:
+                currentTimePlusMinutesRoundedToNearest5Minutes(70),
               countdownTitle: "Break Starts",
             })}
           >
@@ -287,7 +288,8 @@ function SessionBoardContent({
           <a
             href={toChangedParam({
               mainContent: "timer",
-              countdownToTime: "13:30",
+              countdownToTime:
+                currentTimePlusMinutesRoundedToNearest5Minutes(15),
               countdownTitle: "Break Ends",
             })}
           >
@@ -296,7 +298,8 @@ function SessionBoardContent({
           <a
             href={toChangedParam({
               mainContent: "timer",
-              countdownToTime: "14:20",
+              countdownToTime:
+                currentTimePlusMinutesRoundedToNearest5Minutes(70),
               countdownTitle: "Demos Start",
             })}
           >
@@ -306,18 +309,6 @@ function SessionBoardContent({
             href={toChangedParam({
               mainContent: "text",
               centerText: "Gather around for demos!",
-              bottomRightNotes: `# Demos
-1. [Name]
-1. [Name]
-1. [Name]
-1. [Name]
-1. [Name]
-1. [Name]
-1. [Name]
-1. [Name]
-1. [Name]
-1. [Name]`,
-              bottomRightNotesSize: "1",
             })}
           >
             <button>demos</button>
@@ -325,7 +316,7 @@ function SessionBoardContent({
         </div>
         <div>
           Weeknights:
-          <a href="/session?topRight=V2+House&qotd=%5BTODO%5D&countdownToTime=14%3A21&countdownTitle=Break+starts+in&bottomRightNotes=Welcome+to+Atelier+Weeknights+%E2%9D%A4%EF%B8%8F&bottomLeftNotesSize=2&bottomLeftNotes=%23+Hosts%0A%0A1.+Scott%0A1.+Calvin%0A1.+Kai%0A1.+Rae&topLeftNotes=%23+WIFI%0A%0ATELUS3176%0A%0AH46MdfvtvJK4&topLeftNotesSize=1">
+          <a href="/session?topRight=V2+House&qotd=%5BTODO%5D&countdownToTime=14%3A21&countdownTitle=Break+starts+in&bottomRightNotes=Welcome+to+Atelier+Weeknights+❤%EF%B8%8F&bottomLeftNotesSize=2&bottomLeftNotes=%23+Hosts%0A%0A1.+Rae%0A1.+Vibhor%0A1.+Clo%0A1.+Chloe-Amelie%0A1.+Connell%0A1.+Stuti&topLeftNotes=%23+WIFI%0A%0ATELUS3176%0A%0AH46MdfvtvJK4&topLeftNotesSize=1">
             <button>welcome</button>
           </a>
           <a
@@ -334,16 +325,17 @@ function SessionBoardContent({
 1. Name
 1. What are you working on?
 1. Question of the day`,
-              bottomLeftNotesSize: "1",
+              bottomRightNotesSize: "2",
             })}
           >
             <button>intro</button>
           </a>
           <a
             href={toChangedParam({
-              bottomRightNotes: `Talk to a host for demos (short max 2 min show and tell)`,
+              bottomRightNotes: `Talk to a host for demos (short 2-min max show and tell)`,
               mainContent: "timer",
-              countdownToTime: "19:20",
+              countdownToTime:
+                currentTimePlusMinutesRoundedToNearest5Minutes(50),
               countdownTitle: "Break Starts",
             })}
           >
@@ -352,7 +344,8 @@ function SessionBoardContent({
           <a
             href={toChangedParam({
               mainContent: "timer",
-              countdownToTime: "19:30",
+              countdownToTime:
+                currentTimePlusMinutesRoundedToNearest5Minutes(15),
               countdownTitle: "Break Ends",
             })}
           >
@@ -361,7 +354,8 @@ function SessionBoardContent({
           <a
             href={toChangedParam({
               mainContent: "timer",
-              countdownToTime: "20:20",
+              countdownToTime:
+                currentTimePlusMinutesRoundedToNearest5Minutes(50),
               countdownTitle: "Demos Start",
             })}
           >
@@ -371,18 +365,6 @@ function SessionBoardContent({
             href={toChangedParam({
               mainContent: "text",
               centerText: "Gather around for demos!",
-              bottomRightNotes: `# Demos
-1. [Name]
-1. [Name]
-1. [Name]
-1. [Name]
-1. [Name]
-1. [Name]
-1. [Name]
-1. [Name]
-1. [Name]
-1. [Name]`,
-              bottomRightNotesSize: "1",
             })}
           >
             <button>demos</button>
@@ -644,6 +626,29 @@ function SessionBoardContent({
       </div>
     </div>
   );
+}
+
+/**
+ *
+ * @param {number} minute The number of minutes to add to the current time
+ *
+ * @return {string} The current time + minute rounded to the nearest 5 minute in the format HH:MM
+ */
+function currentTimePlusMinutesRoundedToNearest5Minutes(
+  minute: number
+): string {
+  const now = new Date();
+  const currentMinutes = now.getMinutes();
+  const roundedMinutes = Math.round(currentMinutes / 5) * 5;
+  now.setMinutes(roundedMinutes + minute);
+
+  const hours = now.getHours();
+  const minutes = now.getMinutes();
+
+  const formattedHours = String(hours).padStart(2, "0");
+  const formattedMinutes = String(minutes).padStart(2, "0");
+
+  return `${formattedHours}:${formattedMinutes}`;
 }
 
 function CountDownText({ countdownTo }: { countdownTo: string }) {
