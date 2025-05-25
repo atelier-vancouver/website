@@ -1,13 +1,14 @@
 import { AutoTextSize } from "auto-text-size";
 import { useCallback, useEffect, useRef, useState } from "react";
 import "./Timer.scss";
-// import wrapUpWav from "./wrap-up.wav";
 import dingMp3 from "./ding.mp3";
 
-const searchParams = new URLSearchParams(window.location.search);
+const searchParams = new URLSearchParams(
+  window.location.hash || window.location.search
+);
 if (!searchParams.has("m")) {
   searchParams.set("m", "2");
-  window.location.search = searchParams.toString();
+  window.location.hash = searchParams.toString();
 }
 const totalSeconds = Number(searchParams.get("m")) * 60;
 
