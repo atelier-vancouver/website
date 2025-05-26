@@ -742,17 +742,17 @@ function linkWithParams(p: Record<string, string>): string {
   Object.entries(p).forEach(([key, value]) => {
     params.set(key, value);
   });
-  url.search = params.toString();
+  url.hash = params.toString();
   return url.toString();
 }
 
 function toChangedParam(p: Record<string, string>): string {
   const url = new URL(window.location.href);
-  const params = new URLSearchParams(url.search);
+  const params = new URLSearchParams(url.hash.slice(1)); // Remove the leading '#'
   Object.entries(p).forEach(([key, value]) => {
     params.set(key, value);
   });
-  url.search = params.toString();
+  url.hash = params.toString();
   return url.toString();
 }
 

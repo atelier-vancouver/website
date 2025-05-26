@@ -43,26 +43,51 @@ index 86cbf5f..12352db 100644
    return children(adapter);
  };
 diff --git a/node_modules/use-query-params/adapters/window/index.js b/node_modules/use-query-params/adapters/window/index.js
-index 16546dc..5d84c5d 100644
+index 16546dc..1ca5cf3 100644
 --- a/node_modules/use-query-params/adapters/window/index.js
 +++ b/node_modules/use-query-params/adapters/window/index.js
-@@ -1,11 +1,13 @@
+@@ -1,14 +1,35 @@
 -import { useState } from "react";
 -function makeAdapter() {
 +import { useEffect, useState } from "react";
++
++function replaceWithHash(search) {
++  const chars = search.split("");
++  chars[0] = chars[0] === "?" ? "#" : chars[0];
++  return chars.join("");
++}
++
++function replaceWithSearch(hash) {
++  const chars = hash.split("");
++  chars[0] = chars[0] === "#" ? "?" : chars[0];
++  return chars.join("");
++}
++
 +function makeAdapter({ onChange }) {
    const adapter = {
      replace(location) {
-       window.history.replaceState(location.state, "", location.search || "?");
+-      window.history.replaceState(location.state, "", location.search || "?");
++      location.hash = replaceWithHash(location.search);
++      delete location.search;
++      window.history.replaceState(location.state, "", location.hash || "#");
 +      onChange();
      },
      push(location) {
-       window.history.pushState(location.state, "", location.search || "?");
+-      window.history.pushState(location.state, "", location.search || "?");
++      location.hash = replaceWithHash(location.search);
++      delete location.search;
++      window.history.pushState(location.state, "", location.hash || "#");
 +      onChange();
      },
      get location() {
-       return window.location;
-@@ -16,7 +18,14 @@ function makeAdapter() {
+-      return window.location;
++      const location = { ...window.location };
++      location.search = replaceWithSearch(location.hash);
++      return location;
+     }
+   };
+   return adapter;
+@@ -16,7 +37,14 @@ function makeAdapter() {
  const WindowHistoryAdapter = ({
    children
  }) => {
