@@ -10,7 +10,7 @@ export default defineConfig({
     server: {
       proxy: {
         "/api": {
-          target: "https://atelier.ac/",
+          target: "https://atelier.place/",
           changeOrigin: true,
           secure: false,
         },
