@@ -14,7 +14,6 @@
     "@astrojs/react": "^4.2.2",
     "@react-hook/resize-observer": "^2.0.2",
     "astro": "^5.5.5",
-    "auto-text-size": "^0.2.3",
     "inter-ui": "^4.0.2",
     "openai": "^4.91.1",
     "react": "^19.1.0",
