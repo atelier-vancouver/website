@@ -24,6 +24,27 @@ import Layout from "../layouts/Layout.astro";
       </a>
     </div>
   </main>
+
+  <script>
+    let screenLock: WakeLockSentinel | undefined;
+    let retryInterval: ReturnType<typeof setInterval>;
+
+    (async () => {
+      try {
+        retryInterval = setInterval(async () => {
+          if (screenLock && !screenLock.released) {
+            return;
+          }
+          if (document.hidden) {
+            return;
+          }
+          try {
+            screenLock = await navigator.wakeLock.request("screen");
+          } catch (error) {}
+        }, 10_000); // every 10s
+      } catch (error) {}
+    })();
+  </script>
 </Layout>
 
 <style lang="scss">
