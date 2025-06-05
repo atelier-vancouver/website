@@ -81,6 +81,9 @@ export const onRequestGet: PagesFunction<Env> = async (context) => {
     apiKey: context.env.OPENAI_API_KEY,
   });
 
+  // Shuffle the question bank to ensure variety
+  shuffleArray(questionBank);
+
   const response = await openai.responses.create({
     model: "gpt-4o",
     input: [
@@ -138,3 +141,10 @@ export const onRequestGet: PagesFunction<Env> = async (context) => {
     },
   });
 };
+
+function shuffleArray(array: any[]) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
