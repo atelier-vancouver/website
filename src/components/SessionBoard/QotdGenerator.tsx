@@ -68,7 +68,7 @@ export function QotdGenerator({
               }}
             >
               use this one
-            </button>
+            </button>{" "}
             <span>{question}</span>
           </div>
         ))}
