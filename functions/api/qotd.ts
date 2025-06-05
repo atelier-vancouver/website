@@ -89,7 +89,7 @@ export const onRequestGet: PagesFunction<Env> = async (context) => {
         content: [
           {
             type: "input_text",
-            text: `Make some ice-breaker question like these:\n${questionBank.join("\n")}`,
+            text: `Make 10 ice-breaker question like these:\n${questionBank.join("\n")}\n The first 5 questions should be similar or taken from the examples. The last 5 questions should be related to the user's location and the current date.`,
           },
         ],
       },
