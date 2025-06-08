@@ -60,17 +60,35 @@ export function QotdGenerator({
         {state === "error" && <span>Error fetching questions</span>}
       </div>
       <div>
-        {questions.map((question, index) => (
-          <div key={index} className="qotd-question">
-            <button
-              onClick={() => {
-                onQuestionSelect(question);
-              }}
-            >
-              use this one
-            </button>{" "}
-            <span>{question}</span>
-          </div>
+        {Object.entries(
+          Object.groupBy(questions, (_, index) => {
+            switch (Math.floor(index / 5)) {
+              case 0:
+                return "from the question bank";
+              case 1:
+                return "similar";
+              case 2:
+                return "location based";
+              default:
+                return "too many";
+            }
+          })
+        ).map(([category, questions], index) => (
+          <section key={index} className="qotd-category">
+            <h4>{category}:</h4>
+            {questions.map((question, index) => (
+              <div key={index} className="qotd-question">
+                <button
+                  onClick={() => {
+                    onQuestionSelect(question);
+                  }}
+                >
+                  use this one
+                </button>{" "}
+                <span>{question}</span>
+              </div>
+            ))}
+          </section>
         ))}
       </div>
     </div>
