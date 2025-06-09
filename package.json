@@ -12,14 +12,17 @@
   },
   "dependencies": {
     "@astrojs/react": "^4.2.2",
+    "@astrojs/vue": "^5.1.0",
     "@react-hook/resize-observer": "^2.0.2",
+    "@vueuse/core": "^13.3.0",
     "astro": "^5.5.5",
     "inter-ui": "^4.0.2",
     "openai": "^4.91.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "showdown": "^2.1.0",
-    "use-query-params": "^2.2.1"
+    "use-query-params": "^2.2.1",
+    "vue": "^3.5.16"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.4",

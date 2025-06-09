@@ -1,13 +1,13 @@
 ---
+import grainImage from "@/assets/images/session-board/grain.png";
+import lightImage from "@/assets/images/session-board/light.png";
+import SessionBoard from "@/components/SessionBoard/SessionBoard.vue";
+import Layout from "@/layouts/Layout.astro";
 import { Picture } from "astro:assets";
-import grainImage from "../assets/images/session-board/grain.png";
-import lightImage from "../assets/images/session-board/light.png";
-import { SessionBoard } from "../components/SessionBoard/SessionBoard";
-import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Session Board - Atelier">
-  <SessionBoard client:only="react">
+  <SessionBoard client:only="vue">
     <Picture
       slot="grain"
       src={grainImage}
