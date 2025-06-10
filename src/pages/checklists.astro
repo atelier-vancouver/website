@@ -13,215 +13,243 @@ function getChecklistUrl(
 
   return url.toString();
 }
+
+const checklists: {
+  name: string;
+  items: { title: string; subtitle?: string }[];
+}[][] = [
+  [
+    {
+      name: "Setup (UBC)",
+      items: [
+        {
+          title: "Stick sign on door",
+          subtitle: "the sign should be in the bag with the snacks",
+        },
+        {
+          title: "Lay out snacks, open unopened bags",
+          subtitle:
+            "open the bags in a resealable way, use the scissors in the bag if necessary",
+        },
+        {
+          title: "Set up computer",
+          subtitle:
+            "open atelier.place/session, pick a QOTD, install adblock, play music on YouTube",
+        },
+        {
+          title: "Hard start intros 12:10",
+          subtitle: "if there are more than 5 people in the room",
+        },
+      ],
+    },
+    {
+      name: "Setup (Weeknights)",
+      items: [
+        {
+          title: "Stick sign on door",
+          subtitle: "the sign should be in the snack cabinet",
+        },
+        {
+          title: "Lay out snacks, open unopened bags",
+          subtitle:
+            "open the bags in a resealable way, use the scissors if necessary",
+        },
+        {
+          title: "Set up computer",
+          subtitle:
+            "open atelier.place/session, pick a QOTD, play music on Spotify",
+        },
+        {
+          title: "Hard start intros 6:10",
+          subtitle: "if there are more than 5 people in the room",
+        },
+      ],
+    },
+  ],
+  [
+    {
+      name: "Start Intros (UBC)",
+      items: [
+        { title: "Welcome everyone" },
+        {
+          title: "Introduce Atelier",
+          subtitle: "a place to work on your projects (no school no work)",
+        },
+        {
+          title: "Work format",
+          subtitle: "50 minute work, 10 minute break, 50 minute work, demos",
+        },
+        {
+          title: "Intro format",
+          subtitle:
+            "name, what you are working on, and your answer to the QOTD",
+        },
+        {
+          title: "Start intros by example",
+          subtitle: "pass it on the side with more regulars",
+        },
+      ],
+    },
+    {
+      name: "Start Intros (Weeknights)",
+      items: [
+        { title: "Welcome everyone" },
+        {
+          title: "Introduce Atelier",
+          subtitle: "a place to work on your projects (no school no work)",
+        },
+        {
+          title: "Work format",
+          subtitle: "70 minute work, 15 minute break, 70 minute work, demos",
+        },
+        {
+          title: "Intro format",
+          subtitle:
+            "name, what you are working on, and your answer to the QOTD",
+        },
+        {
+          title: "Start intros by example",
+          subtitle: "pass it on the side with more regulars",
+        },
+      ],
+    },
+    {
+      name: "After intro (UBC)",
+      items: [
+        {
+          title: "Work format",
+          subtitle: "50 minute work, 10 minute break, 50 minute work, demos",
+        },
+        {
+          title: "Demo format",
+          subtitle: "demos are 30s to 2m, ask a host to sign up",
+        },
+        {
+          title: "Where things are",
+          subtitle: "water, bathroom, snacks, trash",
+        },
+        { title: "Quiet / Yap" },
+      ],
+    },
+    {
+      name: "After intro (Weeknights)",
+      items: [
+        {
+          title: "Work format",
+          subtitle: "70 minute work, 15 minute break, 70 minute work, demos",
+        },
+        {
+          title: "Demo format",
+          subtitle: "demos are 30s to 2m, ask a host to sign up",
+        },
+        {
+          title: "Where things are",
+          subtitle: "water, bathroom, snacks, trash",
+        },
+        { title: "Quiet / Yap" },
+      ],
+    },
+  ],
+  [
+    {
+      name: "Before Demos",
+      items: [
+        {
+          title: "Ordering",
+          subtitle: "put first time demoers in the middle or end",
+        },
+        {
+          title: "Find someone to timer",
+          subtitle:
+            "find someone with a laptop and open atelier.place/timer, ask them to turn the laptop towards the demoer and turn on the sound",
+        },
+      ],
+    },
+    {
+      name: "After Demos (UBC)",
+      items: [
+        {
+          title: "Ask for donations",
+          subtitle: "ask them to go to atelier.place",
+        },
+        {
+          title: "Discord / IG",
+          subtitle: "tell people about the discord and ig gc",
+        },
+        {
+          title: "Weeknights sessions",
+          subtitle: "tell people about Weeknights",
+        },
+        { title: "Group photos", subtitle: "post on ig and tag people" },
+      ],
+    },
+    {
+      name: "After Demos (Weeknights)",
+      items: [
+        { title: "Thank the cooks" },
+        { title: "Ask to clean plates" },
+        {
+          title: "Solicit cooking volunteers",
+          subtitle: "ask them to talk to a host to sign up",
+        },
+        {
+          title: "Ask for donations",
+          subtitle: "ask them to go to atelier.place",
+        },
+        {
+          title: "Discord / IG",
+          subtitle: "tell people about the discord and ig gc",
+        },
+        { title: "UBC sessions", subtitle: "Sundays at noon" },
+        { title: "Group photos", subtitle: "post on ig and tag people" },
+      ],
+    },
+  ],
+  [
+    {
+      name: "Teardown (UBC)",
+      items: [
+        { title: "Remove sign", subtitle: "put the sign back in the bag" },
+        {
+          title: "Pack up snacks",
+          subtitle: "put the snacks back in the snack basket",
+        },
+        { title: "Turn off computer" },
+      ],
+    },
+    {
+      name: "Teardown (Weeknights)",
+      items: [
+        {
+          title: "Remove sign",
+          subtitle: "Put the sign back in the snack cabinet",
+        },
+        {
+          title: "Pack up snacks",
+          subtitle: "Put the snacks back in the snack cabinet",
+        },
+        { title: "Turn off computer" },
+      ],
+    },
+  ],
+];
 ---
 
 <Layout title="Checklists - Atelier">
   <main>
     <h1>Checklists</h1>
 
-    <ul>
-      <li>
-        <a
-          href={getChecklistUrl("Setup (UBC)", [
-            {
-              title: "Stick sign on door",
-              subtitle: "the sign should be in the bag with the snacks",
-            },
-            {
-              title: "Lay out snacks, open unopened bags",
-              subtitle:
-                "open the bags in a resealable way, use the scissors in the bag if necessary",
-            },
-            {
-              title: "Set up computer",
-              subtitle:
-                "open atelier.place/session, pick a QOTD, install adblock, play music on YouTube",
-            },
-            {
-              title: "Hard start intros 12:10",
-              subtitle: "if there are more than 5 people in the room",
-            },
-          ])}
-        >
-          Setup (UBC)
-        </a>
-      </li>
-      <li>
-        <a
-          href={getChecklistUrl("Setup (Weeknights)", [
-            {
-              title: "Stick sign on door",
-              subtitle: "the sign should be in the snack cabinet",
-            },
-            {
-              title: "Lay out snacks, open unopened bags",
-              subtitle:
-                "open the bags in a resealable way, use the scissors if necessary",
-            },
-            {
-              title: "Set up computer",
-              subtitle:
-                "open atelier.place/session, pick a QOTD, play music on Spotify",
-            },
-            {
-              title: "Hard start intros 6:10",
-              subtitle: "if there are more than 5 people in the room",
-            },
-          ])}
-        >
-          Setup (Weeknights)
-        </a>
-      </li>
-    </ul>
-
-    <ul>
-      <li>
-        <a
-          href={getChecklistUrl("Start Intros", [
-            {
-              title: "Welcome everyone",
-            },
-            {
-              title: "Introduce Atelier",
-              subtitle: "a place to work on your projects (no school no work)",
-            },
-            {
-              title: "Work format",
-              subtitle:
-                "50 minute work, 10 minute break, 50 minute work, demos",
-            },
-            {
-              title: "Intro format",
-              subtitle:
-                "name, what you are working on, and  your answer to the QOTD",
-            },
-            {
-              title: "Start intros by example",
-              subtitle: "pass it on the side with more regulars",
-            },
-          ])}
-        >
-          Start Intros
-        </a>
-      </li>
-      <li>
-        <a
-          href={getChecklistUrl("After intro", [
-            {
-              title: "Work format",
-              subtitle:
-                "50 minute work, 10 minute break, 50 minute work, demos",
-            },
-            {
-              title: "Demo format",
-              subtitle: "demos are 30s to 2m, ask a host to sign up",
-            },
-            {
-              title: "Where things are",
-              subtitle: "water, bathroom, snacks, trash",
-            },
-            {
-              title: "Quiet / Yap",
-            },
-          ])}
-        >
-          After Intros
-        </a>
-      </li>
-    </ul>
-
-    <ul>
-      <li>
-        <a
-          href={getChecklistUrl("Before demos", [
-            {
-              title: "Ordering",
-              subtitle: "put first time demoers in the middle or end",
-            },
-            {
-              title: "Find someone to timer",
-              subtitle:
-                "find someone with a laptop and open atelier.place/timer, ask them to turn the laptop towards the demoer and turn on the sound",
-            },
-          ])}
-        >
-          Before Demos
-        </a>
-      </li>
-      <li>
-        <a
-          href={getChecklistUrl("After Demos (UBC)", [
-            {
-              title: "Ask for donations",
-              subtitle: "ask them to go to atelier.place",
-            },
-            {
-              title: "Discord / IG",
-              subtitle: "tell people about the discord and ig gc",
-            },
-            {
-              title: "Weeknights sessions",
-              subtitle: "tell people about Weeknights",
-            },
-            {
-              title: "Group photos",
-              subtitle: "post on ig and tag people",
-            },
-          ])}
-        >
-          After Demos (UBC)
-        </a>
-      </li>
-      <li>
-        <a
-          href={getChecklistUrl("After Demos (Weeknights)", [
-            {
-              title: "Thank the cooks",
-            },
-            { title: "Ask to clean plates" },
-            {
-              title: "Solicit cooking volunteers",
-              subtitle: "ask them to talk to a host to sign up",
-            },
-            {
-              title: "Ask for donations",
-              subtitle: "ask them to go to atelier.place",
-            },
-            {
-              title: "Discord / IG",
-              subtitle: "tell people about the discord and ig gc",
-            },
-            {
-              title: "UBC sessions",
-              subtitle: "Sundays at noon",
-            },
-            {
-              title: "Group photos",
-              subtitle: "post on ig and tag people",
-            },
-          ])}
-        >
-          After Demos (Weeknights)
-        </a>
-      </li>
-    </ul>
-
-    <ul>
-      <li>
-        <a
-          href="https://calvin.sh/tools/checklist/#name=Teardown+%28UBC%29&items=%5B%7B%22title%22%3A%22Remove+sign%22%2C%22subtitle%22%3A%22put+the+sign+back+in+the+bag%22%7D%2C%7B%22title%22%3A%22Pack+up+snacks%22%2C%22subtitle%22%3A%22put+the+snacks+back+in+the+snack+basket%22%7D%2C%7B%22title%22%3A%22Turn+off+computer%22%7D%5D"
-        >
-          Teardown (UBC)
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://calvin.sh/tools/checklist/#name=Teardown+%28Weeknights%29&items=%5B%7B%22title%22%3A%22Remove+sign%22%2C%22subtitle%22%3A%22Put+the+sign+back+in+the+snack+cabinet%22%7D%2C%7B%22title%22%3A%22Pack+up+snacks%22%2C%22subtitle%22%3A%22Put+the+snacks+back+in+the+snack+cabinet%22%7D%2C%7B%22title%22%3A%22Turn+off+computer%22%7D%5D"
-        >
-          Teardown (Weeknights)
-        </a>
-      </li>
-    </ul>
+    {
+      checklists.map((checklist) => (
+        <ul>
+          {checklist.map((item) => (
+            <li>
+              <a href={getChecklistUrl(item.name, item.items)}>{item.name}</a>
+            </li>
+          ))}
+        </ul>
+      ))
+    }
   </main>
 </Layout>
 

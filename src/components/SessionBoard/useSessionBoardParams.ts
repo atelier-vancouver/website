@@ -372,7 +372,7 @@ export const presets: {
 
           mainContentState.value = "timer";
           countdownToTime.value =
-            currentTimePlusMinutesRoundedToNearest5Minutes(15);
+            currentTimePlusMinutesRoundedToNearest5Minutes(10);
           countdownTitle.value = "Break Ends";
         },
       },
