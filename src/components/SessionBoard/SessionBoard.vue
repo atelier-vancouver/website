@@ -340,6 +340,7 @@ const countdownToTimeString = computed({
                 show
               </label>
             </div>
+            <div>markdown:</div>
             <div>
               <textarea v-model="topLeftNotes" />
             </div>
@@ -362,6 +363,7 @@ const countdownToTimeString = computed({
                 show
               </label>
             </div>
+            <div>markdown:</div>
             <div>
               <textarea v-model="topRightNotes" />
             </div>
@@ -386,6 +388,7 @@ const countdownToTimeString = computed({
                 show
               </label>
             </div>
+            <div>markdown:</div>
             <div>
               <textarea v-model="bottomLeftNotes" />
             </div>
@@ -408,6 +411,7 @@ const countdownToTimeString = computed({
                 show
               </label>
             </div>
+            <div>markdown:</div>
             <div>
               <textarea v-model="bottomRightNotes" />
             </div>
@@ -704,6 +708,7 @@ const countdownToTimeString = computed({
       display: flex;
       flex-direction: row;
       gap: 1rem;
+      margin-top: 1rem;
     }
 
     .pill-config {

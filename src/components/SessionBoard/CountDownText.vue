@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted, ref } from "vue";
+import { computed, onMounted, onUnmounted, ref, watch } from "vue";
 
 const props = defineProps<{
   hour: number;
@@ -34,6 +34,13 @@ function updateTime() {
   timeString += seconds.toString().padStart(2, "0");
   time.value = timeString;
 }
+
+watch(
+  () => [props.hour, props.minute],
+  () => {
+    updateTime();
+  }
+);
 
 onMounted(() => {
   updateTime();
