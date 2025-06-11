@@ -35,7 +35,9 @@ const rawParams = useUrlSearchParams<{
   bottomRightNotes?: string;
   bottomRightNotesSize?: string;
   showBottomRightNotes?: string;
-}>("hash-params");
+}>("hash-params", {
+  writeMode: "push",
+});
 
 function paramToRef<Key extends keyof typeof rawParams>(
   key: Key,
