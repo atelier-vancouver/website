@@ -207,7 +207,7 @@ export const showBottomRightNotes = paramToRef("showBottomRightNotes", {
   toRaw: (value) => (value ? "true" : "false"),
 });
 
-function reset() {
+export function reset() {
   for (const key of Object.keys(rawParams)) {
     // @ts-ignore
     rawParams[key] = undefined;

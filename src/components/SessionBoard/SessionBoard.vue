@@ -20,6 +20,7 @@ import {
   presets,
   qotd,
   qotdLocation,
+  reset,
   selectedPreset,
   selectedPresetStage,
   showBottomLeftNotes,
@@ -250,6 +251,9 @@ const countdownToTimeString = computed({
         >
           {{ stage.name }}
         </button>
+      </div>
+      <div>
+        <button @click="reset">reset</button>
       </div>
 
       <details>
