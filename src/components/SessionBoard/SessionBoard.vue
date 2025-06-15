@@ -53,15 +53,26 @@ onMounted(() => {
 
 // keeps the screen awake
 onMounted(() => {
-  let screenLock: Promise<WakeLockSentinel> | undefined;
-  try {
-    screenLock = navigator.wakeLock.request("screen");
-  } catch (error) {
-    console.log(error);
-  }
+  let screenLock: WakeLockSentinel | undefined;
+  let retryInterval: ReturnType<typeof setInterval>;
+
+  retryInterval = setInterval(async () => {
+    if (screenLock && !screenLock.released) {
+      return;
+    }
+    if (document.hidden) {
+      return;
+    }
+    try {
+      screenLock = await navigator.wakeLock.request("screen");
+    } catch (error) {}
+  }, 10_000); // every 10s
 
   onUnmounted(() => {
-    screenLock?.then((l) => l.release());
+    if (retryInterval) {
+      clearInterval(retryInterval);
+    }
+    screenLock?.release();
   });
 });
 
