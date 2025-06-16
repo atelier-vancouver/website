@@ -65,14 +65,17 @@ onMounted(() => {
     }
     try {
       screenLock = await navigator.wakeLock.request("screen");
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   }, 10_000); // every 10s
 
-  onUnmounted(() => {
+  onUnmounted(async () => {
     if (retryInterval) {
       clearInterval(retryInterval);
     }
-    screenLock?.release();
+    await screenLock?.release();
+    screenLock = undefined;
   });
 });
 
