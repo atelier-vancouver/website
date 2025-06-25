@@ -49,6 +49,25 @@ onMounted(() => {
       isCursorVisible.value = false;
     }, CURSOR_TIMEOUT);
   });
+
+  window.addEventListener(
+    "scroll",
+    () => {
+      // once scroll almost all the way to the top, blur all inputs
+      if (window.scrollY < 100) {
+        document.querySelectorAll("input, textarea, button").forEach((el) => {
+          if (
+            el instanceof HTMLInputElement ||
+            el instanceof HTMLTextAreaElement ||
+            el instanceof HTMLButtonElement
+          ) {
+            el.blur();
+          }
+        });
+      }
+    },
+    { passive: true }
+  );
 });
 
 // keeps the screen awake
