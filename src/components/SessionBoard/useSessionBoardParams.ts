@@ -238,11 +238,10 @@ export const presets: {
           bottomRightNotes.value = "Welcome to Atelier ❤️";
 
           bottomLeftNotes.value = `# Hosts\n\n${[
-            "Calvin",
+            "Kai",
             "Rae",
             "Iris",
             "Jen",
-            "Stella",
           ].join("  \n")}`;
           bottomLeftNotesSize.value = 2;
 
@@ -327,7 +326,7 @@ export const presets: {
           bottomRightNotes.value = "Welcome to Atelier Weeknights ❤️";
 
           bottomLeftNotes.value = `# Hosts\n\n${[
-            "Calvin",
+            "Kai",
             "Rae",
             "Vibhor",
             "Connell",
