@@ -383,7 +383,7 @@ const countdownToTimeString = computed({
           </details>
         </div>
       </details>
-      <details>
+      <details open>
         <summary>notes:</summary>
         <div class="notes-config">
           <div>
