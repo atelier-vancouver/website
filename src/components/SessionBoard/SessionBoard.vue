@@ -16,6 +16,7 @@ import {
   centerText,
   countdownTitle,
   countdownToTime,
+  isParamsEmpty,
   mainContentState,
   presets,
   qotd,
@@ -34,6 +35,22 @@ import {
   topRightNotesSize,
   topRightText,
 } from "./useSessionBoardParams";
+
+// set preset to UBC on weekends and Weeknights on weekdays
+onMounted(() => {
+  if (isParamsEmpty.value) {
+    const date = new Date();
+    const day = date.getDay();
+
+    if (day === 0 || day === 6) {
+      // Sunday or Saturday
+      presets.find((p) => p.name === "UBC")?.stages[0].set();
+    } else {
+      // Weeknights
+      presets.find((p) => p.name === "Weeknights")?.stages[0].set();
+    }
+  }
+});
 
 // hide the cursor after 5 seconds of inactivity
 const isCursorVisible = ref(true);
@@ -289,7 +306,7 @@ const countdownToTimeString = computed({
         <button @click="reset">reset</button>
       </div>
 
-      <details>
+      <details open>
         <summary>content:</summary>
         <div className="content-config gaps">
           <div>
@@ -320,7 +337,7 @@ const countdownToTimeString = computed({
             </label>
           </div>
 
-          <details>
+          <details open>
             <summary>QOTD:</summary>
             <div class="gaps">
               <div>

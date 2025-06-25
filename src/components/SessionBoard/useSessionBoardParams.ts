@@ -38,6 +38,10 @@ const rawParams = useUrlSearchParams<{
 }>("hash-params", {
   writeMode: "push",
 });
+export const isParamsEmpty = computed(() => {
+  console.log(rawParams);
+  return Object.keys(rawParams).length === 0;
+});
 
 function paramToRef<Key extends keyof typeof rawParams>(
   key: Key,
