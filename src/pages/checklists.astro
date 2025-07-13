@@ -15,11 +15,13 @@ function getChecklistUrl(
 }
 
 const checklists: {
+  tag?: "UBC" | "Weeknights";
   name: string;
   items: { title: string; subtitle?: string }[];
 }[][] = [
   [
     {
+      tag: "UBC",
       name: "Setup (UBC)",
       items: [
         {
@@ -43,6 +45,7 @@ const checklists: {
       ],
     },
     {
+      tag: "Weeknights",
       name: "Setup (Weeknights)",
       items: [
         {
@@ -68,6 +71,7 @@ const checklists: {
   ],
   [
     {
+      tag: "UBC",
       name: "Start Intros (UBC)",
       items: [
         { title: "Welcome everyone" },
@@ -87,6 +91,7 @@ const checklists: {
       ],
     },
     {
+      tag: "Weeknights",
       name: "Start Intros (Weeknights)",
       items: [
         { title: "Welcome everyone" },
@@ -106,6 +111,7 @@ const checklists: {
       ],
     },
     {
+      tag: "UBC",
       name: "After intro (UBC)",
       items: [
         {
@@ -124,6 +130,7 @@ const checklists: {
       ],
     },
     {
+      tag: "Weeknights",
       name: "After intro (Weeknights)",
       items: [
         {
@@ -158,6 +165,7 @@ const checklists: {
       ],
     },
     {
+      tag: "UBC",
       name: "After Demos (UBC)",
       items: [
         {
@@ -176,6 +184,7 @@ const checklists: {
       ],
     },
     {
+      tag: "Weeknights",
       name: "After Demos (Weeknights)",
       items: [
         { title: "Food demo" },
@@ -202,6 +211,7 @@ const checklists: {
   ],
   [
     {
+      tag: "UBC",
       name: "Teardown (UBC)",
       items: [
         { title: "Remove sign", subtitle: "put the sign back in the bag" },
@@ -217,6 +227,7 @@ const checklists: {
       ],
     },
     {
+      tag: "Weeknights",
       name: "Teardown (Weeknights)",
       items: [
         {
@@ -246,12 +257,41 @@ const checklists: {
   <main>
     <h1>Checklists</h1>
 
+    <div>
+      filter: <select class="filter">
+        <option value="">All</option>
+        <option value="UBC">UBC</option>
+        <option value="Weeknights">Weeknights</option>
+      </select>
+    </div>
+
+    <script>
+      const filterSelect =
+        document.querySelector<HTMLSelectElement>("select.filter")!;
+
+      const date = new Date();
+      const day = date.getDay();
+
+      if (day === 0 || day === 6) {
+        // Sunday or Saturday
+        filterSelect.value = "UBC";
+      } else {
+        // Weeknights
+        filterSelect.value = "Weeknights";
+      }
+    </script>
+
     {
       checklists.map((checklist) => (
         <ul>
           {checklist.map((item) => (
             <li>
-              <a href={getChecklistUrl(item.name, item.items)}>{item.name}</a>
+              <a
+                href={getChecklistUrl(item.name, item.items)}
+                data-tag={item.tag}
+              >
+                {item.name}
+              </a>
             </li>
           ))}
         </ul>
@@ -262,10 +302,27 @@ const checklists: {
 
 <style lang="scss">
   main {
+    font-family: sans-serif;
+
     width: 100%;
     height: 100vh;
 
     padding: 1rem;
+  }
+
+  div:has(select > option[value="UBC"]:checked) ~ ul {
+    li:has(a[data-tag="Weeknights"]) {
+      display: none;
+    }
+  }
+  div:has(select > option[value="Weeknights"]:checked) ~ ul {
+    li:has(a[data-tag="UBC"]) {
+      display: none;
+    }
+  }
+
+  h1 {
+    margin-bottom: 1rem;
   }
 
   ul {
@@ -275,5 +332,9 @@ const checklists: {
 
   li {
     margin: 1rem 0;
+  }
+
+  a {
+    opacity: 0.8;
   }
 </style>
