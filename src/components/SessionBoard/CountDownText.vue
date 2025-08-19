@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref, watch, watchEffect } from "vue";
-import breakEndJingle from "./jingles/break-end.wav";
-import breakStartJingle from "./jingles/break-start.wav";
+import breakEndJingle from "./jingles/break-end-2.wav";
+import breakStartJingle from "./jingles/break-start-2.wav";
 import demoStartJingle from "./jingles/demo-start.wav";
 import { selectedPresetStage } from "./useSessionBoardParams";
 
