@@ -1,12 +1,33 @@
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted, ref, watch } from "vue";
+import { computed, onMounted, onUnmounted, ref, watch, watchEffect } from "vue";
+import breakEndJingle from "./jingles/break-end.wav";
+import breakStartJingle from "./jingles/break-start.wav";
+import demoStartJingle from "./jingles/demo-start.wav";
+import { selectedPresetStage } from "./useSessionBoardParams";
 
 const props = defineProps<{
   hour: number;
   minute: number;
 }>();
 
-const time = ref<string>("00:00");
+const time = ref<string>("--:--");
+watchEffect(() => {
+  if (time.value !== "00:00") {
+    return;
+  }
+
+  switch (selectedPresetStage.value) {
+    case "work session1":
+      new Audio(breakStartJingle).play();
+      break;
+    case "break":
+      new Audio(breakEndJingle).play();
+      break;
+    case "work session2":
+      new Audio(demoStartJingle).play();
+      break;
+  }
+});
 
 const targetDate = computed(() => {
   const countdownToDate = new Date();
