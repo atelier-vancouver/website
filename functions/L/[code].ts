@@ -36,7 +36,7 @@ export const onRequestGet: PagesFunction = async (context) => {
     );
   }
 
-  const destinationURL = `https://lu.ma/atelier.place?utm_source=${utmSource}`;
+  const destinationURL = `https://luma.com/atelier.place?utm_source=${utmSource}`;
   const statusCode = 302;
 
   return new Response(null, {
