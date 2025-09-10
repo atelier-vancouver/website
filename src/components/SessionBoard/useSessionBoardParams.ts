@@ -331,7 +331,6 @@ export const presets: {
             "Calvin",
             "Kai",
             "Rae",
-            "Vibhor",
             "Connell",
             "Chloe-Amelie",
           ].join("  \n")}`;
