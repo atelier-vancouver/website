@@ -1,0 +1,104 @@
+---
+import logo from "@/assets/images/session-board/logo.svg?url";
+import grainImage from "@/assets/images/session-board/grain.png";
+import Layout from "@/layouts/Layout.astro";
+import { Picture } from "astro:assets";
+---
+
+<Layout title="Logo - Atelier">
+  <main>
+    <div class="grain-container">
+      <Picture
+        slot="grain"
+        src={grainImage}
+        formats={["avif", "webp"]}
+        widths={[640, 750, 828, 1080, 1200, 1920, 2048, 3840]}
+        quality="high"
+        alt=""
+        aria-hidden
+      />
+    </div>
+
+    <img src={logo} alt="Atelier" />
+  </main>
+
+  <script>
+    let screenLock: WakeLockSentinel | undefined;
+
+    (async () => {
+      try {
+        setInterval(async () => {
+          if (screenLock && !screenLock.released) {
+            return;
+          }
+          if (document.hidden) {
+            return;
+          }
+          try {
+            screenLock = await navigator.wakeLock.request("screen");
+          } catch (error) {}
+        }, 10_000); // every 10s
+      } catch (error) {}
+    })();
+  </script>
+
+  <script>
+    function onKeyDown(e: KeyboardEvent) {
+      if (
+        e.target instanceof HTMLInputElement ||
+        e.target instanceof HTMLTextAreaElement
+      ) {
+        return; // ignore key events in input fields
+      }
+      switch (e.key) {
+        case "f":
+          e.preventDefault();
+          if (document.fullscreenElement) {
+            document.exitFullscreen();
+          } else {
+            document.documentElement.requestFullscreen();
+          }
+          break;
+      }
+    }
+
+    window.addEventListener("keydown", onKeyDown);
+  </script>
+</Layout>
+
+<style lang="scss">
+  :global(body) {
+    background-color: #f6f2ee;
+  }
+
+  main {
+    width: 100%;
+    height: 100vh;
+
+    align-content: center;
+
+    .grain-container,
+    .light-container {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      mix-blend-mode: soft-light;
+
+      :global(img) {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+    }
+
+    img {
+      height: auto;
+      width: calc(100% - 5rem);
+
+      margin: 0 auto;
+    }
+  }
+</style>
