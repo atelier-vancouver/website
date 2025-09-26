@@ -5,6 +5,9 @@ interface Env {
 }
 
 const questionBank = [
+  // from Chloe Yip
+  "What's the most embarrassing thing you've done recently?",
+
   // from jaryd diamond
   "If you could have an unlimited amount of anything, what would it be?",
   "What is the largest animal you could take in hand-to-hand combat?",
