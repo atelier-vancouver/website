@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref, watch, watchEffect } from "vue";
-import bingBongJingle from "./jingles/bing-bong.mp3";
+import bingBongJingle from "./jingles/bing-bong.wav";
 import { selectedPresetStage } from "./useSessionBoardParams";
 
 const props = defineProps<{

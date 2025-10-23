@@ -40,7 +40,6 @@ const rawParams = useUrlSearchParams<{
   writeMode: "push",
 });
 export const isParamsEmpty = computed(() => {
-  console.log(rawParams);
   return Object.keys(rawParams).length === 0;
 });
 
