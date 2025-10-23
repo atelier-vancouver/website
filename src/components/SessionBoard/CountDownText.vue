@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref, watch, watchEffect } from "vue";
-import breakEndJingle from "./jingles/break-end-2.wav";
-import breakStartJingle from "./jingles/break-start-2.wav";
-import demoStartJingle from "./jingles/demo-start.wav";
+import bingBongJingle from "./jingles/bing-bong.mp3";
 import { selectedPresetStage } from "./useSessionBoardParams";
 
 const props = defineProps<{
@@ -18,13 +16,9 @@ watchEffect(() => {
 
   switch (selectedPresetStage.value) {
     case "work session1":
-      new Audio(breakStartJingle).play();
-      break;
     case "break":
-      new Audio(breakEndJingle).play();
-      break;
     case "work session2":
-      new Audio(demoStartJingle).play();
+      new Audio(bingBongJingle).play();
       break;
   }
 });
