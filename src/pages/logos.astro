@@ -1,0 +1,71 @@
+---
+import Layout from "@/layouts/Layout.astro";
+
+const fileNames = [
+  "logo-regular.svg",
+  "logo-medium.svg",
+  "logo-bold.svg",
+  "luma-ubc.svg",
+  "luma-weeknights.svg",
+];
+---
+
+<Layout title="Logos - Atelier">
+  <main>
+    <table>
+      <thead>
+        <tr>
+          <th>File Name</th>
+          <th>Preview</th>
+          <th>Download</th>
+        </tr>
+      </thead>
+      <tbody>
+        {
+          fileNames.map((fileName) => (
+            <tr>
+              <td>{fileName}</td>
+              <td>
+                <img src={`/assets/${fileName}`} alt={fileName} />
+              </td>
+              <td>
+                <a href={`/assets/${fileName}`} download>
+                  Download
+                </a>
+              </td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </main>
+</Layout>
+
+<style lang="scss">
+  :global(body) {
+    background-color: #f6f2ee;
+  }
+
+  main {
+    width: 100%;
+    height: 100vh;
+
+    align-content: center;
+
+    table {
+      border: 2px solid black;
+      border-collapse: collapse;
+      margin: auto;
+
+      th,
+      td {
+        border: 2px solid black;
+        padding: 8px;
+
+        img {
+          width: 100px;
+        }
+      }
+    }
+  }
+</style>
