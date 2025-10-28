@@ -1,3 +1,4 @@
+import openCollectiveQrCodeSvg from "@/assets/images/opencollective-qr.svg?raw";
 import { useUrlSearchParams } from "@vueuse/core";
 import { computed, type WritableComputedRef } from "vue";
 import wifiQrCodeSvg from "./wifi-qr-code.svg?raw";
@@ -311,6 +312,19 @@ export const presets: {
 
           mainContentState.value = "text";
           centerText.value = "Gather around for demos!";
+        },
+      },
+      {
+        name: "closing",
+        set() {
+          selectedPreset.value = "UBC";
+          selectedPresetStage.value = "closing";
+
+          mainContentState.value = "text";
+          centerText.value = `Thank you for coming!\n\nSee you next Tuesday/Sunday`;
+
+          bottomRightNotes.value = `<p style="text-align:end">Donate at<br>atelier.place/donate</p>\n<img style=\"margin-top: 0.5ch\" src=\"data:image/svg+xml,${encodeURIComponent(openCollectiveQrCodeSvg)}\" />`;
+          bottomRightNotesSize.value = 1;
         },
       },
     ],

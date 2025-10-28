@@ -1,219 +1,235 @@
-<svg xmlns="http://www.w3.org/2000/svg" stroke="#000" stroke-width="0" viewBox="-1.5 -1.5 28 28">
-  <rect width="28" height="28" x="-1.5" y="-1.5" fill="#fff" stroke="none" rx="4" ry="4"></rect>
-  <g fill="none" stroke-width="1">
-    <rect width="6" height="6" x=".5" y=".5" rx="2.3" ry="2.3"></rect>
-    <rect width="6" height="6" x=".5" y="18.5" rx="2.3" ry="2.3"></rect>
-    <rect width="6" height="6" x="18.5" y=".5" rx="2.3" ry="2.3"></rect>
-  </g>
-  <g stroke="none">
-    <rect width="3" height="3" x="2" y="2" rx=".8" ry=".8"></rect>
-    <rect width="3" height="3" x="2" y="20" rx=".8" ry=".8"></rect>
-    <rect width="3" height="3" x="20" y="2" rx=".8" ry=".8"></rect>
-  </g>
-  <rect width="4" height="4" x="16.5" y="16.5" fill="none" stroke-width="1" rx="1.5" ry="1.5"></rect>
-  <rect width="1" height="1" x="18" y="18" stroke="none" rx=".4" ry=".4"></rect>
-  <g stroke="none">
-    <rect width="1" height="1" x="8" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="9" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="11" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="12" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="13" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="14" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="16" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="14" y="1" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="15" y="1" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="8" y="2" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="11" y="2" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="15" y="2" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="16" y="2" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="8" y="3" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="12" y="3" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="13" y="3" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="15" y="3" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="16" y="3" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="10" y="4" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="13" y="4" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="16" y="4" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="8" y="5" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="9" y="5" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="11" y="5" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="12" y="5" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="13" y="5" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="16" y="5" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="8" y="6" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="10" y="6" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="12" y="6" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="14" y="6" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="16" y="6" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="8" y="7" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="9" y="7" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="10" y="7" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="11" y="7" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="13" y="7" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="14" y="7" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="15" y="7" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="16" y="7" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="1" y="8" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="3" y="8" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="5" y="8" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="6" y="8" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="7" y="8" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="8" y="8" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="12" y="8" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="13" y="8" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="17" y="8" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="18" y="8" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="19" y="8" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="21" y="8" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="22" y="8" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="24" y="8" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" y="9" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="3" y="9" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="4" y="9" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="5" y="9" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="7" y="9" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="10" y="9" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="13" y="9" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="15" y="9" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="18" y="9" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="19" y="9" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="24" y="9" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="1" y="10" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="3" y="10" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="4" y="10" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="6" y="10" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="8" y="10" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="9" y="10" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="13" y="10" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="15" y="10" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="17" y="10" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="18" y="10" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="23" y="10" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="24" y="10" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="1" y="11" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="3" y="11" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="7" y="11" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="10" y="11" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="12" y="11" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="14" y="11" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="15" y="11" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="19" y="11" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="20" y="11" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" y="12" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="1" y="12" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="2" y="12" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="4" y="12" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="5" y="12" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="6" y="12" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="7" y="12" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="8" y="12" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="13" y="12" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="15" y="12" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="19" y="12" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="21" y="12" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="23" y="12" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="24" y="12" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="1" y="13" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="2" y="13" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="4" y="13" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="5" y="13" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="7" y="13" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="8" y="13" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="9" y="13" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="15" y="13" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="19" y="13" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="20" y="13" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="21" y="13" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="22" y="13" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="24" y="13" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" y="14" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="4" y="14" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="5" y="14" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="6" y="14" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="9" y="14" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="12" y="14" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="13" y="14" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="15" y="14" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="16" y="14" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="19" y="14" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="20" y="14" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="22" y="14" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="24" y="14" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="1" y="15" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="2" y="15" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="3" y="15" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="4" y="15" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="5" y="15" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="8" y="15" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="9" y="15" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="12" y="15" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="14" y="15" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="16" y="15" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="23" y="15" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" y="16" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="1" y="16" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="3" y="16" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="4" y="16" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="5" y="16" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="6" y="16" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="7" y="16" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="14" y="16" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="15" y="16" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="21" y="16" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="22" y="16" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="8" y="17" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="9" y="17" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="11" y="17" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="21" y="17" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="24" y="17" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="8" y="18" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="9" y="18" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="10" y="18" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="13" y="18" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="14" y="18" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="21" y="18" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="23" y="18" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="24" y="18" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="8" y="19" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="11" y="19" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="12" y="19" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="13" y="19" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="15" y="19" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="21" y="19" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="22" y="19" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="9" y="20" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="13" y="20" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="24" y="20" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="8" y="21" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="12" y="21" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="13" y="21" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="18" y="21" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="19" y="21" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="20" y="21" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="21" y="21" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="23" y="21" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="9" y="22" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="11" y="22" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="12" y="22" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="14" y="22" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="16" y="22" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="24" y="22" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="8" y="23" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="10" y="23" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="14" y="23" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="15" y="23" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="16" y="23" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="21" y="23" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="22" y="23" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="9" y="24" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="10" y="24" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="11" y="24" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="13" y="24" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="17" y="24" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="18" y="24" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="19" y="24" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="20" y="24" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="23" y="24" rx=".4" ry=".4"></rect>
-    <rect width="1" height="1" x="24" y="24" rx=".4" ry=".4"></rect>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-1.5 -1.5 28 28">
+  <rect width="28" height="28" x="-1.5" y="-1.5" fill="#fff" rx="4" ry="4" />
+  <rect width="6" height="6" x=".5" y=".5" fill="none" stroke="#000" rx="2.3" ry="2.3" />
+  <rect width="6" height="6" x=".5" y="18.5" fill="none" stroke="#000" rx="2.3" ry="2.3" />
+  <rect width="6" height="6" x="18.5" y=".5" fill="none" stroke="#000" rx="2.3" ry="2.3" />
+  <rect width="3" height="3" x="2" y="2" rx=".8" ry=".8" />
+  <rect width="3" height="3" x="2" y="20" rx=".8" ry=".8" />
+  <rect width="3" height="3" x="20" y="2" rx=".8" ry=".8" />
+  <rect width="4" height="4" x="16.5" y="16.5" fill="none" stroke="#000" rx="1.5" ry="1.5" />
+  <rect width="1" height="1" x="18" y="18" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="8" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="9" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="12" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="13" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="15" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="8" y="1" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="12" y="1" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="13" y="1" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="16" y="1" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="8" y="2" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="10" y="2" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="12" y="2" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="13" y="2" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="14" y="2" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="15" y="2" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="16" y="2" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="13" y="3" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="8" y="4" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="10" y="4" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="11" y="4" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="13" y="4" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="14" y="4" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="15" y="4" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="16" y="4" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="10" y="5" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="12" y="5" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="15" y="5" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="16" y="5" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="8" y="6" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="10" y="6" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="12" y="6" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="14" y="6" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="16" y="6" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="10" y="7" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="13" y="7" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="14" y="7" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="15" y="7" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="16" y="7" rx=".4" ry=".4" />
+  <rect width="1" height="1" y="8" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="3" y="8" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="4" y="8" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="5" y="8" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="6" y="8" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="7" y="8" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="8" y="8" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="9" y="8" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="12" y="8" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="13" y="8" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="16" y="8" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="17" y="8" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="20" y="8" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="22" y="8" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="23" y="8" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="24" y="8" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="1" y="9" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="2" y="9" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="5" y="9" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="7" y="9" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="8" y="9" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="11" y="9" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="13" y="9" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="14" y="9" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="15" y="9" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="17" y="9" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="20" y="9" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="21" y="9" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="22" y="9" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="23" y="9" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="2" y="10" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="4" y="10" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="5" y="10" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="6" y="10" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="8" y="10" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="10" y="10" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="12" y="10" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="18" y="10" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="19" y="10" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="21" y="10" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="24" y="10" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="1" y="11" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="2" y="11" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="4" y="11" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="12" y="11" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="13" y="11" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="15" y="11" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="17" y="11" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="18" y="11" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="21" y="11" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="22" y="11" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="23" y="11" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="24" y="11" rx=".4" ry=".4" />
+  <rect width="1" height="1" y="12" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="4" y="12" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="6" y="12" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="7" y="12" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="8" y="12" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="9" y="12" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="12" y="12" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="13" y="12" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="15" y="12" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="17" y="12" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="24" y="12" rx=".4" ry=".4" />
+  <rect width="1" height="1" y="13" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="2" y="13" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="3" y="13" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="5" y="13" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="7" y="13" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="8" y="13" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="9" y="13" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="10" y="13" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="12" y="13" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="14" y="13" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="15" y="13" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="16" y="13" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="17" y="13" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="18" y="13" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="23" y="13" rx=".4" ry=".4" />
+  <rect width="1" height="1" y="14" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="1" y="14" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="2" y="14" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="3" y="14" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="5" y="14" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="6" y="14" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="8" y="14" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="9" y="14" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="10" y="14" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="12" y="14" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="13" y="14" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="16" y="14" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="17" y="14" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="20" y="14" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="21" y="14" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="22" y="14" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="23" y="14" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="24" y="14" rx=".4" ry=".4" />
+  <rect width="1" height="1" y="15" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="2" y="15" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="7" y="15" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="8" y="15" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="10" y="15" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="11" y="15" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="12" y="15" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="13" y="15" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="14" y="15" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="15" y="15" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="17" y="15" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="18" y="15" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="19" y="15" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="20" y="15" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="21" y="15" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="22" y="15" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="24" y="15" rx=".4" ry=".4" />
+  <rect width="1" height="1" y="16" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="2" y="16" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="5" y="16" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="6" y="16" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="9" y="16" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="10" y="16" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="12" y="16" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="22" y="16" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="23" y="16" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="8" y="17" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="9" y="17" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="11" y="17" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="13" y="17" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="14" y="17" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="15" y="17" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="22" y="17" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="23" y="17" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="8" y="18" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="10" y="18" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="12" y="18" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="15" y="18" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="24" y="18" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="8" y="19" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="10" y="19" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="12" y="19" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="14" y="19" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="23" y="19" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="24" y="19" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="8" y="20" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="9" y="20" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="11" y="20" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="12" y="20" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="13" y="20" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="14" y="20" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="15" y="20" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="21" y="20" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="23" y="20" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="24" y="20" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="8" y="21" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="10" y="21" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="11" y="21" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="13" y="21" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="15" y="21" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="16" y="21" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="17" y="21" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="22" y="21" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="24" y="21" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="9" y="22" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="12" y="22" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="15" y="22" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="16" y="22" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="17" y="22" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="19" y="22" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="21" y="22" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="23" y="22" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="24" y="22" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="12" y="23" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="13" y="23" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="17" y="23" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="18" y="23" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="19" y="23" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="20" y="23" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="23" y="23" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="8" y="24" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="9" y="24" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="11" y="24" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="12" y="24" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="13" y="24" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="15" y="24" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="18" y="24" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="21" y="24" rx=".4" ry=".4" />
+  <rect width="1" height="1" x="22" y="24" rx=".4" ry=".4" />
 </svg>
