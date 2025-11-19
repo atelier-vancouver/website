@@ -36,19 +36,10 @@ import {
   topRightText,
 } from "./useSessionBoardParams";
 
-// set preset to UBC on weekends and Weeknights on weekdays
+// set preset to UBC AI Safety by default
 onMounted(() => {
   if (isParamsEmpty.value) {
-    const date = new Date();
-    const day = date.getDay();
-
-    if (day === 0 || day === 6) {
-      // Sunday or Saturday
-      presets.find((p) => p.name === "UBC")?.stages[0].set();
-    } else {
-      // Weeknights
-      presets.find((p) => p.name === "Weeknights")?.stages[0].set();
-    }
+    presets.find((p) => p.name === "UBC AI Safety")?.stages[0].set();
   }
 });
 

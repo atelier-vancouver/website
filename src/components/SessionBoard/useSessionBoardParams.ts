@@ -1,7 +1,5 @@
-import openCollectiveQrCodeSvg from "@/assets/images/opencollective-qr.svg?raw";
 import { useUrlSearchParams } from "@vueuse/core";
 import { computed, type WritableComputedRef } from "vue";
-import wifiQrCodeSvg from "./wifi-qr-code.svg?raw";
 
 const rawParams = useUrlSearchParams<{
   preset?: (typeof presets)[number]["name"];
@@ -224,30 +222,22 @@ export const presets: {
   stages: { name: string; set: () => void }[];
 }[] = [
   {
-    name: "UBC",
+    name: "UBC AI Safety",
     stages: [
       {
         name: "welcome",
         set() {
           reset();
 
-          selectedPreset.value = "UBC";
+          selectedPreset.value = "UBC AI Safety";
           selectedPresetStage.value = "welcome";
 
-          topRightText.value = "UBC";
+          topRightText.value = "UBC AI Safety";
           qotd.value = "[TODO]";
-          bottomRightNotes.value = "Welcome to Atelier ❤️";
+          bottomRightNotes.value = "Welcome to UBC AI Safety";
 
           bottomLeftNotes.value = `# Hosts\n\n${[
-            "Calvin",
-            "Kai",
-            "Rae",
-            "Iris",
-            "Chloe-Amelie",
-            "Ananya",
-            "Diana",
-            "Leonard",
-            "Shradha",
+            "[Add host names]",
           ].join("  \n")}`;
           bottomLeftNotesSize.value = 2;
 
@@ -257,7 +247,7 @@ export const presets: {
       {
         name: "intro",
         set() {
-          selectedPreset.value = "UBC";
+          selectedPreset.value = "UBC AI Safety";
           selectedPresetStage.value = "intro";
 
           bottomRightNotes.value = `# Intro
@@ -270,7 +260,7 @@ export const presets: {
       {
         name: "work session1",
         set() {
-          selectedPreset.value = "UBC";
+          selectedPreset.value = "UBC AI Safety";
           selectedPresetStage.value = "work session1";
 
           bottomRightNotes.value = `Talk to a host for demos (short 2-min max show and tell)`;
@@ -283,7 +273,7 @@ export const presets: {
       {
         name: "break",
         set() {
-          selectedPreset.value = "UBC";
+          selectedPreset.value = "UBC AI Safety";
           selectedPresetStage.value = "break";
 
           mainContentState.value = "timer";
@@ -295,7 +285,7 @@ export const presets: {
       {
         name: "work session2",
         set() {
-          selectedPreset.value = "UBC";
+          selectedPreset.value = "UBC AI Safety";
           selectedPresetStage.value = "work session2";
 
           mainContentState.value = "timer";
@@ -307,7 +297,7 @@ export const presets: {
       {
         name: "demos",
         set() {
-          selectedPreset.value = "UBC";
+          selectedPreset.value = "UBC AI Safety";
           selectedPresetStage.value = "demos";
 
           mainContentState.value = "text";
@@ -317,110 +307,14 @@ export const presets: {
       {
         name: "closing",
         set() {
-          selectedPreset.value = "UBC";
+          selectedPreset.value = "UBC AI Safety";
           selectedPresetStage.value = "closing";
 
           mainContentState.value = "text";
-          centerText.value = `Thank you for coming!\n\nSee you next Tuesday/Sunday`;
+          centerText.value = `Thank you for coming!\n\nSee you next time`;
 
-          bottomRightNotes.value = `<p style="text-align:end">Donate at<br>atelier.place/donate</p>\n<img style=\"margin-top: 0.5ch\" src=\"data:image/svg+xml,${encodeURIComponent(openCollectiveQrCodeSvg)}\" />`;
+          bottomRightNotes.value = `<p style="text-align:end">Learn more at<br>ubcaisafety.org</p>`;
           bottomRightNotesSize.value = 1;
-        },
-      },
-    ],
-  },
-  {
-    name: "Weeknights",
-    stages: [
-      {
-        name: "welcome",
-        set() {
-          reset();
-
-          selectedPreset.value = "Weeknights";
-          selectedPresetStage.value = "welcome";
-
-          topRightText.value = "V2 House";
-          qotd.value = "[TODO]";
-          bottomRightNotes.value = "Welcome to Atelier Weeknights ❤️";
-
-          bottomLeftNotes.value = `# Hosts\n\n${[
-            "Calvin",
-            "Kai",
-            "Rae",
-            "Iris",
-            "Connell",
-            "Chloe-Amelie",
-            "Ananya",
-            "Aqil",
-            "Diana",
-            "Kaitlyn",
-          ].join("  \n")}`;
-          bottomLeftNotesSize.value = 2;
-
-          topLeftNotes.value = `# WIFI\n\nTELUS3176\n\nH46MdfvtvJK4\n\n\n<img style=\"margin-top: 0.5ch\" src=\"data:image/svg+xml,${encodeURIComponent(wifiQrCodeSvg)}\" />`;
-          topLeftNotesSize.value = 1;
-        },
-      },
-      {
-        name: "intro",
-        set() {
-          selectedPreset.value = "Weeknights";
-          selectedPresetStage.value = "intro";
-
-          bottomRightNotes.value = `# Intro
-1. Name
-1. What are you working on?
-1. Question of the day`;
-          bottomRightNotesSize.value = 2;
-        },
-      },
-      {
-        name: "work session1",
-        set() {
-          selectedPreset.value = "Weeknights";
-          selectedPresetStage.value = "work session1";
-
-          bottomRightNotes.value =
-            "Talk to a host for demos (short 2-min max show and tell)";
-          mainContentState.value = "timer";
-          countdownToTime.value =
-            currentTimePlusMinutesRoundedToNearest5Minutes(50);
-          countdownTitle.value = "Break Starts";
-        },
-      },
-      {
-        name: "break",
-        set() {
-          selectedPreset.value = "Weeknights";
-          selectedPresetStage.value = "break";
-
-          mainContentState.value = "timer";
-          countdownToTime.value =
-            currentTimePlusMinutesRoundedToNearest5Minutes(10);
-          countdownTitle.value = "Break Ends";
-        },
-      },
-      {
-        name: "work session2",
-        set() {
-          selectedPreset.value = "Weeknights";
-          selectedPresetStage.value = "work session2";
-
-          mainContentState.value = "timer";
-          countdownToTime.value =
-            currentTimePlusMinutesRoundedToNearest5Minutes(50);
-          countdownTitle.value = "Demos Start";
-        },
-      },
-      {
-        name: "demos",
-        set() {
-          selectedPreset.value = "Weeknights";
-          selectedPresetStage.value = "demos";
-
-          mainContentState.value = "text";
-          centerText.value = "Gather around for demos!";
         },
       },
     ],

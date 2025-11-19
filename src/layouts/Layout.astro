@@ -13,8 +13,11 @@ const { title, description = "" } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width" />
-    <meta name="theme-color" content="#fffdf5" />
+    <meta name="theme-color" content="#111111" />
     <link rel="icon" href="/favicon.avif" sizes="any" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:wght@400;600;700&display=swap" rel="stylesheet" />
     <title>{title}</title>
   </head>
   <body>
@@ -49,9 +52,9 @@ const { title, description = "" } = Astro.props;
   body {
     -webkit-tap-highlight-color: transparent;
 
-    font-family: Hahmlet, sans-serif;
-    color: colors.$black-grey;
-    background-color: colors.$off-white;
+    font-family: "IBM Plex Sans", sans-serif;
+    color: colors.$primary-text;
+    background-color: colors.$primary-bg;
 
     margin: 0;
     padding: 0;

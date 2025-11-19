@@ -10,12 +10,12 @@ interface ButtonProps {
 
 const colorSchemes = {
   black: {
-    gradientStart: "#89B08B",
-    gradientEnd: "#000000",
+    gradientStart: "#cc4125", // UBC AI Safety burnt orange accent
+    gradientEnd: "#111111",   // Deep charcoal
   },
   white: {
-    gradientStart: "#E9E1FF",
-    gradientEnd: "#FFFDF5",
+    gradientStart: "#9a031e", // Deep maroon accent
+    gradientEnd: "#f9f9f9",   // Off-white
   },
 };
 

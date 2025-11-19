@@ -1,3 +1,11 @@
-$off-white: #fffdf5;
-$off-black: #1a1a1a;
-$black-grey: #3c382c;
+// UBC AI Safety color scheme
+$primary-bg: #111111;        // Deep charcoal background
+$secondary-bg: #222222;      // Slightly lighter charcoal
+$primary-text: #f9f9f9;      // Off-white text
+$accent-primary: #cc4125;    // Burnt orange/rust accent
+$accent-dark: #9a031e;       // Deep maroon accent
+
+// Legacy color variables (kept for compatibility)
+$off-white: $primary-text;
+$off-black: $primary-bg;
+$black-grey: $secondary-bg;

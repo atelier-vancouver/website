@@ -15,55 +15,26 @@ function getChecklistUrl(
 }
 
 const checklists: {
-  tag?: "UBC" | "Weeknights";
+  tag?: "UBC";
   name: string;
   items: { title: string; subtitle?: string }[];
 }[][] = [
   [
     {
       tag: "UBC",
-      name: "Setup (UBC)",
+      name: "Setup",
       items: [
         {
-          title: "Stick sign on door",
-          subtitle: "the sign should be in the bag with the snacks",
-        },
-        {
-          title: "Lay out snacks, open unopened bags",
-          subtitle:
-            "open the bags in a resealable way, use the scissors in the bag if necessary",
+          title: "Set up space",
+          subtitle: "arrange seating, prepare materials",
         },
         {
           title: "Set up computer",
           subtitle:
-            "open atelier.place/session, pick a QOTD, install adblock, play music on YouTube",
+            "open session board, pick a QOTD, prepare any presentations",
         },
         {
-          title: "Hard start intros 12:10",
-          subtitle: "if there are more than 5 people in the room",
-        },
-      ],
-    },
-    {
-      tag: "Weeknights",
-      name: "Setup (Weeknights)",
-      items: [
-        {
-          title: "Stick sign on door",
-          subtitle: "the sign should be in the snack cabinet",
-        },
-        {
-          title: "Lay out snacks, open unopened bags",
-          subtitle:
-            "open the bags in a resealable way, use the scissors if necessary",
-        },
-        {
-          title: "Set up computer",
-          subtitle:
-            "open atelier.place/session, pick a QOTD, play music on Spotify",
-        },
-        {
-          title: "Hard start intros 6:10",
+          title: "Start session on time",
           subtitle: "if there are more than 5 people in the room",
         },
       ],
@@ -72,12 +43,12 @@ const checklists: {
   [
     {
       tag: "UBC",
-      name: "Start Intros (UBC)",
+      name: "Start Session",
       items: [
         { title: "Welcome everyone" },
         {
-          title: "Introduce Atelier",
-          subtitle: "a place to work on your projects (no school no work)",
+          title: "Introduce UBC AI Safety",
+          subtitle: "brief overview of the organization and session goals",
         },
         {
           title: "Intro format",
@@ -86,33 +57,13 @@ const checklists: {
         },
         {
           title: "Start intros by example",
-          subtitle: "pass it on the side with more regulars",
-        },
-      ],
-    },
-    {
-      tag: "Weeknights",
-      name: "Start Intros (Weeknights)",
-      items: [
-        { title: "Welcome everyone" },
-        {
-          title: "Introduce Atelier",
-          subtitle: "a place to work on your projects (no school no work)",
-        },
-        {
-          title: "Intro format",
-          subtitle:
-            "name, what you are working on, and your answer to the QOTD",
-        },
-        {
-          title: "Start intros by example",
-          subtitle: "pass it on the side with more regulars",
+          subtitle: "lead by example to set the tone",
         },
       ],
     },
     {
       tag: "UBC",
-      name: "After intro (UBC)",
+      name: "After Intros",
       items: [
         {
           title: "Work format",
@@ -123,37 +74,15 @@ const checklists: {
           subtitle: "demos are 30s to 2m, a host will come around and ask",
         },
         {
-          title: "Where things are",
-          subtitle: "water, bathroom, snacks, trash",
+          title: "Facilities info",
+          subtitle: "water, bathroom, etc.",
         },
-        { title: "Quiet / Collab zones" },
-      ],
-    },
-    {
-      tag: "Weeknights",
-      name: "After intro (Weeknights)",
-      items: [
-        {
-          title: "Work format",
-          subtitle: "50 minute work, 10 minute break, 50 minute work, demos",
-        },
-        {
-          title: "Demo format",
-          subtitle: "demos are 30s to 2m, a host will come around and ask",
-        },
-        {
-          title: "WiFi",
-        },
-        {
-          title: "Where things are",
-          subtitle: "water, bathroom, snacks, trash",
-        },
-        { title: "Quiet / Collab zones" },
       ],
     },
   ],
   [
     {
+      tag: "UBC",
       name: "Before Demos",
       items: [
         {
@@ -161,137 +90,42 @@ const checklists: {
           subtitle: "put first time demoers in the middle or end",
         },
         {
-          title: "Find someone to timer",
+          title: "Set up timer",
           subtitle:
-            "find someone with a laptop and open atelier.place/timer, ask them to turn the laptop towards the demoer and turn on the sound",
+            "open session timer to keep demos on track",
         },
       ],
     },
     {
       tag: "UBC",
-      name: "After Demos (UBC)",
+      name: "After Demos",
       items: [
         { title: "Thank everyone for coming!" },
         {
-          title: "Ask for donations",
-          subtitle: "ask them to donate when signing up",
+          title: "Share resources",
+          subtitle: "ubcaisafety.org for more information",
         },
-        {
-          title: "Discord / IG",
-          subtitle: "tell people about the discord and ig gc",
-        },
-        {
-          title: "Weeknights sessions",
-          subtitle: "tell people about Weeknights",
-        },
-        {
-          title: "Solicit Luma header designs",
-          subtitle: "link in luma event description",
-        },
-        { title: "Group photos", subtitle: "post on ig and tag people" },
-      ],
-    },
-    {
-      tag: "Weeknights",
-      name: "After Demos (Weeknights)",
-      items: [
-        { title: "Food demo" },
-        { title: "Thank the cooks" },
-        { title: "Thank everyone for coming!" },
-        { title: "Ask to clean plates" },
-        {
-          title: "Solicit cooking volunteers",
-          subtitle: "ask them to talk to a host to sign up",
-        },
-        {
-          title: "Solicit Luma header designs",
-          subtitle: "link in luma event description",
-        },
-        {
-          title: "Ask for donations",
-          subtitle: "ask them to put a bigger number on their ticket",
-        },
-        {
-          title: "Discord / IG",
-          subtitle: "tell people about the discord and ig gc",
-        },
-        { title: "UBC sessions (Sundays at noon)" },
-        { title: "Group photos", subtitle: "post on ig and tag people" },
-        { title: "Upload photos" },
+        { title: "Group photos", subtitle: "for social media" },
       ],
     },
   ],
   [
     {
       tag: "UBC",
-      name: "Teardown (UBC)",
+      name: "Teardown",
       items: [
-        { title: "Remove sign", subtitle: "put the sign back in the bag" },
-        {
-          title: "Pack up snacks",
-          subtitle: "put the snacks back in the snack basket",
-        },
-        {
-          title: "📸 Take a photo of the remaining snacks",
-          subtitle: "post on the whatsapp group",
-        },
-        { title: "Turn off computer" },
-      ],
-    },
-    {
-      tag: "Weeknights",
-      name: "Teardown (Weeknights)",
-      items: [
-        {
-          title: "Remove sign",
-          subtitle: "Put the sign back in the snack cabinet",
-        },
-        {
-          title: "Pack up snacks",
-          subtitle: "Put the snacks back in the snack cabinet",
-        },
-        {
-          title: "📸 Take a photo of the remaining snacks",
-          subtitle: "post on the whatsapp group",
-        },
-        {
-          title: "📸 Take a photo of the leftover food",
-          subtitle: "post on the whatsapp group",
-        },
-        { title: "Turn off computer" },
+        { title: "Clean up space" },
+        { title: "Pack up materials" },
+        { title: "Turn off equipment" },
       ],
     },
   ],
 ];
 ---
 
-<Layout title="Checklists - Atelier">
+<Layout title="Checklists - UBC AI Safety">
   <main>
-    <h1>Checklists</h1>
-
-    <div>
-      filter: <select class="filter">
-        <option value="">All</option>
-        <option value="UBC">UBC</option>
-        <option value="Weeknights">Weeknights</option>
-      </select>
-    </div>
-
-    <script>
-      const filterSelect =
-        document.querySelector<HTMLSelectElement>("select.filter")!;
-
-      const date = new Date();
-      const day = date.getDay();
-
-      if (day === 0 || day === 6) {
-        // Sunday or Saturday
-        filterSelect.value = "UBC";
-      } else {
-        // Weeknights
-        filterSelect.value = "Weeknights";
-      }
-    </script>
+    <h1>UBC AI Safety Session Checklists</h1>
 
     {
       checklists.map((checklist) => (
@@ -320,20 +154,6 @@ const checklists: {
     padding: 1rem;
   }
 
-  select {
-    font-family: sans-serif;
-  }
-
-  div:has(select > option[value="UBC"]:checked) ~ ul {
-    li:has(a[data-tag="Weeknights"]) {
-      display: none;
-    }
-  }
-  div:has(select > option[value="Weeknights"]:checked) ~ ul {
-    li:has(a[data-tag="UBC"]) {
-      display: none;
-    }
-  }
 
   h1 {
     margin-bottom: 1rem;
