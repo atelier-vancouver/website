@@ -142,6 +142,7 @@ onMounted(() => {
       return; // ignore key events in input fields
     }
     switch (e.key) {
+      case "F":
       case "f":
         e.preventDefault();
         if (document.fullscreenElement) {

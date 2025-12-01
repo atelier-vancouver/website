@@ -355,6 +355,7 @@ export const presets: {
             "Aqil",
             "Diana",
             "Kaitlyn",
+            "Shradha",
           ].join("  \n")}`;
           bottomLeftNotesSize.value = 2;
 
