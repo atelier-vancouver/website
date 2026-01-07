@@ -276,7 +276,7 @@ export const presets: {
           bottomRightNotes.value = `Talk to a host for demos (short 2-min max show and tell)`;
           mainContentState.value = "timer";
           countdownToTime.value =
-            currentTimePlusMinutesRoundedToNearest5Minutes(50);
+            currentTimePlusMinutesRoundedToNearest5Minutes(60);
           countdownTitle.value = "Break Starts";
         },
       },
@@ -386,7 +386,7 @@ export const presets: {
             "Talk to a host for demos (short 2-min max show and tell)";
           mainContentState.value = "timer";
           countdownToTime.value =
-            currentTimePlusMinutesRoundedToNearest5Minutes(50);
+            currentTimePlusMinutesRoundedToNearest5Minutes(60);
           countdownTitle.value = "Break Starts";
         },
       },
