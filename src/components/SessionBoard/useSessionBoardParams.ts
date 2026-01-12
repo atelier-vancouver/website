@@ -241,7 +241,6 @@ export const presets: {
           bottomLeftNotes.value = `# Hosts\n\n${[
             "Calvin",
             "Kai",
-            "Rae",
             "Chloe-Amelie",
             "Ananya",
             "Diana",
