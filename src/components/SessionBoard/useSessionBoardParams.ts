@@ -346,7 +346,6 @@ export const presets: {
             "Calvin",
             "Kai",
             "Rae",
-            "Connell",
             "Chloe-Amelie",
             "Ananya",
             "Diana",
