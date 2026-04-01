@@ -155,6 +155,10 @@ onMounted(() => {
         e.preventDefault();
         selectStage(1);
         break;
+      case "ArrowLeft":
+        e.preventDefault();
+        window.history.back();
+        break;
     }
   }
 
