@@ -46,23 +46,23 @@ export const isParamsEmpty = computed(() => {
 
 function paramToRef<Key extends keyof typeof rawParams>(
   key: Key,
-  config: (typeof rawParams)[Key]
+  config: (typeof rawParams)[Key],
 ): WritableComputedRef<
   NonNullable<(typeof rawParams)[Key]>,
   (typeof rawParams)[Key]
 >;
 function paramToRef<Key extends keyof typeof rawParams>(
-  key: Key
+  key: Key,
 ): WritableComputedRef<(typeof rawParams)[Key] | undefined>;
 function paramToRef<Key extends keyof typeof rawParams, Cooked>(
   key: Key,
   config: {
     default: Cooked;
     fromRaw: (
-      rawValue: (typeof rawParams)[Key] | undefined
+      rawValue: (typeof rawParams)[Key] | undefined,
     ) => Cooked | undefined;
     toRaw?: (value: Cooked | undefined) => (typeof rawParams)[Key] | undefined;
-  }
+  },
 ): WritableComputedRef<Cooked, Cooked | undefined>;
 function paramToRef<Key extends keyof typeof rawParams, Cooked>(
   key: Key,
@@ -70,7 +70,7 @@ function paramToRef<Key extends keyof typeof rawParams, Cooked>(
     default?: Cooked;
     fromRaw: (rawValue: (typeof rawParams)[Key] | undefined) => Cooked;
     toRaw?: (value: Cooked) => (typeof rawParams)[Key] | undefined;
-  }
+  },
 ): WritableComputedRef<Cooked, Cooked>;
 function paramToRef<
   Key extends keyof typeof rawParams,
@@ -82,12 +82,12 @@ function paramToRef<
     | {
         default?: Cooked;
         fromRaw: (
-          rawValue: (typeof rawParams)[Key] | undefined
+          rawValue: (typeof rawParams)[Key] | undefined,
         ) => Cooked | undefined;
         toRaw?: (
-          value: Cooked | undefined
+          value: Cooked | undefined,
         ) => (typeof rawParams)[Key] | undefined;
-      }
+      },
 ) {
   return computed({
     get() {
@@ -273,7 +273,7 @@ export const presets: {
           bottomRightNotes.value = `Talk to a host for demos (short 2-min max show and tell)`;
           mainContentState.value = "timer";
           countdownToTime.value =
-            currentTimePlusMinutesRoundedToNearest5Minutes(60);
+            currentTimePlusMinutesRoundedToNearest5Minutes(55);
           countdownTitle.value = "Break Starts";
         },
       },
@@ -378,7 +378,7 @@ export const presets: {
             "Talk to a host for demos (short 2-min max show and tell)";
           mainContentState.value = "timer";
           countdownToTime.value =
-            currentTimePlusMinutesRoundedToNearest5Minutes(60);
+            currentTimePlusMinutesRoundedToNearest5Minutes(55);
           countdownTitle.value = "Break Starts";
         },
       },
