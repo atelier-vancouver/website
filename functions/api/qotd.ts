@@ -139,12 +139,13 @@ export const onRequestGet: PagesFunction<Env> = async (context) => {
     return new Response("Missing location or date", { status: 400 });
   }
 
+  // Pick 5 random questions from the bank
+  shuffleArray(questionBank);
+  const pickedFromBank = questionBank.slice(0, 5);
+
   const openai = new OpenAI({
     apiKey: context.env.OPENAI_API_KEY,
   });
-
-  // Shuffle the question bank to ensure variety
-  shuffleArray(questionBank);
 
   const response = await openai.responses.create({
     model: "gpt-4o",
@@ -154,7 +155,7 @@ export const onRequestGet: PagesFunction<Env> = async (context) => {
         content: [
           {
             type: "input_text",
-            text: `Make 15 ice-breaker question like these:\n${questionBank.join("\n")}\n The first 5 questions should be taken from the examples. The next 5 questions should be similar to but not taken from the examples. The last 5 questions should be related to the user's location and the current date.`,
+            text: `Generate 10 ice-breaker questions in 2 groups: "similar" (5 questions similar in style to the examples below but not taken from them), and "locationBased" (5 questions related to the user's location and the current date).\n\nExamples:\n${questionBank.join("\n")}`,
           },
         ],
       },
@@ -163,7 +164,7 @@ export const onRequestGet: PagesFunction<Env> = async (context) => {
         content: [
           {
             type: "input_text",
-            text: `Location: ${userLocation}}\nDate: ${currentDate}`,
+            text: `Location: ${userLocation}\nDate: ${currentDate}`,
           },
         ],
       },
@@ -175,15 +176,26 @@ export const onRequestGet: PagesFunction<Env> = async (context) => {
         strict: true,
         schema: {
           type: "object",
-          required: ["questions"],
+          required: ["similar", "locationBased"],
           properties: {
-            questions: {
+            similar: {
               type: "array",
               items: {
                 type: "string",
-                description: "The ice-breaker question text.",
+                description:
+                  "A question similar in style to the examples but not taken from them.",
               },
-              description: "A list of ice-breaker questions.",
+              description: "5 questions similar to but not from the examples.",
+            },
+            locationBased: {
+              type: "array",
+              items: {
+                type: "string",
+                description:
+                  "A question related to the user's location and current date.",
+              },
+              description:
+                "5 questions related to the user's location and current date.",
             },
           },
           additionalProperties: false,
@@ -197,11 +209,20 @@ export const onRequestGet: PagesFunction<Env> = async (context) => {
     top_p: 1,
   });
 
-  return new Response(response.output_text, {
-    headers: {
-      "Content-Type": "application/json",
+  const aiQuestions = JSON.parse(response.output_text);
+
+  return new Response(
+    JSON.stringify({
+      questionBank: pickedFromBank,
+      similar: aiQuestions.similar,
+      locationBased: aiQuestions.locationBased,
+    }),
+    {
+      headers: {
+        "Content-Type": "application/json",
+      },
     },
-  });
+  );
 };
 
 function shuffleArray(array: any[]) {

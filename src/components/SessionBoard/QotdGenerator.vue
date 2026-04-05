@@ -5,7 +5,14 @@ const qotdQuestionModel = defineModel<string>("question", { required: true });
 const qotdLocationModel = defineModel<string>("location", { required: true });
 
 const state = ref<"loading" | "error" | "ready">("ready");
-const questions = ref<string[]>([]);
+
+interface QotdResponse {
+  questionBank: string[];
+  similar: string[];
+  locationBased: string[];
+}
+
+const questions = ref<QotdResponse | null>(null);
 
 async function loadQuestions() {
   state.value = "loading";
@@ -14,7 +21,9 @@ async function loadQuestions() {
     requestUrl.searchParams.set("location", qotdLocationModel.value);
     requestUrl.searchParams.set(
       "date",
-      new Intl.DateTimeFormat("en-US", { dateStyle: "full" }).format(new Date())
+      new Intl.DateTimeFormat("en-US", { dateStyle: "full" }).format(
+        new Date(),
+      ),
     );
     const response = await fetch(requestUrl.toString());
     if (!response.ok) {
@@ -22,12 +31,11 @@ async function loadQuestions() {
       throw new Error("Network response was not ok");
     }
     const data = await response.json();
-    const newQuestions = data.questions;
-    if (!Array.isArray(newQuestions)) {
+    if (!data.questionBank || !data.similar || !data.locationBased) {
       console.error("Invalid response format:", data);
       throw new Error("Invalid response format");
     }
-    questions.value = newQuestions;
+    questions.value = data as QotdResponse;
     state.value = "ready";
   } catch (error) {
     console.error("Error fetching questions:", error);
@@ -36,20 +44,12 @@ async function loadQuestions() {
 }
 
 const questionGroups = computed(() => {
-  return Object.entries(
-    Object.groupBy(questions.value, (_, index) => {
-      switch (Math.floor(index / 5)) {
-        case 0:
-          return "from the question bank";
-        case 1:
-          return "similar";
-        case 2:
-          return "location based";
-        default:
-          return "too many";
-      }
-    })
-  );
+  if (!questions.value) return [];
+  return [
+    ["from the question bank", questions.value.questionBank] as const,
+    ["similar", questions.value.similar] as const,
+    ["location based", questions.value.locationBased] as const,
+  ];
 });
 </script>
 
