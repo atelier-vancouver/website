@@ -133,15 +133,14 @@ const questionBank = [
 
 export const onRequestGet: PagesFunction<Env> = async (context) => {
   const searchParams = new URL(context.request.url).searchParams;
-  const userLocation = searchParams.get("location");
   const currentDate = searchParams.get("date");
-  if (!userLocation || !currentDate) {
-    return new Response("Missing location or date", { status: 400 });
+  if (!currentDate) {
+    return new Response("Missing date", { status: 400 });
   }
 
-  // Pick 5 random questions from the bank
+  // Pick 10 random questions from the bank
   shuffleArray(questionBank);
-  const pickedFromBank = questionBank.slice(0, 5);
+  const pickedFromBank = questionBank.slice(0, 10);
 
   const openai = new OpenAI({
     apiKey: context.env.OPENAI_API_KEY,
@@ -155,16 +154,7 @@ export const onRequestGet: PagesFunction<Env> = async (context) => {
         content: [
           {
             type: "input_text",
-            text: `Generate 10 ice-breaker questions in 2 groups: "similar" (5 questions similar in style to the examples below but not taken from them), and "locationBased" (5 questions related to the user's location and the current date).\n\nExamples:\n${questionBank.join("\n")}`,
-          },
-        ],
-      },
-      {
-        role: "user",
-        content: [
-          {
-            type: "input_text",
-            text: `Location: ${userLocation}\nDate: ${currentDate}`,
+            text: `Generate 10 ice-breaker questions similar in style to the examples below but not taken from them. Today's date is ${currentDate}.\n\nExamples:\n${questionBank.join("\n")}`,
           },
         ],
       },
@@ -176,7 +166,7 @@ export const onRequestGet: PagesFunction<Env> = async (context) => {
         strict: true,
         schema: {
           type: "object",
-          required: ["similar", "locationBased"],
+          required: ["similar"],
           properties: {
             similar: {
               type: "array",
@@ -185,17 +175,7 @@ export const onRequestGet: PagesFunction<Env> = async (context) => {
                 description:
                   "A question similar in style to the examples but not taken from them.",
               },
-              description: "5 questions similar to but not from the examples.",
-            },
-            locationBased: {
-              type: "array",
-              items: {
-                type: "string",
-                description:
-                  "A question related to the user's location and current date.",
-              },
-              description:
-                "5 questions related to the user's location and current date.",
+              description: "10 questions similar to but not from the examples.",
             },
           },
           additionalProperties: false,
@@ -215,7 +195,6 @@ export const onRequestGet: PagesFunction<Env> = async (context) => {
     JSON.stringify({
       questionBank: pickedFromBank,
       similar: aiQuestions.similar,
-      locationBased: aiQuestions.locationBased,
     }),
     {
       headers: {

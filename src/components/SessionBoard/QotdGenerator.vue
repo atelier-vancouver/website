@@ -2,14 +2,12 @@
 import { computed, ref } from "vue";
 
 const qotdQuestionModel = defineModel<string>("question", { required: true });
-const qotdLocationModel = defineModel<string>("location", { required: true });
 
 const state = ref<"loading" | "error" | "ready">("ready");
 
 interface QotdResponse {
   questionBank: string[];
   similar: string[];
-  locationBased: string[];
 }
 
 const questions = ref<QotdResponse | null>(null);
@@ -18,7 +16,6 @@ async function loadQuestions() {
   state.value = "loading";
   try {
     const requestUrl = new URL("/api/qotd", window.location.origin);
-    requestUrl.searchParams.set("location", qotdLocationModel.value);
     requestUrl.searchParams.set(
       "date",
       new Intl.DateTimeFormat("en-US", { dateStyle: "full" }).format(
@@ -31,7 +28,7 @@ async function loadQuestions() {
       throw new Error("Network response was not ok");
     }
     const data = await response.json();
-    if (!data.questionBank || !data.similar || !data.locationBased) {
+    if (!data.questionBank || !data.similar) {
       console.error("Invalid response format:", data);
       throw new Error("Invalid response format");
     }
@@ -48,17 +45,12 @@ const questionGroups = computed(() => {
   return [
     ["from the question bank", questions.value.questionBank] as const,
     ["similar", questions.value.similar] as const,
-    ["location based", questions.value.locationBased] as const,
   ];
 });
 </script>
 
 <template>
   <div class="gaps">
-    <div>
-      location:
-      <input type="text" v-model="qotdLocationModel" />
-    </div>
     <div>
       <button :disabled="state === 'loading'" @click="loadQuestions">
         generate

@@ -20,7 +20,6 @@ import {
   mainContentState,
   presets,
   qotd,
-  qotdLocation,
   reset,
   selectedPreset,
   selectedPresetStage,
@@ -83,7 +82,7 @@ onMounted(() => {
         });
       }
     },
-    { passive: true }
+    { passive: true },
   );
 });
 
@@ -122,7 +121,7 @@ function selectStage(offset: number) {
     return;
   }
   const currentIndex = preset.stages.findIndex(
-    (s) => s.name === selectedPresetStage.value
+    (s) => s.name === selectedPresetStage.value,
   );
   if (currentIndex < 0) {
     return;
@@ -168,18 +167,18 @@ onMounted(() => {
 
 const converter = new showdown.Converter();
 const topLeftNotesHtml = computed(() =>
-  topLeftNotes.value ? converter.makeHtml(topLeftNotes.value) : undefined
+  topLeftNotes.value ? converter.makeHtml(topLeftNotes.value) : undefined,
 );
 const topRightNotesHtml = computed(() =>
-  topRightNotes.value ? converter.makeHtml(topRightNotes.value) : undefined
+  topRightNotes.value ? converter.makeHtml(topRightNotes.value) : undefined,
 );
 const bottomLeftNotesHtml = computed(() =>
-  bottomLeftNotes.value ? converter.makeHtml(bottomLeftNotes.value) : undefined
+  bottomLeftNotes.value ? converter.makeHtml(bottomLeftNotes.value) : undefined,
 );
 const bottomRightNotesHtml = computed(() =>
   bottomRightNotes.value
     ? converter.makeHtml(bottomRightNotes.value)
-    : undefined
+    : undefined,
 );
 
 function toggleFullscreen() {
@@ -353,10 +352,7 @@ const countdownToTimeString = computed({
               </div>
               <div>
                 QOTD Generator:
-                <QotdGenerator
-                  v-model:question="qotd"
-                  v-model:location="qotdLocation"
-                />
+                <QotdGenerator v-model:question="qotd" />
               </div>
             </div>
           </details>

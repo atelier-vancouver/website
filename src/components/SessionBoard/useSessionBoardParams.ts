@@ -15,7 +15,6 @@ const rawParams = useUrlSearchParams<{
   mainContentState?: "timer" | "text" | "qotd";
 
   qotd?: string;
-  qotdLocation?: string;
 
   countdownTitle?: string;
   countdownToTime?: string;
@@ -132,7 +131,6 @@ export const bottomRightText = paramToRef("bottomRightText", "");
 export const mainContentState = paramToRef("mainContentState", "qotd");
 
 export const qotd = paramToRef("qotd", "");
-export const qotdLocation = paramToRef("qotdLocation", "Vancouver, BC, Canada");
 
 export const countdownTitle = paramToRef("countdownTitle", "Break Starts");
 export const countdownToTime = paramToRef("countdownToTime", {
@@ -247,8 +245,6 @@ export const presets: {
             "Shradha",
           ].join("  \n")}`;
           bottomLeftNotesSize.value = 2;
-
-          qotdLocation.value = "UBC, Vancouver, BC, Canada";
         },
       },
       {
