@@ -8,7 +8,7 @@ const questionBank = [
   // from Chloe Yip
   "What is the most embarrassing thing you've done recently?",
 
-  // from jaryd diamond
+  // from Jaryd Diamond
   "If you could have an unlimited amount of anything, what would it be?",
   "What is the largest animal you could take in hand-to-hand combat?",
   "What is your favourite dinosaur?",
@@ -78,6 +78,26 @@ const questionBank = [
   "What job would you have if it was paid well?",
   "What is something you could write an essay about?",
   "What is a hobby that you're bad at, but still enjoy anyway?",
+
+  // from Claude
+  "If you had to teach a class on something, what would it be?",
+  "What's the most you've ever committed to a bit?",
+  "What's the worst advice you've ever followed?",
+  "What did you want to be when you grew up, and how far did you get?",
+  "If you could permanently delete one social norm, what would it be?",
+  "What's a completely useless fact you know and love anyway?",
+  "What's something about modern life you think future generations will find bizarre?",
+
+  // from ChatGPT
+  "If you could invent a new flavor of ice cream, what would it be?",
+  "What's the most spontaneous thing you've ever done?",
+  "If you could teleport to any event in history, which one would it be?",
+  "What's a quirky talent you wish you had?",
+  "If you could turn any activity into an Olympic sport, what would you have a chance at winning a medal in?",
+  "If you could bring back any fashion trend, which one would you choose?",
+  "What’s your go-to comfort movie or TV show that never fails to make you smile?",
+  "If you could relive one day of your life, which would it be and why?",
+  "What's the most interesting conversation you've overheard?",
 ];
 
 export const onRequestGet: PagesFunction<Env> = async (context) => {
