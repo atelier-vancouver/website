@@ -250,9 +250,11 @@ const countdownToTimeString = computed({
             >
           </div>
         </div>
-        <div class="text" v-else-if="mainContentState === 'text'">
-          <p>{{ centerText }}</p>
-        </div>
+        <div
+          class="text"
+          v-else-if="mainContentState === 'text'"
+          v-html="centerText"
+        ></div>
       </div>
 
       <div class="notes">
@@ -526,6 +528,7 @@ const countdownToTimeString = computed({
       font-weight: 500;
     }
 
+    .main-content .text,
     :deep(p),
     :deep(ol) {
       margin: 0;
@@ -544,8 +547,7 @@ const countdownToTimeString = computed({
         margin-bottom: 3rem;
       }
 
-      .qotd,
-      .text {
+      .qotd {
         p {
           white-space: pre-wrap;
         }

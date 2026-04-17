@@ -3,7 +3,7 @@ import Layout from "../layouts/Layout.astro";
 
 function getChecklistUrl(
   name: string,
-  items: { title: string; subtitle?: string }[]
+  items: { title: string; subtitle?: string }[],
 ) {
   const url = new URL("https://calvin.sh/tools/checklist");
   const searchParams = new URLSearchParams();
@@ -19,60 +19,60 @@ const checklists: {
   name: string;
   items: { title: string; subtitle?: string }[];
 }[][] = [
+  // [
+  //   {
+  //     tag: "UBC",
+  //     name: "Setup (UBC)",
+  //     items: [
+  //       {
+  //         title: "Stick sign on door",
+  //         subtitle: "the sign should be in the bag with the snacks",
+  //       },
+  //       {
+  //         title: "Lay out snacks, open unopened bags",
+  //         subtitle:
+  //           "open the bags in a resealable way, use the scissors in the bag if necessary",
+  //       },
+  //       {
+  //         title: "Set up computer",
+  //         subtitle:
+  //           "open atelier.place/session, pick a QOTD, install adblock, play music on YouTube",
+  //       },
+  //       {
+  //         title: "Hard start intros 12:10",
+  //         subtitle: "if there are more than 5 people in the room",
+  //       },
+  //     ],
+  //   },
+  //   {
+  //     tag: "Weeknights",
+  //     name: "Setup (Weeknights)",
+  //     items: [
+  //       {
+  //         title: "Stick sign on door",
+  //         subtitle: "the sign should be in the snack cabinet",
+  //       },
+  //       {
+  //         title: "Lay out snacks, open unopened bags",
+  //         subtitle:
+  //           "open the bags in a resealable way, use the scissors if necessary",
+  //       },
+  //       {
+  //         title: "Set up computer",
+  //         subtitle:
+  //           "open atelier.place/session, pick a QOTD, play music on Spotify",
+  //       },
+  //       {
+  //         title: "Hard start intros 6:10",
+  //         subtitle: "if there are more than 5 people in the room",
+  //       },
+  //     ],
+  //   },
+  // ],
   [
     {
       tag: "UBC",
-      name: "Setup (UBC)",
-      items: [
-        {
-          title: "Stick sign on door",
-          subtitle: "the sign should be in the bag with the snacks",
-        },
-        {
-          title: "Lay out snacks, open unopened bags",
-          subtitle:
-            "open the bags in a resealable way, use the scissors in the bag if necessary",
-        },
-        {
-          title: "Set up computer",
-          subtitle:
-            "open atelier.place/session, pick a QOTD, install adblock, play music on YouTube",
-        },
-        {
-          title: "Hard start intros 12:10",
-          subtitle: "if there are more than 5 people in the room",
-        },
-      ],
-    },
-    {
-      tag: "Weeknights",
-      name: "Setup (Weeknights)",
-      items: [
-        {
-          title: "Stick sign on door",
-          subtitle: "the sign should be in the snack cabinet",
-        },
-        {
-          title: "Lay out snacks, open unopened bags",
-          subtitle:
-            "open the bags in a resealable way, use the scissors if necessary",
-        },
-        {
-          title: "Set up computer",
-          subtitle:
-            "open atelier.place/session, pick a QOTD, play music on Spotify",
-        },
-        {
-          title: "Hard start intros 6:10",
-          subtitle: "if there are more than 5 people in the room",
-        },
-      ],
-    },
-  ],
-  [
-    {
-      tag: "UBC",
-      name: "Start Intros (UBC)",
+      name: "Intros (UBC)",
       items: [
         { title: "Welcome everyone" },
         {
@@ -85,43 +85,13 @@ const checklists: {
             "name, what you are working on, and your answer to the QOTD",
         },
         {
-          title: "Ask people to pay attention if needed",
-          subtitle: '"be respectful and not be on your phone" etc',
-        },
-        {
           title: "Start intros by example",
           subtitle: "pass it on the side with more regulars",
         },
-      ],
-    },
-    {
-      tag: "Weeknights",
-      name: "Start Intros (Weeknights)",
-      items: [
-        { title: "Welcome everyone" },
         {
-          title: "Introduce Atelier",
-          subtitle: "a place to work on your projects (no school no work)",
+          title: "...intros",
+          subtitle: "",
         },
-        {
-          title: "Intro format",
-          subtitle:
-            "name, what you are working on, and your answer to the QOTD",
-        },
-        {
-          title: "Ask people to pay attention if needed",
-          subtitle: '"be respectful and not be on your phone" etc',
-        },
-        {
-          title: "Start intros by example",
-          subtitle: "pass it on the side with more regulars",
-        },
-      ],
-    },
-    {
-      tag: "UBC",
-      name: "After intro (UBC)",
-      items: [
         {
           title: "Work format",
           subtitle: "50 minute work, 10 minute break, 50 minute work, demos",
@@ -139,8 +109,26 @@ const checklists: {
     },
     {
       tag: "Weeknights",
-      name: "After intro (Weeknights)",
+      name: "Intros (Weeknights)",
       items: [
+        { title: "Welcome everyone" },
+        {
+          title: "Introduce Atelier",
+          subtitle: "a place to work on your projects (no school no work)",
+        },
+        {
+          title: "Intro format",
+          subtitle:
+            "name, what you are working on, and your answer to the QOTD",
+        },
+        {
+          title: "Start intros by example",
+          subtitle: "pass it on the side with more regulars",
+        },
+        {
+          title: "...intros",
+          subtitle: "",
+        },
         {
           title: "Work format",
           subtitle: "50 minute work, 10 minute break, 50 minute work, demos",
@@ -161,23 +149,23 @@ const checklists: {
     },
   ],
   [
-    {
-      name: "Before Demos",
-      items: [
-        {
-          title: "Ordering",
-          subtitle: "put first time demoers in the middle or end",
-        },
-        {
-          title: "Find someone to timer",
-          subtitle:
-            "find someone with a laptop and open atelier.place/timer, ask them to turn the laptop towards the demoer and turn on the sound",
-        },
-      ],
-    },
+    // {
+    //   name: "Before Demos",
+    //   items: [
+    //     {
+    //       title: "Ordering",
+    //       subtitle: "put first time demoers in the middle or end",
+    //     },
+    //     {
+    //       title: "Find someone to timer",
+    //       subtitle:
+    //         "find someone with a laptop and open atelier.place/timer, ask them to turn the laptop towards the demoer and turn on the sound",
+    //     },
+    //   ],
+    // },
     {
       tag: "UBC",
-      name: "After Demos (UBC)",
+      name: "Closing (UBC)",
       items: [
         { title: "Thank everyone for coming!" },
         {
@@ -193,7 +181,7 @@ const checklists: {
           subtitle: "tell people about Weeknights",
         },
         {
-          title: "Solicit Luma header designs",
+          title: "Solicit Luma cover designs",
           subtitle: "link in luma event description",
         },
         { title: "Group photos", subtitle: "post on ig and tag people" },
@@ -201,7 +189,7 @@ const checklists: {
     },
     {
       tag: "Weeknights",
-      name: "After Demos (Weeknights)",
+      name: "Closing (Weeknights)",
       items: [
         { title: "Thank everyone for coming!" },
         {
@@ -209,7 +197,7 @@ const checklists: {
           subtitle: "ask them to talk to a host to sign up",
         },
         {
-          title: "Solicit Luma header designs",
+          title: "Solicit Luma cover designs",
           subtitle: "link in luma event description",
         },
         {
@@ -260,11 +248,11 @@ const checklists: {
         },
         {
           title: "📸 Take a photo of the remaining snacks",
-          subtitle: "post on the whatsapp group",
+          subtitle: "post on the discord server",
         },
         {
-          title: "📸 Take a photo of the leftover food",
-          subtitle: "post on the whatsapp group",
+          title: "📸 Take a photo of the leftover ingredients and food",
+          subtitle: "post on the discord server",
         },
         { title: "Turn off computer" },
       ],

@@ -1,6 +1,9 @@
 import openCollectiveQrCodeSvg from "@/assets/images/opencollective-qr.svg?raw";
+import grainImageUrl from "@/assets/images/session-board/grain.png?url";
+import logoImageUrl from "@/assets/images/session-board/logo.svg?url";
 import { useUrlSearchParams } from "@vueuse/core";
 import { computed, type WritableComputedRef } from "vue";
+import lumaHeaderImageUrl from "./assets/luma-header.png?url";
 import wifiQrCodeSvg from "./wifi-qr-code.svg?raw";
 
 const rawParams = useUrlSearchParams<{
@@ -308,13 +311,55 @@ export const presets: {
         },
       },
       {
-        name: "closing",
+        name: "donations",
         set() {
           selectedPreset.value = "UBC";
-          selectedPresetStage.value = "closing";
+          selectedPresetStage.value = "donations";
 
           mainContentState.value = "text";
-          centerText.value = `Thank you for coming!\n\nSee you next Tuesday/Sunday`;
+          centerText.value = `Thank you for coming!<br/><br/>See you next Tuesday/Sunday`;
+
+          bottomRightNotes.value = `<p style="text-align:end">Donate at<br>atelier.place/donate</p>\n<img style=\"margin-top: 0.5ch\" src=\"data:image/svg+xml,${encodeURIComponent(openCollectiveQrCodeSvg)}\" />`;
+          bottomRightNotesSize.value = 1;
+        },
+      },
+      {
+        name: "luma cover",
+        set() {
+          selectedPreset.value = "UBC";
+          selectedPresetStage.value = "luma cover";
+
+          mainContentState.value = "text";
+          centerText.value = `<img style="display:block; margin:0 auto; width: 50%; height: auto; box-shadow: 0 0 10px rgba(0,0,0,0.5); border-radius: 10px;" src="${lumaHeaderImageUrl}" /><br /><p>Link in Luma description</p>`;
+
+          bottomRightNotes.value = "";
+        },
+      },
+      {
+        name: "group photo logo",
+        set() {
+          selectedPreset.value = "UBC";
+          selectedPresetStage.value = "group photo logo";
+
+          mainContentState.value = "text";
+          centerText.value = `
+          <div style="background-color: #f6f2ee; position: absolute; inset: 0; z-index: 10; align-content: center;">
+            <img src="${grainImageUrl}" alt="" style="position: absolute; inset: 0; z-index: -1; width: 100%; height: 100%; mix-blend-mode: soft-light; display: block; object-fit: cover;" />
+
+            <img src="${logoImageUrl}" alt="" style="display: block; height: auto; width: calc(100% - 5rem); margin: 0 auto;" />
+          </div>`;
+
+          bottomRightNotes.value = "";
+        },
+      },
+      {
+        name: "donations",
+        set() {
+          selectedPreset.value = "UBC";
+          selectedPresetStage.value = "donations";
+
+          mainContentState.value = "text";
+          centerText.value = `Thank you for coming!<br/><br/>See you next Tuesday/Sunday`;
 
           bottomRightNotes.value = `<p style="text-align:end">Donate at<br>atelier.place/donate</p>\n<img style=\"margin-top: 0.5ch\" src=\"data:image/svg+xml,${encodeURIComponent(openCollectiveQrCodeSvg)}\" />`;
           bottomRightNotesSize.value = 1;
@@ -410,6 +455,61 @@ export const presets: {
 
           mainContentState.value = "text";
           centerText.value = "Gather around for demos!";
+        },
+      },
+      {
+        name: "donations",
+        set() {
+          selectedPreset.value = "Weeknights";
+          selectedPresetStage.value = "donations";
+
+          mainContentState.value = "text";
+          centerText.value = `Thank you for coming!<br/><br/>See you next Tuesday/Sunday`;
+
+          bottomRightNotes.value = `<p style="text-align:end">Donate at<br>atelier.place/donate</p>\n<img style=\"margin-top: 0.5ch\" src=\"data:image/svg+xml,${encodeURIComponent(openCollectiveQrCodeSvg)}\" />`;
+          bottomRightNotesSize.value = 1;
+        },
+      },
+      {
+        name: "luma cover",
+        set() {
+          selectedPreset.value = "Weeknights";
+          selectedPresetStage.value = "luma cover";
+
+          mainContentState.value = "text";
+          centerText.value = `<img style="display:block; margin:0 auto; width: 50%; height: auto; box-shadow: 0 0 10px rgba(0,0,0,0.5); border-radius: 10px;" src="${lumaHeaderImageUrl}" /><br /><p>Link in Luma description</p>`;
+
+          bottomRightNotes.value = "";
+        },
+      },
+      {
+        name: "group photo logo",
+        set() {
+          selectedPreset.value = "Weeknights";
+          selectedPresetStage.value = "group photo logo";
+
+          mainContentState.value = "text";
+          centerText.value = `
+          <div style="background-color: #f6f2ee; position: absolute; inset: 0; z-index: 10; align-content: center;">
+            <img src="${grainImageUrl}" alt="" style="position: absolute; inset: 0; z-index: -1; width: 100%; height: 100%; mix-blend-mode: soft-light; display: block; object-fit: cover;" />
+
+            <img src="${logoImageUrl}" alt="" style="display: block; height: auto; width: calc(100% - 5rem); margin: 0 auto;" />
+          </div>`;
+
+          bottomRightNotes.value = "";
+        },
+      },
+      {
+        name: "donations",
+        set() {
+          selectedPreset.value = "Weeknights";
+          selectedPresetStage.value = "donations";
+
+          mainContentState.value = "text";
+          centerText.value = `Thank you for coming!<br/><br/>See you next Tuesday/Sunday`;
+
+          bottomRightNotes.value = `<p style="text-align:end">Donate at<br>atelier.place/donate</p>\n<img style=\"margin-top: 0.5ch\" src=\"data:image/svg+xml,${encodeURIComponent(openCollectiveQrCodeSvg)}\" />`;
+          bottomRightNotesSize.value = 1;
         },
       },
     ],
