@@ -311,10 +311,10 @@ export const presets: {
         },
       },
       {
-        name: "donations",
+        name: "donations-1",
         set() {
           selectedPreset.value = "UBC";
-          selectedPresetStage.value = "donations";
+          selectedPresetStage.value = "donations-1";
 
           mainContentState.value = "text";
           centerText.value = `Thank you for coming!<br/><br/>See you next Tuesday/Sunday`;
@@ -353,10 +353,10 @@ export const presets: {
         },
       },
       {
-        name: "donations",
+        name: "donations-2",
         set() {
           selectedPreset.value = "UBC";
-          selectedPresetStage.value = "donations";
+          selectedPresetStage.value = "donations-2";
 
           mainContentState.value = "text";
           centerText.value = `Thank you for coming!<br/><br/>See you next Tuesday/Sunday`;
@@ -458,10 +458,10 @@ export const presets: {
         },
       },
       {
-        name: "donations",
+        name: "donations-1",
         set() {
           selectedPreset.value = "Weeknights";
-          selectedPresetStage.value = "donations";
+          selectedPresetStage.value = "donations-1";
 
           mainContentState.value = "text";
           centerText.value = `Thank you for coming!<br/><br/>See you next Tuesday/Sunday`;
@@ -500,10 +500,10 @@ export const presets: {
         },
       },
       {
-        name: "donations",
+        name: "donations-2",
         set() {
           selectedPreset.value = "Weeknights";
-          selectedPresetStage.value = "donations";
+          selectedPresetStage.value = "donations-2";
 
           mainContentState.value = "text";
           centerText.value = `Thank you for coming!<br/><br/>See you next Tuesday/Sunday`;
