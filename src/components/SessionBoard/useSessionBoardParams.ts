@@ -241,9 +241,7 @@ export const presets: {
 
           bottomLeftNotes.value = `# Hosts\n\n${[
             "Calvin",
-            "Kai",
             "Chloe-Amelie",
-            "Diana",
             "Leonard",
             "Shradha",
           ].join("  \n")}`;
@@ -384,11 +382,12 @@ export const presets: {
 
           bottomLeftNotes.value = `# Hosts\n\n${[
             "Calvin",
-            "Kai",
             "Chloe-Amelie",
             "Diana",
+            "Lily",
             "Kaitlyn",
             "Shradha",
+            "Jonah",
           ].join("  \n")}`;
           bottomLeftNotesSize.value = 2;
 
