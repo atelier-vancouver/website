@@ -309,19 +309,6 @@ export const presets: {
         },
       },
       {
-        name: "donations-1",
-        set() {
-          selectedPreset.value = "UBC";
-          selectedPresetStage.value = "donations-1";
-
-          mainContentState.value = "text";
-          centerText.value = `Thank you for coming!<br/><br/>See you next Tuesday/Sunday`;
-
-          bottomRightNotes.value = `<p style="text-align:end">Donate at<br>atelier.place/donate</p>\n<img style=\"margin-top: 0.5ch\" src=\"data:image/svg+xml,${encodeURIComponent(openCollectiveQrCodeSvg)}\" />`;
-          bottomRightNotesSize.value = 1;
-        },
-      },
-      {
         name: "luma cover",
         set() {
           selectedPreset.value = "UBC";
@@ -351,10 +338,10 @@ export const presets: {
         },
       },
       {
-        name: "donations-2",
+        name: "donations",
         set() {
           selectedPreset.value = "UBC";
-          selectedPresetStage.value = "donations-2";
+          selectedPresetStage.value = "donations";
 
           mainContentState.value = "text";
           centerText.value = `Thank you for coming!<br/><br/>See you next Tuesday/Sunday`;
@@ -457,19 +444,6 @@ export const presets: {
         },
       },
       {
-        name: "donations-1",
-        set() {
-          selectedPreset.value = "Weeknights";
-          selectedPresetStage.value = "donations-1";
-
-          mainContentState.value = "text";
-          centerText.value = `Thank you for coming!<br/><br/>See you next Tuesday/Sunday`;
-
-          bottomRightNotes.value = `<p style="text-align:end">Donate at<br>atelier.place/donate</p>\n<img style=\"margin-top: 0.5ch\" src=\"data:image/svg+xml,${encodeURIComponent(openCollectiveQrCodeSvg)}\" />`;
-          bottomRightNotesSize.value = 1;
-        },
-      },
-      {
         name: "luma cover",
         set() {
           selectedPreset.value = "Weeknights";
@@ -499,10 +473,10 @@ export const presets: {
         },
       },
       {
-        name: "donations-2",
+        name: "donations",
         set() {
           selectedPreset.value = "Weeknights";
-          selectedPresetStage.value = "donations-2";
+          selectedPresetStage.value = "donations";
 
           mainContentState.value = "text";
           centerText.value = `Thank you for coming!<br/><br/>See you next Tuesday/Sunday`;
