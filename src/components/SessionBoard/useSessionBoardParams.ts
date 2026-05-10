@@ -4,6 +4,7 @@ import logoImageUrl from "@/assets/images/session-board/logo.svg?url";
 import { useUrlSearchParams } from "@vueuse/core";
 import { computed, type WritableComputedRef } from "vue";
 import lumaHeaderImageUrl from "./assets/luma-header.png?url";
+import merchImageUrl from "./assets/merch.png?url";
 import wifiQrCodeSvg from "./wifi-qr-code.svg?raw";
 
 const rawParams = useUrlSearchParams<{
@@ -309,6 +310,26 @@ export const presets: {
         },
       },
       {
+        name: "donations",
+        set() {
+          selectedPreset.value = "UBC";
+          selectedPresetStage.value = "donations";
+
+          mainContentState.value = "text";
+          centerText.value = `<p style="">Donate at<br>atelier.place/donate</p>\n<img style=\"width: 20rem; display: block; margin: auto; margin-top: 0.5ch;\" src=\"data:image/svg+xml,${encodeURIComponent(openCollectiveQrCodeSvg)}\" />`;
+        },
+      },
+      {
+        name: "merch",
+        set() {
+          selectedPreset.value = "UBC";
+          selectedPresetStage.value = "merch";
+
+          mainContentState.value = "text";
+          centerText.value = `<img style=\"height: 20rem; display: block; margin: auto;\" src=\"${merchImageUrl}\" />`;
+        },
+      },
+      {
         name: "luma cover",
         set() {
           selectedPreset.value = "UBC";
@@ -338,10 +359,10 @@ export const presets: {
         },
       },
       {
-        name: "donations",
+        name: "see you",
         set() {
           selectedPreset.value = "UBC";
-          selectedPresetStage.value = "donations";
+          selectedPresetStage.value = "see you";
 
           mainContentState.value = "text";
           centerText.value = `Thank you for coming!<br/><br/>See you next Tuesday/Sunday`;
@@ -444,6 +465,26 @@ export const presets: {
         },
       },
       {
+        name: "donations",
+        set() {
+          selectedPreset.value = "Weeknights";
+          selectedPresetStage.value = "donations";
+
+          mainContentState.value = "text";
+          centerText.value = `<p style="">Donate at<br>atelier.place/donate</p>\n<img style=\"width: 20rem; display: block; margin: auto; margin-top: 0.5ch;\" src=\"data:image/svg+xml,${encodeURIComponent(openCollectiveQrCodeSvg)}\" />`;
+        },
+      },
+      {
+        name: "merch",
+        set() {
+          selectedPreset.value = "Weeknights";
+          selectedPresetStage.value = "merch";
+
+          mainContentState.value = "text";
+          centerText.value = `<img style=\"height: 20rem; display: block; margin: auto;\" src=\"${merchImageUrl}\" />`;
+        },
+      },
+      {
         name: "luma cover",
         set() {
           selectedPreset.value = "Weeknights";
@@ -473,10 +514,10 @@ export const presets: {
         },
       },
       {
-        name: "donations",
+        name: "see you",
         set() {
           selectedPreset.value = "Weeknights";
-          selectedPresetStage.value = "donations";
+          selectedPresetStage.value = "see you";
 
           mainContentState.value = "text";
           centerText.value = `Thank you for coming!<br/><br/>See you next Tuesday/Sunday`;
