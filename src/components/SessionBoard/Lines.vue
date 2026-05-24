@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useElementSize } from "@vueuse/core";
 import { useTemplateRef } from "vue";
+import { useElementSize } from "@vueuse/core";
 
 const el = useTemplateRef("el");
 const size = useElementSize(el);

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import logo from "@/assets/images/session-board/logo.svg?url";
 import showdown from "showdown";
 import { computed, onMounted, onUnmounted, ref } from "vue";
+import logo from "@/assets/images/session-board/logo.svg?url";
 import CountDownText from "./CountDownText.vue";
 import Lines from "./Lines.vue";
 import Pill from "./Pill.vue";

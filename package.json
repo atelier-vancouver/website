@@ -10,6 +10,7 @@
     "preview": "astro preview",
     "generate-types": "wrangler types",
     "astro": "astro",
+    "format": "prettier --write .",
     "postinstall": "patch-package"
   },
   "dependencies": {
@@ -29,11 +30,15 @@
   "devDependencies": {
     "@astrojs/check": "^0.9.9",
     "@cloudflare/workers-types": "^4.20260524.1",
+    "@ianvs/prettier-plugin-sort-imports": "^4.7.1",
     "@types/react": "^19.0.12",
     "@types/react-dom": "^19.0.4",
     "@types/showdown": "^2.0.6",
+    "lefthook": "^2.1.8",
     "patch-package": "^8.0.0",
+    "postcss-preset-env": "^11.3.0",
     "prettier": "^3.3.3",
+    "prettier-plugin-astro": "^0.14.1",
     "sass": "^1.80.5",
     "typescript": "^5.6.3",
     "wrangler": "^4.94.0"

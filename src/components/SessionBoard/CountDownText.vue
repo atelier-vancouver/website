@@ -54,7 +54,7 @@ watch(
   () => [props.hour, props.minute],
   () => {
     updateTime();
-  }
+  },
 );
 
 onMounted(() => {

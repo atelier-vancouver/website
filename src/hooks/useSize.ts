@@ -1,5 +1,5 @@
-import useResizeObserver from "@react-hook/resize-observer";
 import { useLayoutEffect, useState } from "react";
+import useResizeObserver from "@react-hook/resize-observer";
 
 // from https://github.com/jaredLunde/react-hook/issues/165
 export function useSize(): {

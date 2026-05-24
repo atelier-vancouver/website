@@ -16,7 +16,7 @@ function updateTime() {
     hour12: true,
   });
   const dateTimeString = `${dateFormatter.format(new Date())} ${timeFormatter.format(
-    new Date()
+    new Date(),
   )}`;
 
   time.value = dateTimeString;
