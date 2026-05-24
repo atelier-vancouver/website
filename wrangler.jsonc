@@ -4,6 +4,17 @@
   "main": "@astrojs/cloudflare/entrypoints/server",
   "compatibility_date": "2026-05-23",
   "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": true,
+  "routes": [
+    {
+      "pattern": "atelier.place/",
+      "zone_name": "atelier.place",
+    },
+    {
+      "pattern": "atelier.place/*",
+      "zone_name": "atelier.place",
+    },
+  ],
   "assets": {
     "binding": "ASSETS",
     "directory": "./dist/client",
