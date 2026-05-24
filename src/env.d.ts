@@ -7,3 +7,11 @@ declare module "react" {
     [key: `--${string}`]: string | number | undefined;
   }
 }
+
+declare global {
+  namespace Cloudflare {
+    interface Env {
+      OPENAI_API_KEY: string;
+    }
+  }
+}

@@ -5,17 +5,20 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro check && astro build",
+    "build": "astro build",
+    "check": "astro check",
     "preview": "astro preview",
+    "generate-types": "wrangler types",
     "astro": "astro",
     "postinstall": "patch-package"
   },
   "dependencies": {
-    "@astrojs/react": "^4.2.2",
-    "@astrojs/vue": "^5.1.0",
+    "@astrojs/cloudflare": "^13.5.4",
+    "@astrojs/react": "^5.0.5",
+    "@astrojs/vue": "^6.0.1",
     "@react-hook/resize-observer": "^2.0.2",
     "@vueuse/core": "^14.2.1",
-    "astro": "^5.5.5",
+    "astro": "^6.3.7",
     "inter-ui": "^4.0.2",
     "openai": "^4.91.1",
     "react": "^19.1.0",
@@ -24,8 +27,8 @@
     "vue": "^3.5.16"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.9.4",
-    "@cloudflare/workers-types": "^4.20250406.0",
+    "@astrojs/check": "^0.9.9",
+    "@cloudflare/workers-types": "^4.20260524.1",
     "@types/react": "^19.0.12",
     "@types/react-dom": "^19.0.4",
     "@types/showdown": "^2.0.6",
@@ -33,6 +36,6 @@
     "prettier": "^3.3.3",
     "sass": "^1.80.5",
     "typescript": "^5.6.3",
-    "wrangler": "^4.7.2"
+    "wrangler": "^4.94.0"
   }
 }

@@ -1,8 +1,8 @@
+import type { APIRoute } from "astro";
+import { env } from "cloudflare:workers";
 import OpenAI from "openai";
 
-interface Env {
-  OPENAI_API_KEY: string;
-}
+export const prerender = false;
 
 const questionBank = [
   // from Chloe Yip
@@ -95,24 +95,22 @@ const questionBank = [
   "What's a quirky talent you wish you had?",
   "If you could turn any activity into an Olympic sport, what would you have a chance at winning a medal in?",
   "If you could bring back any fashion trend, which one would you choose?",
-  "What’s your go-to comfort movie or TV show that never fails to make you smile?",
+  "What's your go-to comfort movie or TV show that never fails to make you smile?",
   "If you could relive one day of your life, which would it be and why?",
   "What's the most interesting conversation you've overheard?",
 ];
 
-export const onRequestGet: PagesFunction<Env> = async (context) => {
-  const searchParams = new URL(context.request.url).searchParams;
-  const currentDate = searchParams.get("date");
+export const GET: APIRoute = async ({ url }) => {
+  const currentDate = url.searchParams.get("date");
   if (!currentDate) {
     return new Response("Missing date", { status: 400 });
   }
 
-  // Pick 10 random questions from the bank
   shuffleArray(questionBank);
   const pickedFromBank = questionBank.slice(0, 10);
 
   const openai = new OpenAI({
-    apiKey: context.env.OPENAI_API_KEY,
+    apiKey: env.OPENAI_API_KEY,
   });
 
   const response = await openai.responses.create({
@@ -173,7 +171,7 @@ export const onRequestGet: PagesFunction<Env> = async (context) => {
   );
 };
 
-function shuffleArray(array: any[]) {
+function shuffleArray(array: unknown[]) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [array[i], array[j]] = [array[j], array[i]];

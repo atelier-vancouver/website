@@ -290,8 +290,9 @@ const checklists: {
     </div>
 
     <script>
-      const filterSelect =
-        document.querySelector<HTMLSelectElement>("select.filter")!;
+      const filterSelect = document.querySelector(
+        "select.filter",
+      ) as unknown as HTMLSelectElement;
 
       const date = new Date();
       const day = date.getDay();
