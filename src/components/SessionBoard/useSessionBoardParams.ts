@@ -326,7 +326,7 @@ export const presets: {
           selectedPresetStage.value = "merch";
 
           mainContentState.value = "text";
-          centerText.value = `<img style=\"height: 32rem; display: block; margin: auto;\" src=\"${merchImageUrl}\" />`;
+          centerText.value = `<img style=\"height: 20rem; display: block; margin: auto;\" src=\"${merchImageUrl}\" />`;
         },
       },
       {
@@ -481,7 +481,7 @@ export const presets: {
           selectedPresetStage.value = "merch";
 
           mainContentState.value = "text";
-          centerText.value = `<img style=\"height: 32rem; display: block; margin: auto;\" src=\"${merchImageUrl}\" />`;
+          centerText.value = `<img style=\"height: 20rem; display: block; margin: auto;\" src=\"${merchImageUrl}\" />`;
         },
       },
       {
