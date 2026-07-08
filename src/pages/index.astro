@@ -6,11 +6,28 @@ import greenMascot from "../assets/images/green_mascot.webp";
 import lightbulb from "../assets/images/lightbulb.webp";
 import mascots from "../assets/images/mascots.png";
 import people from "../assets/images/people.webp";
+import gumloopLogo from "../assets/images/sponsors/gumloop.svg";
 import { Button } from "../components/Button/Button";
 import { ChangingText } from "../components/ChangingText";
 import ScrollingText from "../components/ScrollingText.astro";
 import SectionTitle from "../components/SectionTitle.astro";
 import Layout from "../layouts/Layout.astro";
+
+interface Sponsor {
+  name: string;
+  logo: ImageMetadata;
+  url: string;
+  event: string;
+}
+
+const sponsors: Sponsor[] = [
+  {
+    name: "Gumloop",
+    logo: gumloopLogo,
+    url: "https://www.gumloop.com",
+    event: "2026 Summer Showcase",
+  },
+];
 ---
 
 <Layout
@@ -124,6 +141,29 @@ import Layout from "../layouts/Layout.astro";
         </div>
       </div>
       <Picture src={easel} alt="See u there!" formats={["avif", "webp"]} />
+    </section>
+    <section class="section-sponsors">
+      <div class="content">
+        <SectionTitle text="EVENT SPONSORS" />
+        <p class="intro">
+          Huge thanks to the sponsors who help bring our events to life.
+        </p>
+        <div class="sponsor-grid">
+          {
+            sponsors.map((sponsor) => (
+              <a
+                class="sponsor-card"
+                href={sponsor.url}
+                target="_blank"
+                rel="noopener"
+              >
+                <img src={sponsor.logo.src} alt={sponsor.name} />
+                <span class="event">{sponsor.event}</span>
+              </a>
+            ))
+          }
+        </div>
+      </div>
     </section>
     <div class="footer-image-container">
       <Picture
@@ -381,8 +421,6 @@ import Layout from "../layouts/Layout.astro";
     flex-direction: column;
     align-items: center;
 
-    border-top: 1px solid #000;
-
     text-align: center;
 
     @media (min-width: constants.$breakpoint-md) {
@@ -437,6 +475,88 @@ import Layout from "../layouts/Layout.astro";
     img {
       width: 200px;
       height: auto;
+    }
+  }
+
+  .section-sponsors {
+    letter-spacing: -0.04em;
+    max-width: 900px;
+    margin: 0 auto;
+    margin-top: 2.5rem;
+    padding: 3rem 1rem;
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .intro {
+      margin-top: 1.5rem;
+      max-width: 32ch;
+      font-size: 1.125rem;
+      line-height: 1.4;
+
+      @media (min-width: constants.$breakpoint-md) {
+        font-size: 1.5rem;
+      }
+    }
+
+    .sponsor-grid {
+      margin-top: 2rem;
+
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+
+    .sponsor-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.25rem;
+
+      padding: 2rem 2.5rem;
+      background-color: colors.$off-white;
+      border: 1px solid #000;
+      border-radius: 0.375rem;
+      box-shadow: 4px 4px 0 0 #000;
+
+      color: inherit;
+      text-decoration: none;
+
+      transition-property: box-shadow, transform;
+      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+      transition-duration: 300ms;
+
+      @media (hover: hover) {
+        &:hover {
+          transform: translate(2px, 2px);
+          box-shadow: 2px 2px 0 0 #000;
+        }
+      }
+
+      &:active {
+        transform: translate(4px, 4px);
+        box-shadow: 0 0 0 0 #000;
+      }
+
+      img {
+        width: 200px;
+        max-width: 100%;
+        height: auto;
+      }
+
+      .event {
+        font-family: "IBM Plex Mono", sans-serif;
+        font-size: 0.75rem;
+        font-weight: 300;
+        letter-spacing: 0;
+        text-transform: uppercase;
+        color: #555555;
+      }
     }
   }
 
