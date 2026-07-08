@@ -12,4 +12,9 @@ export default defineConfig({
   }),
   integrations: [react(), vue()],
   devToolbar: { enabled: false },
+  vite: {
+    resolve: {
+      dedupe: ["react", "react-dom"],
+    },
+  },
 });
