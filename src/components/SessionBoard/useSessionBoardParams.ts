@@ -1,8 +1,8 @@
-import { computed, type WritableComputedRef } from "vue";
 import openCollectiveQrCodeSvg from "@/assets/images/opencollective-qr.svg?raw";
 import grainImageUrl from "@/assets/images/session-board/grain.png?url";
 import logoImageUrl from "@/assets/images/session-board/logo.svg?url";
 import { useUrlSearchParams } from "@vueuse/core";
+import { computed, type WritableComputedRef } from "vue";
 import lumaHeaderImageUrl from "./assets/luma-header.png?url";
 import merchImageUrl from "./assets/merch.png?url";
 import wifiQrCodeSvg from "./wifi-qr-code.svg?raw";
@@ -328,7 +328,7 @@ export const presets: {
           selectedPresetStage.value = "merch";
 
           mainContentState.value = "text";
-          centerText.value = `<img style=\"height: 20rem; display: block; margin: auto;\" src=\"${merchImageUrl}\" />`;
+          centerText.value = `<img style=\"height: 32rem; display: block; margin: auto;\" src=\"${merchImageUrl}\" />`;
         },
       },
       {
@@ -486,7 +486,7 @@ export const presets: {
           selectedPresetStage.value = "merch";
 
           mainContentState.value = "text";
-          centerText.value = `<img style=\"height: 20rem; display: block; margin: auto;\" src=\"${merchImageUrl}\" />`;
+          centerText.value = `<img style=\"height: 32rem; display: block; margin: auto;\" src=\"${merchImageUrl}\" />`;
         },
       },
       {
