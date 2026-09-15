@@ -7,7 +7,7 @@ const size = useElementSize(el);
 </script>
 
 <template>
-  <div ref="el" className="lines-container">
+  <div ref="el" class="lines-container">
     <svg
       v-if="size"
       :viewBox="`0 0 ${size.width.value} ${size.height.value}`"
@@ -20,7 +20,7 @@ const size = useElementSize(el);
         :width="size.width.value"
         :height="size.height.value"
         fill="none"
-        stroke="#262626"
+        stroke="currentColor"
         stroke-opacity="0.5"
         stroke-width="3"
         :stroke-dasharray="size.width.value / 500"

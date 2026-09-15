@@ -1,8 +1,8 @@
-import openCollectiveQrCodeSvg from "@/assets/images/opencollective-qr.svg?raw";
-import grainImageUrl from "@/assets/images/session-board/grain.png?url";
-import logoImageUrl from "@/assets/images/session-board/logo.svg?url";
-import { useUrlSearchParams } from "@vueuse/core";
 import { computed, type WritableComputedRef } from "vue";
+import openCollectiveQrCodeSvg from "@/assets/images/opencollective-qr.svg?raw";
+import logoImageUrl from "@/assets/images/session-board/logo.svg?url";
+import backgroundImageUrl from "@/assets/images/session-board/red-wave-background.png?url";
+import { useUrlSearchParams } from "@vueuse/core";
 import lumaHeaderImageUrl from "./assets/luma-header.png?url";
 import merchImageUrl from "./assets/merch.png?url";
 import wifiQrCodeSvg from "./wifi-qr-code.svg?raw";
@@ -348,10 +348,10 @@ export const presets: {
 
           mainContentState.value = "text";
           centerText.value = `
-          <div style="background-color: #f6f2ee; position: absolute; inset: 0; z-index: 10; align-content: center;">
-            <img src="${grainImageUrl}" alt="" style="position: absolute; inset: 0; z-index: -1; width: 100%; height: 100%; mix-blend-mode: soft-light; display: block; object-fit: cover;" />
+          <div style="background-color: #100405; position: absolute; inset: 0; z-index: 10; isolation: isolate; align-content: center;">
+            <img src="${backgroundImageUrl}" alt="" style="position: absolute; inset: 0; z-index: -1; width: 100%; height: 100%; display: block; object-fit: cover;" />
 
-            <img src="${logoImageUrl}" alt="" style="display: block; height: auto; width: calc(100% - 5rem); margin: 0 auto;" />
+            <img src="${logoImageUrl}" alt="Atelier" style="display: block; height: auto; width: calc(100% - 5rem); margin: 0 auto; filter: brightness(0) invert(1);" />
           </div>`;
 
           bottomRightNotes.value = "";
@@ -501,10 +501,10 @@ export const presets: {
 
           mainContentState.value = "text";
           centerText.value = `
-          <div style="background-color: #f6f2ee; position: absolute; inset: 0; z-index: 10; align-content: center;">
-            <img src="${grainImageUrl}" alt="" style="position: absolute; inset: 0; z-index: -1; width: 100%; height: 100%; mix-blend-mode: soft-light; display: block; object-fit: cover;" />
+          <div style="background-color: #100405; position: absolute; inset: 0; z-index: 10; isolation: isolate; align-content: center;">
+            <img src="${backgroundImageUrl}" alt="" style="position: absolute; inset: 0; z-index: -1; width: 100%; height: 100%; display: block; object-fit: cover;" />
 
-            <img src="${logoImageUrl}" alt="" style="display: block; height: auto; width: calc(100% - 5rem); margin: 0 auto;" />
+            <img src="${logoImageUrl}" alt="Atelier" style="display: block; height: auto; width: calc(100% - 5rem); margin: 0 auto; filter: brightness(0) invert(1);" />
           </div>`;
 
           bottomRightNotes.value = "";

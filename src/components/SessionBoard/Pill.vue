@@ -33,7 +33,7 @@ const props = defineProps<{
   padding: 0.25em 0.5em;
   border-radius: 9999px;
   border: 0.15em solid currentColor;
-  color: #1c1c1c;
+  color: #fff5f3;
 
   width: fit-content;
 
@@ -43,8 +43,7 @@ const props = defineProps<{
     position: absolute;
     inset: -1rem;
     z-index: -1;
-    background: radial-gradient(#f6f2ee 60%, transparent);
-    mix-blend-mode: overlay;
+    background: radial-gradient(#100405 40%, transparent 75%);
   }
 
   &.left {

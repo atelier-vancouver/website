@@ -204,7 +204,7 @@ const countdownToTimeString = computed({
 </script>
 
 <template>
-  <div className="session-board">
+  <div class="session-board">
     <div :class="['session-board-content', { 'no-cursor': !isCursorVisible }]">
       <Lines />
 
@@ -219,11 +219,8 @@ const countdownToTimeString = computed({
         </div>
       </div>
 
-      <div class="grain-container">
-        <slot name="grain" />
-      </div>
-      <div class="light-container">
-        <slot name="light" />
+      <div class="background-container">
+        <slot name="background" />
       </div>
 
       <div class="main-content">
@@ -508,12 +505,27 @@ const countdownToTimeString = computed({
 }
 
 .session-board {
+  color-scheme: dark;
+  color: #fff5f3;
+  background-color: #100405;
+
+  :deep(a) {
+    color: #ffd4cc;
+  }
+
+  :deep(img[src^="data:image/svg+xml,"]) {
+    background: white;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+  }
+
   .tnum {
     font-feature-settings: "tnum";
   }
 
   .session-board-content {
     position: relative;
+    isolation: isolate;
     height: 100vh;
 
     &.no-cursor {
@@ -524,7 +536,7 @@ const countdownToTimeString = computed({
       margin: 0;
       font-size: 1.5rem;
       margin-bottom: 1rem;
-      color: #919191;
+      color: #e3cdca;
       font-weight: 500;
     }
 
@@ -533,7 +545,7 @@ const countdownToTimeString = computed({
     :deep(ol) {
       margin: 0;
       font-size: 2.5rem;
-      color: #000;
+      color: #fff5f3;
       letter-spacing: -0.02em;
       font-weight: 400;
     }
@@ -560,14 +572,14 @@ const countdownToTimeString = computed({
       .countdown {
         font-size: 7rem;
         font-weight: 600;
-        color: rgb(from currentColor r g b / 0.7);
+        color: #fff5f3;
       }
 
       .countdown-to {
         margin-top: 1rem;
         font-size: 1.5rem;
         font-weight: 600;
-        color: rgb(from currentColor r g b / 0.6);
+        color: #e3cdca;
       }
     }
 
@@ -612,11 +624,10 @@ const countdownToTimeString = computed({
       }
     }
 
-    .grain-container,
-    .light-container {
+    .background-container {
       position: absolute;
       inset: 0;
-      z-index: -1;
+      z-index: -3;
       pointer-events: none;
 
       :deep(img) {
@@ -624,24 +635,6 @@ const countdownToTimeString = computed({
         width: 100%;
         height: 100%;
         object-fit: cover;
-      }
-    }
-
-    .light-container {
-      mix-blend-mode: exclusion;
-      opacity: 0.9;
-
-      :deep(img) {
-        object-position: left top;
-      }
-    }
-
-    .grain-container {
-      mix-blend-mode: soft-light;
-
-      :deep(img) {
-        object-position: center;
-        mix-blend-mode: soft-light;
       }
     }
 
@@ -668,7 +661,7 @@ const countdownToTimeString = computed({
       padding: 0.25em 0.5em;
       border-radius: 9999px;
       border: 0.15em solid currentColor;
-      color: #1c1c1c;
+      color: #fff5f3;
 
       width: fit-content;
 
@@ -678,8 +671,7 @@ const countdownToTimeString = computed({
         position: absolute;
         inset: -1rem;
         z-index: -1;
-        background: radial-gradient(#f6f2ee 60%, transparent);
-        mix-blend-mode: overlay;
+        background: radial-gradient(#100405 40%, transparent 75%);
       }
 
       &.left {
@@ -713,6 +705,7 @@ const countdownToTimeString = computed({
           display: block;
 
           height: 5rem;
+          filter: brightness(0) invert(1);
         }
 
         &::after {
@@ -721,7 +714,7 @@ const countdownToTimeString = computed({
           position: absolute;
           inset: -1rem;
           z-index: -1;
-          background: radial-gradient(#f6f2ee 60%, transparent);
+          background: radial-gradient(#100405 40%, transparent 75%);
         }
       }
     }
@@ -733,18 +726,45 @@ const countdownToTimeString = computed({
   }
 
   .session-board-config {
-    background-color: white;
+    background-color: #160b0d;
     padding: 1rem;
+
+    button,
+    input,
+    textarea {
+      color: #fff5f3;
+      background-color: #2c1b1e;
+      border: 1px solid #967b7f;
+      accent-color: #ffb4a8;
+    }
+
+    button {
+      cursor: pointer;
+
+      &:hover {
+        background-color: #493036;
+      }
+
+      &:disabled {
+        opacity: 0.6;
+        cursor: wait;
+      }
+    }
+
+    :focus-visible {
+      outline: 2px solid #ffb4a8;
+      outline-offset: 2px;
+    }
 
     .preset {
       &.selected {
-        border: 1px solid #000;
+        border: 1px solid #e3cdca;
         padding: 4px;
       }
 
       button {
         &.selected {
-          outline: 1px solid #000;
+          outline: 1px solid #fff5f3;
           outline-offset: 2px;
         }
 
@@ -770,7 +790,7 @@ const countdownToTimeString = computed({
 
     .pill-config {
       position: relative;
-      border: 1px solid #000;
+      border: 1px solid #967b7f;
       width: 400px;
       height: 200px;
 
