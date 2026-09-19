@@ -244,6 +244,7 @@ export const presets: {
             "Alex",
             "Shradha",
             "Iris",
+            "Ray",
           ].join("  \n")}`;
           bottomLeftNotesSize.value = 2;
         },
@@ -393,6 +394,7 @@ export const presets: {
             "Alex",
             "Rae",
             "Iris",
+            "Ray",
           ].join("  \n")}`;
           bottomLeftNotesSize.value = 2;
 
