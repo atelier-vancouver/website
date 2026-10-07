@@ -142,7 +142,7 @@ const STAR =
   }
 
   .sparkle {
-    fill: #c8962a;
+    fill: #1c1c1c;
     transform-origin: center;
     scale: 0;
     opacity: 0;
