@@ -123,8 +123,12 @@ const STAR =
   display: block;
   overflow: visible;
 
+  feFlood {
+    flood-color: var(--session-glow, #fff);
+  }
+
   path {
-    fill: #1c1c1c;
+    fill: var(--session-ink, #1c1c1c);
     transform-box: fill-box;
     animation-duration: var(--cycle);
     animation-iteration-count: infinite;
@@ -142,7 +146,7 @@ const STAR =
   }
 
   .sparkle {
-    fill: #1c1c1c;
+    fill: var(--session-ink, #1c1c1c);
     transform-origin: center;
     scale: 0;
     opacity: 0;

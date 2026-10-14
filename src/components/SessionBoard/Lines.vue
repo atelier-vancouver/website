@@ -20,7 +20,7 @@ const size = useElementSize(el);
         :width="size.width.value"
         :height="size.height.value"
         fill="none"
-        stroke="#262626"
+        stroke="currentColor"
         stroke-opacity="0.5"
         stroke-width="3"
         :stroke-dasharray="size.width.value / 500"
@@ -34,5 +34,6 @@ const size = useElementSize(el);
   position: absolute;
   inset: 2.5rem;
   z-index: -2;
+  color: var(--session-line, #262626);
 }
 </style>

@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import showdown from "showdown";
-import { computed, onMounted, onUnmounted, ref } from "vue";
+import { computed, onMounted, onUnmounted, ref, watchEffect } from "vue";
 import AnimatedLogo from "./AnimatedLogo.vue";
 import CountDownText from "./CountDownText.vue";
 import Lines from "./Lines.vue";
 import Pill from "./Pill.vue";
 import QotdGenerator from "./QotdGenerator.vue";
+import { useIsNight } from "./useIsNight";
 import {
   bottomLeftNotes,
   bottomLeftNotesSize,
@@ -49,6 +50,21 @@ onMounted(() => {
       presets.find((p) => p.name === "Weeknights")?.stages[0].set();
     }
   }
+});
+
+// dark mode between Vancouver sunset and sunrise, unless overridden
+const isNight = useIsNight();
+const themeOverride = ref<"auto" | "light" | "dark">("auto");
+const isDark = computed(() =>
+  themeOverride.value === "auto"
+    ? isNight.value
+    : themeOverride.value === "dark",
+);
+watchEffect(() => {
+  document.documentElement.classList.toggle("session-board-dark", isDark.value);
+});
+onUnmounted(() => {
+  document.documentElement.classList.remove("session-board-dark");
 });
 
 // hide the cursor after 5 seconds of inactivity
@@ -204,7 +220,7 @@ const countdownToTimeString = computed({
 </script>
 
 <template>
-  <div class="session-board">
+  <div :class="['session-board', { dark: isDark }]">
     <div :class="['session-board-content', { 'no-cursor': !isCursorVisible }]">
       <Lines />
 
@@ -284,6 +300,14 @@ const countdownToTimeString = computed({
       <div>
         <button @click="toggleFullscreen">fullscreen</button> (use "f" key to
         toggle fullscreen)
+      </div>
+      <div>
+        theme:
+        <select v-model="themeOverride">
+          <option value="auto">auto (dark after sunset)</option>
+          <option value="light">light</option>
+          <option value="dark">dark</option>
+        </select>
       </div>
       <div>presets: (use → keys to go to the next stage)</div>
       <div
@@ -507,7 +531,55 @@ const countdownToTimeString = computed({
   background-color: #f6f2ee;
 }
 
+:global(html.session-board-dark body) {
+  background-color: #141210;
+}
+
 .session-board {
+  --session-bg: #f6f2ee;
+  --session-text: #000;
+  --session-ink: #1c1c1c;
+  --session-muted: #919191;
+  --session-line: #262626;
+  --session-glow: #fff;
+  --session-logo-filter: none;
+  --session-grain-opacity: 1;
+
+  color: var(--session-text);
+
+  &.dark {
+    --session-bg: #141210;
+    --session-text: #f6f2ee;
+    --session-ink: #ece7e2;
+    --session-muted: #8a837d;
+    --session-line: #d9d3cd;
+    --session-glow: #000;
+    --session-logo-filter: invert(1);
+    --session-grain-opacity: 0.35;
+
+    color-scheme: dark;
+
+    :deep(a) {
+      color: #c9c0f2;
+    }
+
+    // QR codes need a light background to scan
+    :deep(img[src^="data:image/svg+xml,"]) {
+      background: white;
+      padding: 0.5rem;
+      border-radius: 0.25rem;
+    }
+
+    .session-board-content .light-container {
+      display: none;
+    }
+
+    .session-board-config {
+      background-color: #1c1a18;
+      color: var(--session-text);
+    }
+  }
+
   .tnum {
     font-feature-settings: "tnum";
   }
@@ -524,7 +596,7 @@ const countdownToTimeString = computed({
       margin: 0;
       font-size: 1.5rem;
       margin-bottom: 1rem;
-      color: #919191;
+      color: var(--session-muted);
       font-weight: 500;
     }
 
@@ -533,7 +605,7 @@ const countdownToTimeString = computed({
     :deep(ol) {
       margin: 0;
       font-size: 2.5rem;
-      color: #000;
+      color: var(--session-text);
       letter-spacing: -0.02em;
       font-weight: 400;
     }
@@ -638,6 +710,7 @@ const countdownToTimeString = computed({
 
     .grain-container {
       mix-blend-mode: soft-light;
+      opacity: var(--session-grain-opacity);
 
       :deep(img) {
         object-position: center;
@@ -668,7 +741,7 @@ const countdownToTimeString = computed({
       padding: 0.25em 0.5em;
       border-radius: 9999px;
       border: 0.15em solid currentColor;
-      color: #1c1c1c;
+      color: var(--session-ink);
 
       width: fit-content;
 
@@ -678,7 +751,7 @@ const countdownToTimeString = computed({
         position: absolute;
         inset: -1rem;
         z-index: -1;
-        background: radial-gradient(#f6f2ee 60%, transparent);
+        background: radial-gradient(var(--session-bg) 60%, transparent);
         mix-blend-mode: overlay;
       }
 
@@ -721,7 +794,7 @@ const countdownToTimeString = computed({
           position: absolute;
           inset: -1rem;
           z-index: -1;
-          background: radial-gradient(#f6f2ee 60%, transparent);
+          background: radial-gradient(var(--session-bg) 60%, transparent);
         }
       }
     }
