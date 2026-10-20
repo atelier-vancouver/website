@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
+import EditorIcon from "./EditorIcon.vue";
+
+defineProps<{ compact?: boolean }>();
 
 const qotdQuestionModel = defineModel<string>("question", { required: true });
 
@@ -50,17 +53,26 @@ const questionGroups = computed(() => {
 </script>
 
 <template>
-  <div class="gaps">
+  <div :class="['gaps', { compact }]">
     <div>
       <button :disabled="state === 'loading'" @click="loadQuestions">
-        generate
+        <EditorIcon v-if="compact" name="sparkle" />
+        {{
+          compact
+            ? state === "loading"
+              ? "Finding questions…"
+              : "Find a question"
+            : "generate"
+        }}
       </button>
-      <span v-if="state === 'loading'">Loading...</span>
-      <span v-else-if="state === 'error'">Error fetching questions</span>
+      <span v-if="state === 'loading' && !compact">Loading...</span>
+      <span v-else-if="state === 'error'" role="status"
+        >Couldn’t load questions. Try again.</span
+      >
     </div>
     <div>
       <section
-        className="qotd-category"
+        class="qotd-category"
         v-for="([category, questions], index) in questionGroups"
         :key="index"
       >
@@ -70,8 +82,17 @@ const questionGroups = computed(() => {
           v-for="(question, index) in questions"
           :key="index"
         >
-          <button @click="qotdQuestionModel = question">use this one</button
-          >&nbsp;<span>{{ question }}</span>
+          <button
+            v-if="compact"
+            class="question-option"
+            @click="qotdQuestionModel = question"
+          >
+            {{ question }}
+          </button>
+          <template v-else
+            ><button @click="qotdQuestionModel = question">use this one</button
+            >&nbsp;<span>{{ question }}</span></template
+          >
         </div>
       </section>
     </div>
@@ -85,5 +106,55 @@ const questionGroups = computed(() => {
 
 .qotd-question {
   margin: 0.3rem 0;
+}
+
+.compact {
+  display: grid;
+  gap: 12px;
+  font-size: 12px;
+  line-height: 1.5;
+
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    font: inherit;
+    color: inherit;
+    border: 1px solid var(--editor-border);
+    border-radius: 6px;
+    padding: 11px 12px;
+    background: var(--editor-accent);
+    cursor: pointer;
+  }
+
+  button:disabled {
+    opacity: 0.6;
+    cursor: wait;
+  }
+  button:focus-visible {
+    outline: 2px solid var(--editor-ink);
+    outline-offset: 3px;
+  }
+  .qotd-category {
+    margin: 8px 0;
+  }
+  h4 {
+    font:
+      10px "IBM Plex Mono",
+      monospace;
+    color: var(--editor-muted);
+    margin-bottom: 8px;
+  }
+  .question-option {
+    background: var(--editor-input);
+    text-align: left;
+    justify-content: start;
+  }
+  [role="status"] {
+    display: block;
+    margin-top: 10px;
+  }
 }
 </style>

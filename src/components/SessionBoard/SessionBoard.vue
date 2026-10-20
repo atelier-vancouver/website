@@ -1,11 +1,17 @@
 <script setup lang="ts">
 import showdown from "showdown";
 import { computed, onMounted, onUnmounted, ref, watchEffect } from "vue";
+import logoUrl from "@/assets/images/session-board/logo.svg?url";
+import { useElementSize } from "@vueuse/core";
 import AnimatedLogo from "./AnimatedLogo.vue";
 import CountDownText from "./CountDownText.vue";
+import EditorIcon from "./EditorIcon.vue";
 import Lines from "./Lines.vue";
+import MerchInkFilter from "./MerchInkFilter.vue";
 import Pill from "./Pill.vue";
 import QotdGenerator from "./QotdGenerator.vue";
+import SessionEditor from "./SessionEditor.vue";
+import SessionStages from "./SessionStages.vue";
 import { useIsNight } from "./useIsNight";
 import {
   bottomLeftNotes,
@@ -35,6 +41,23 @@ import {
   topRightNotesSize,
   topRightText,
 } from "./useSessionBoardParams";
+
+const props = withDefaults(defineProps<{ newEditor?: boolean }>(), {
+  newEditor: false,
+});
+const isPresenting = ref(false);
+const preview = ref<HTMLElement | null>(null);
+const { width: previewWidth } = useElementSize(preview);
+const previewStyle = computed(() =>
+  props.newEditor && !isPresenting.value
+    ? {
+        width: "1440px",
+        height: "900px",
+        transform: `scale(${previewWidth.value / 1440})`,
+        transformOrigin: "top left",
+      }
+    : undefined,
+);
 
 // set preset to UBC on weekends and Weeknights on weekdays
 onMounted(() => {
@@ -82,24 +105,25 @@ onMounted(() => {
     }, CURSOR_TIMEOUT);
   });
 
-  window.addEventListener(
-    "scroll",
-    () => {
-      // once scroll almost all the way to the top, blur all inputs
-      if (window.scrollY < 100) {
-        document.querySelectorAll("input, textarea, button").forEach((el) => {
-          if (
-            el instanceof HTMLInputElement ||
-            el instanceof HTMLTextAreaElement ||
-            el instanceof HTMLButtonElement
-          ) {
-            el.blur();
-          }
-        });
-      }
-    },
-    { passive: true },
-  );
+  if (!props.newEditor)
+    window.addEventListener(
+      "scroll",
+      () => {
+        // once scroll almost all the way to the top, blur all inputs
+        if (window.scrollY < 100) {
+          document.querySelectorAll("input, textarea, button").forEach((el) => {
+            if (
+              el instanceof HTMLInputElement ||
+              el instanceof HTMLTextAreaElement ||
+              el instanceof HTMLButtonElement
+            ) {
+              el.blur();
+            }
+          });
+        }
+      },
+      { passive: true },
+    );
 });
 
 // keeps the screen awake
@@ -152,7 +176,8 @@ onMounted(() => {
   function onKeyDown(e: KeyboardEvent) {
     if (
       e.target instanceof HTMLInputElement ||
-      e.target instanceof HTMLTextAreaElement
+      e.target instanceof HTMLTextAreaElement ||
+      (e.target instanceof HTMLElement && e.target.isContentEditable)
     ) {
       return; // ignore key events in input fields
     }
@@ -160,11 +185,7 @@ onMounted(() => {
       case "F":
       case "f":
         e.preventDefault();
-        if (document.fullscreenElement) {
-          document.exitFullscreen();
-        } else {
-          document.documentElement.requestFullscreen();
-        }
+        toggleFullscreen();
         break;
       case "ArrowRight":
         e.preventDefault();
@@ -172,7 +193,8 @@ onMounted(() => {
         break;
       case "ArrowLeft":
         e.preventDefault();
-        window.history.back();
+        if (props.newEditor) selectStage(-1);
+        else window.history.back();
         break;
     }
   }
@@ -197,13 +219,38 @@ const bottomRightNotesHtml = computed(() =>
     : undefined,
 );
 
-function toggleFullscreen() {
+async function toggleFullscreen() {
+  if (props.newEditor && isPresenting.value) {
+    isPresenting.value = false;
+    if (document.fullscreenElement) await document.exitFullscreen();
+    return;
+  }
   if (document.fullscreenElement) {
-    document.exitFullscreen();
+    await document.exitFullscreen();
   } else {
-    document.documentElement.requestFullscreen();
+    if (props.newEditor) isPresenting.value = true;
+    try {
+      await document.documentElement.requestFullscreen();
+    } catch {
+      // Presentation still works when fullscreen is unavailable.
+    }
   }
 }
+
+onMounted(() => {
+  const onFullscreenChange = () => {
+    if (!document.fullscreenElement) isPresenting.value = false;
+  };
+  const onEscape = (event: KeyboardEvent) => {
+    if (event.key === "Escape") isPresenting.value = false;
+  };
+  document.addEventListener("fullscreenchange", onFullscreenChange);
+  window.addEventListener("keydown", onEscape);
+  onUnmounted(() => {
+    document.removeEventListener("fullscreenchange", onFullscreenChange);
+    window.removeEventListener("keydown", onEscape);
+  });
+});
 
 const countdownToTimeString = computed({
   get() {
@@ -220,83 +267,168 @@ const countdownToTimeString = computed({
 </script>
 
 <template>
-  <div :class="['session-board', { dark: isDark }]">
-    <div :class="['session-board-content', { 'no-cursor': !isCursorVisible }]">
-      <Lines />
-
-      <Pill position="top-left" :text="topLeftText" />
-      <Pill position="top-right" :text="topRightText" />
-      <Pill position="bottom-left" :text="bottomLeftText" />
-      <Pill position="bottom-right" :text="bottomRightText" />
-
-      <div class="logo-container">
-        <div class="logo-wrapper">
-          <AnimatedLogo class="logo" />
+  <div
+    :class="[
+      'session-board',
+      { dark: isDark, 'new-editor': newEditor, presenting: isPresenting },
+    ]"
+  >
+    <MerchInkFilter />
+    <header v-if="newEditor && !isPresenting" class="editor-header">
+      <div class="editor-brand">
+        <a href="/" aria-label="Atelier home"
+          ><img :src="logoUrl" alt="Atelier"
+        /></a>
+        <span class="brand-divider"></span>
+        <h1>Session</h1>
+        <span class="edition">new</span>
+      </div>
+      <div class="editor-actions">
+        <div class="theme-buttons" aria-label="Theme">
+          <button
+            v-for="theme in ['auto', 'light', 'dark'] as const"
+            :key="theme"
+            :aria-pressed="themeOverride === theme"
+            @click="themeOverride = theme"
+          >
+            {{ theme }}
+          </button>
         </div>
+        <button class="present-button" @click="toggleFullscreen">
+          <EditorIcon name="present" />Present
+        </button>
       </div>
-
-      <div class="grain-container">
-        <slot name="grain" />
-      </div>
-      <div class="light-container">
-        <slot name="light" />
-      </div>
-
-      <div class="main-content">
-        <div class="qotd" v-if="mainContentState === 'qotd'">
-          <h1>QUESTION OF THE DAY</h1>
-          <p>{{ qotd }}</p>
-        </div>
-        <div class="timer" v-else-if="mainContentState === 'timer'">
-          <h1>{{ countdownTitle }}</h1>
-          <div class="countdown">
-            <span class="tnum">
-              <CountDownText
-                :hour="countdownToTime.hour"
-                :minute="countdownToTime.minute"
-              />
-            </span>
-          </div>
-          <div class="countdown-to">
-            at
-            <span class="tnum"
-              >{{ countdownToTime.hour % 12 || 12 }}:{{
-                countdownToTime.minute.toString().padStart(2, "0")
-              }}</span
+    </header>
+    <button
+      v-if="newEditor && isPresenting"
+      class="exit-presentation"
+      @click="toggleFullscreen"
+    >
+      <EditorIcon name="close" />Edit
+    </button>
+    <main :class="{ 'editor-workspace': newEditor }">
+      <div :class="{ 'preview-column': newEditor }">
+        <div v-if="newEditor && !isPresenting" class="preview-heading">
+          <span
+            >Preview
+            <span class="preview-stage">{{
+              selectedPresetStage?.replace("work session", "focus ")
+            }}</span></span
+          >
+          <div class="slide-navigation">
+            <button
+              aria-label="Previous slide"
+              :disabled="
+                !selectedPreset ||
+                selectedPresetStage ===
+                  presets.find((p) => p.name === selectedPreset)?.stages[0].name
+              "
+              @click="selectStage(-1)"
             >
+              <EditorIcon name="left" />
+            </button>
+            <button
+              aria-label="Next slide"
+              :disabled="
+                !selectedPreset ||
+                selectedPresetStage ===
+                  presets.find((p) => p.name === selectedPreset)?.stages.at(-1)
+                    ?.name
+              "
+              @click="selectStage(1)"
+            >
+              <EditorIcon name="right" />
+            </button>
           </div>
         </div>
-        <div
-          class="text"
-          v-else-if="mainContentState === 'text'"
-          v-html="centerText"
-        ></div>
-      </div>
+        <div ref="preview" :class="{ 'board-preview': newEditor }">
+          <div
+            :style="previewStyle"
+            :class="[
+              'session-board-content',
+              { 'no-cursor': !isCursorVisible && (!newEditor || isPresenting) },
+            ]"
+          >
+            <Lines />
 
-      <div class="notes">
-        <div
-          v-if="topLeftNotesHtml"
-          :class="['top', 'left', `size-${topLeftNotesSize}`]"
-          v-html="topLeftNotesHtml"
-        />
-        <div
-          v-if="topRightNotesHtml"
-          :class="['top', 'right', `size-${topRightNotesSize}`]"
-          v-html="topRightNotesHtml"
-        />
-        <div
-          v-if="bottomLeftNotesHtml"
-          :class="['bottom', 'left', `size-${bottomLeftNotesSize}`]"
-          v-html="bottomLeftNotesHtml"
-        />
-        <div
-          v-if="bottomRightNotesHtml"
-          :class="['bottom', 'right', `size-${bottomRightNotesSize}`]"
-          v-html="bottomRightNotesHtml"
-        />
+            <Pill position="top-left" :text="topLeftText" />
+            <Pill position="top-right" :text="topRightText" />
+            <Pill position="bottom-left" :text="bottomLeftText" />
+            <Pill position="bottom-right" :text="bottomRightText" />
+
+            <div class="logo-container">
+              <div class="logo-wrapper">
+                <AnimatedLogo class="logo" />
+              </div>
+            </div>
+
+            <div class="grain-container">
+              <slot name="grain" />
+            </div>
+            <div class="light-container">
+              <slot name="light" />
+            </div>
+
+            <div class="main-content">
+              <div class="qotd" v-if="mainContentState === 'qotd'">
+                <h1>QUESTION OF THE DAY</h1>
+                <p>{{ qotd }}</p>
+              </div>
+              <div class="timer" v-else-if="mainContentState === 'timer'">
+                <h1>{{ countdownTitle }}</h1>
+                <div class="countdown">
+                  <span class="tnum">
+                    <CountDownText
+                      :hour="countdownToTime.hour"
+                      :minute="countdownToTime.minute"
+                    />
+                  </span>
+                </div>
+                <div class="countdown-to">
+                  at
+                  <span class="tnum"
+                    >{{ countdownToTime.hour % 12 || 12 }}:{{
+                      countdownToTime.minute.toString().padStart(2, "0")
+                    }}</span
+                  >
+                </div>
+              </div>
+              <div
+                class="text"
+                v-else-if="mainContentState === 'text'"
+                v-html="centerText"
+              ></div>
+            </div>
+
+            <div class="notes">
+              <div
+                v-if="topLeftNotesHtml && showTopLeftNotes"
+                :class="['top', 'left', `size-${topLeftNotesSize}`]"
+                v-html="topLeftNotesHtml"
+              />
+              <div
+                v-if="topRightNotesHtml && showTopRightNotes"
+                :class="['top', 'right', `size-${topRightNotesSize}`]"
+                v-html="topRightNotesHtml"
+              />
+              <div
+                v-if="bottomLeftNotesHtml && showBottomLeftNotes"
+                :class="['bottom', 'left', `size-${bottomLeftNotesSize}`]"
+                v-html="bottomLeftNotesHtml"
+              />
+              <div
+                v-if="bottomRightNotesHtml && showBottomRightNotes"
+                :class="['bottom', 'right', `size-${bottomRightNotesSize}`]"
+                v-html="bottomRightNotesHtml"
+              />
+            </div>
+          </div>
+        </div>
+        <SessionStages v-if="newEditor && !isPresenting" />
       </div>
-    </div>
-    <div class="session-board-config gaps">
+      <SessionEditor v-if="newEditor && !isPresenting" />
+    </main>
+    <div v-if="!newEditor" class="session-board-config gaps">
       <div>
         <button @click="toggleFullscreen">fullscreen</button> (use "f" key to
         toggle fullscreen)
@@ -523,6 +655,8 @@ const countdownToTimeString = computed({
 </template>
 
 <style lang="scss" scoped>
+@use "./session-editor";
+
 :global(html) {
   scrollbar-width: none;
 }
@@ -568,6 +702,11 @@ const countdownToTimeString = computed({
       background: white;
       padding: 0.5rem;
       border-radius: 0.25rem;
+    }
+
+    // Match both current and saved merch URLs, and invert the lettering only.
+    :deep(img[src*="/merch."]) {
+      filter: url(#session-merch-ink);
     }
 
     .session-board-content .light-container {

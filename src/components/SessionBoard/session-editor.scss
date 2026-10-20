@@ -1,0 +1,286 @@
+.new-editor {
+  --editor-paper: #f6f2e9;
+  --editor-surface: #fffdf7;
+  --editor-ink: #292820;
+  --editor-muted: #77736a;
+  --editor-border: #d8d3c7;
+  --editor-hover: #eeebe0;
+  --editor-accent: #e8ecd9;
+  --editor-input: #f9f7f0;
+
+  min-height: 100vh;
+  background: var(--editor-paper);
+  color: var(--editor-ink);
+  font-family: "InterVariable", sans-serif;
+  line-height: 1.4;
+  background-image: radial-gradient(#77736a12 0.6px, transparent 0.6px);
+  background-size: 5px 5px;
+
+  &.dark {
+    --editor-paper: #1b1a17;
+    --editor-surface: #23221e;
+    --editor-ink: #eee9dc;
+    --editor-muted: #a49e90;
+    --editor-border: #454238;
+    --editor-hover: #343229;
+    --editor-accent: #383e2e;
+    --editor-input: #1f1e1a;
+  }
+
+  .editor-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    border-bottom: 1px solid var(--editor-border);
+    padding: 20px 40px;
+    background: var(--editor-surface);
+  }
+
+  .editor-brand,
+  .editor-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .editor-brand img {
+    width: 85px;
+    height: 42px;
+    object-fit: contain;
+    filter: var(--session-logo-filter);
+  }
+  .editor-brand h1 {
+    font-family: Hahmlet, serif;
+    font-size: 25px;
+    font-weight: 500;
+    letter-spacing: -0.08em;
+  }
+  .brand-divider {
+    width: 1px;
+    height: 25px;
+    background: var(--editor-border);
+  }
+  .edition {
+    align-self: center;
+    font:
+      10px "IBM Plex Mono",
+      monospace;
+    border: 1px solid var(--editor-border);
+    border-radius: 20px;
+    padding: 4px 8px;
+    transform: rotate(-8deg);
+  }
+  button {
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+  }
+  .theme-buttons {
+    display: flex;
+    padding: 3px;
+    border: 1px solid var(--editor-border);
+    border-radius: 8px;
+  }
+  .theme-buttons button {
+    padding: 7px 11px;
+    border: 0;
+    border-radius: 5px;
+    background: transparent;
+    font-size: 12px;
+    text-transform: capitalize;
+  }
+  .theme-buttons button[aria-pressed="true"] {
+    background: var(--editor-hover);
+  }
+  .present-button {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 10px 16px;
+    border: 1px solid var(--editor-ink);
+    border-radius: 6px;
+    background: var(--editor-accent);
+    box-shadow: 3px 3px 0 var(--editor-ink);
+    font-size: 13px;
+    transition:
+      transform 120ms,
+      box-shadow 120ms;
+  }
+  .present-button:hover {
+    transform: translate(1px, 1px);
+    box-shadow: 2px 2px 0 var(--editor-ink);
+  }
+  .editor-workspace {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 340px;
+    align-items: start;
+    gap: 32px;
+    padding: 30px 40px 50px;
+    max-width: 1680px;
+    margin: 0 auto;
+  }
+  .preview-column {
+    min-width: 0;
+  }
+  .preview-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 32px;
+    margin-bottom: 14px;
+    font:
+      11px "IBM Plex Mono",
+      monospace;
+    color: var(--editor-muted);
+  }
+  .preview-stage {
+    text-transform: capitalize;
+    margin-left: 12px;
+    padding-left: 12px;
+    border-left: 1px solid var(--editor-border);
+    color: var(--editor-ink);
+  }
+  .slide-navigation {
+    display: flex;
+    gap: 6px;
+  }
+  .slide-navigation button {
+    display: grid;
+    place-items: center;
+    width: 30px;
+    height: 28px;
+    padding: 0;
+    border: 1px solid var(--editor-border);
+    border-radius: 5px;
+    background: var(--editor-surface);
+  }
+  .slide-navigation button:disabled {
+    opacity: 0.35;
+    cursor: default;
+  }
+  .board-preview {
+    position: relative;
+    isolation: isolate;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    border-radius: 9px;
+    background-color: var(--session-bg);
+    box-shadow:
+      0 0 0 1px var(--editor-border),
+      0 12px 24px -16px #0003;
+  }
+  .session-board-content {
+    color: var(--session-text);
+    background-color: var(--session-bg);
+    isolation: isolate;
+    line-height: 1;
+  }
+  .exit-presentation {
+    position: fixed;
+    right: 16px;
+    bottom: 12px;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border: 1px solid var(--editor-border);
+    border-radius: 6px;
+    background: var(--editor-surface);
+    color: var(--editor-ink);
+    padding: 9px 12px;
+    font-size: 12px;
+    opacity: 0;
+    transition: opacity 150ms;
+  }
+  .exit-presentation:hover,
+  .exit-presentation:focus-visible {
+    opacity: 1;
+  }
+
+  &.presenting {
+    background: var(--session-bg);
+    .editor-workspace {
+      display: block;
+      padding: 0;
+      max-width: none;
+    }
+    .board-preview {
+      height: 100vh;
+      aspect-ratio: auto;
+      border-radius: 0;
+      box-shadow: none;
+    }
+    .exit-presentation {
+      opacity: 0.6;
+    }
+  }
+
+  @media (max-width: 1150px) {
+    .editor-header {
+      padding: 18px 24px;
+    }
+    .editor-workspace {
+      padding: 24px;
+      gap: 22px;
+      grid-template-columns: minmax(0, 1fr) 310px;
+    }
+  }
+  @media (max-width: 860px) {
+    .editor-workspace {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .preview-column {
+      display: contents;
+    }
+    .preview-heading {
+      order: 0;
+      margin-bottom: -8px;
+    }
+    .board-preview {
+      order: 1;
+    }
+    .session-editor {
+      order: 2;
+    }
+    .session-stages {
+      order: 3;
+      margin-top: 0;
+    }
+  }
+  @media (max-width: 540px) {
+    .editor-header {
+      padding: 12px 16px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .editor-brand {
+      gap: 12px;
+    }
+    .editor-brand img {
+      width: 70px;
+      height: 36px;
+    }
+    .editor-brand h1 {
+      font-size: 21px;
+    }
+    .editor-actions {
+      width: 100%;
+      justify-content: space-between;
+    }
+    .editor-workspace {
+      padding: 20px 16px;
+    }
+  }
+
+  button:focus-visible {
+    outline: 2px solid var(--editor-ink);
+    outline-offset: 3px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      transition: none !important;
+    }
+  }
+}

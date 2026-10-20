@@ -4,6 +4,12 @@ This website is hosted on Cloudflare Pages and uses Astro as the static site gen
 
 Check the notion for access to Cloudflare Pages.
 
+## Session board
+
+Run `pnpm dev` and open `/session` for the original controls or `/session/new` for the experimental editor. Both use the same board, presets, and URL hash format. Keep `/session` as the default until the new editor is approved.
+
+The merch artwork has black text on transparency. `MerchInkFilter.vue` inverts just the title and price-label bands in dark mode, preserving the photo colors. Update its band positions if the artwork changes.
+
 ## 🚀 Project Structure
 
 Inside of your Astro project, you'll see the following folders and files:
