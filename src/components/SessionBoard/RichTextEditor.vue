@@ -69,6 +69,8 @@ button:hover {
   background: var(--editor-hover);
 }
 .editable {
+  /* Keeps absolutely positioned slide HTML (e.g. the photo logo) inside. */
+  position: relative;
   min-height: 210px;
   max-height: 360px;
   overflow: auto;

@@ -697,11 +697,11 @@ const countdownToTimeString = computed({
       color: #c9c0f2;
     }
 
-    // QR codes need a light background to scan
+    // Invert QR codes, then screen away their now-black background so the
+    // texture shows through.
     :deep(img[src^="data:image/svg+xml,"]) {
-      background: white;
-      padding: 0.5rem;
-      border-radius: 0.25rem;
+      filter: invert(1);
+      mix-blend-mode: screen;
     }
 
     // Match both current and saved merch URLs, and invert the lettering only.
