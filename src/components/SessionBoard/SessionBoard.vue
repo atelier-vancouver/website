@@ -40,6 +40,7 @@ import {
 } from "./useSessionBoardParams";
 
 const isPresenting = ref(false);
+const isFullscreenUnavailable = ref(false);
 const preview = ref<HTMLElement | null>(null);
 const { width: previewWidth } = useElementSize(preview);
 const previewStyle = computed(() =>
@@ -198,8 +199,10 @@ async function toggleFullscreen() {
     isPresenting.value = true;
     try {
       await document.documentElement.requestFullscreen();
+      isFullscreenUnavailable.value = false;
     } catch {
       // Presentation still works when fullscreen is unavailable.
+      isFullscreenUnavailable.value = true;
     }
   }
 }
@@ -252,7 +255,7 @@ onMounted(() => {
       </div>
     </header>
     <button
-      v-if="isPresenting"
+      v-if="isPresenting && isFullscreenUnavailable"
       class="exit-presentation"
       @click="toggleFullscreen"
     >
