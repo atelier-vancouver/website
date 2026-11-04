@@ -4,17 +4,10 @@ import grainImage from "@/assets/images/session-board/grain.png";
 import lightImage from "@/assets/images/session-board/light.png";
 import SessionBoard from "@/components/SessionBoard/SessionBoard.vue";
 import Layout from "@/layouts/Layout.astro";
-
-interface Props {
-  newEditor?: boolean;
-}
-const { newEditor = false } = Astro.props;
 ---
 
-<Layout
-  title={newEditor ? "Session Studio - Atelier" : "Session Board - Atelier"}
->
-  <SessionBoard newEditor={newEditor} client:only="vue">
+<Layout title="Session Studio - Atelier">
+  <SessionBoard client:only="vue">
     <Picture
       slot="grain"
       src={grainImage}

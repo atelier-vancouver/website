@@ -5,7 +5,6 @@ const paths: Record<string, string> = {
   right: "m10 6 6 6-6 6",
   present: "M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5M8 8h8v8H8z",
   close: "m6 6 12 12M6 18 18 6",
-  sparkle: "m12 3 2.4 6.6L21 12l-6.6 2.4L12 21l-2.4-6.6L3 12l6.6-2.4L12 3Z",
 };
 </script>
 

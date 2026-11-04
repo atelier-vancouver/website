@@ -9,7 +9,6 @@ import EditorIcon from "./EditorIcon.vue";
 import Lines from "./Lines.vue";
 import MerchInkFilter from "./MerchInkFilter.vue";
 import Pill from "./Pill.vue";
-import QotdGenerator from "./QotdGenerator.vue";
 import SessionEditor from "./SessionEditor.vue";
 import SessionStages from "./SessionStages.vue";
 import { useIsNight } from "./useIsNight";
@@ -27,7 +26,6 @@ import {
   mainContentState,
   presets,
   qotd,
-  reset,
   selectedPreset,
   selectedPresetStage,
   showBottomLeftNotes,
@@ -42,14 +40,11 @@ import {
   topRightText,
 } from "./useSessionBoardParams";
 
-const props = withDefaults(defineProps<{ newEditor?: boolean }>(), {
-  newEditor: false,
-});
 const isPresenting = ref(false);
 const preview = ref<HTMLElement | null>(null);
 const { width: previewWidth } = useElementSize(preview);
 const previewStyle = computed(() =>
-  props.newEditor && !isPresenting.value
+  !isPresenting.value
     ? {
         width: "1440px",
         height: "900px",
@@ -104,26 +99,6 @@ onMounted(() => {
       isCursorVisible.value = false;
     }, CURSOR_TIMEOUT);
   });
-
-  if (!props.newEditor)
-    window.addEventListener(
-      "scroll",
-      () => {
-        // once scroll almost all the way to the top, blur all inputs
-        if (window.scrollY < 100) {
-          document.querySelectorAll("input, textarea, button").forEach((el) => {
-            if (
-              el instanceof HTMLInputElement ||
-              el instanceof HTMLTextAreaElement ||
-              el instanceof HTMLButtonElement
-            ) {
-              el.blur();
-            }
-          });
-        }
-      },
-      { passive: true },
-    );
 });
 
 // keeps the screen awake
@@ -193,8 +168,7 @@ onMounted(() => {
         break;
       case "ArrowLeft":
         e.preventDefault();
-        if (props.newEditor) selectStage(-1);
-        else window.history.back();
+        selectStage(-1);
         break;
     }
   }
@@ -220,7 +194,7 @@ const bottomRightNotesHtml = computed(() =>
 );
 
 async function toggleFullscreen() {
-  if (props.newEditor && isPresenting.value) {
+  if (isPresenting.value) {
     isPresenting.value = false;
     if (document.fullscreenElement) await document.exitFullscreen();
     return;
@@ -228,7 +202,7 @@ async function toggleFullscreen() {
   if (document.fullscreenElement) {
     await document.exitFullscreen();
   } else {
-    if (props.newEditor) isPresenting.value = true;
+    isPresenting.value = true;
     try {
       await document.documentElement.requestFullscreen();
     } catch {
@@ -251,37 +225,24 @@ onMounted(() => {
     window.removeEventListener("keydown", onEscape);
   });
 });
-
-const countdownToTimeString = computed({
-  get() {
-    return `${countdownToTime.value.hour.toString()}:${countdownToTime.value.minute.toString().padStart(2, "0")}`;
-  },
-  set(value: string) {
-    const [hour, minute] = value.split(":").map(Number);
-    countdownToTime.value = {
-      hour: hour,
-      minute: minute,
-    };
-  },
-});
 </script>
 
 <template>
   <div
     :class="[
       'session-board',
-      { dark: isDark, 'new-editor': newEditor, presenting: isPresenting },
+      'editor-layout',
+      { dark: isDark, presenting: isPresenting },
     ]"
   >
     <MerchInkFilter />
-    <header v-if="newEditor && !isPresenting" class="editor-header">
+    <header v-if="!isPresenting" class="editor-header">
       <div class="editor-brand">
         <a href="/" aria-label="Atelier home"
           ><img :src="logoUrl" alt="Atelier"
         /></a>
         <span class="brand-divider"></span>
         <h1>Session</h1>
-        <span class="edition">new</span>
       </div>
       <div class="editor-actions">
         <div class="theme-buttons" aria-label="Theme">
@@ -300,15 +261,15 @@ const countdownToTimeString = computed({
       </div>
     </header>
     <button
-      v-if="newEditor && isPresenting"
+      v-if="isPresenting"
       class="exit-presentation"
       @click="toggleFullscreen"
     >
       <EditorIcon name="close" />Edit
     </button>
-    <main :class="{ 'editor-workspace': newEditor }">
-      <div :class="{ 'preview-column': newEditor }">
-        <div v-if="newEditor && !isPresenting" class="preview-heading">
+    <main class="editor-workspace">
+      <div class="preview-column">
+        <div v-if="!isPresenting" class="preview-heading">
           <span
             >Preview
             <span class="preview-stage">{{
@@ -341,12 +302,12 @@ const countdownToTimeString = computed({
             </button>
           </div>
         </div>
-        <div ref="preview" :class="{ 'board-preview': newEditor }">
+        <div ref="preview" class="board-preview">
           <div
             :style="previewStyle"
             :class="[
               'session-board-content',
-              { 'no-cursor': !isCursorVisible && (!newEditor || isPresenting) },
+              { 'no-cursor': !isCursorVisible && isPresenting },
             ]"
           >
             <Lines />
@@ -424,233 +385,10 @@ const countdownToTimeString = computed({
             </div>
           </div>
         </div>
-        <SessionStages v-if="newEditor && !isPresenting" />
+        <SessionStages v-if="!isPresenting" />
       </div>
-      <SessionEditor v-if="newEditor && !isPresenting" />
+      <SessionEditor v-if="!isPresenting" />
     </main>
-    <div v-if="!newEditor" class="session-board-config gaps">
-      <div>
-        <button @click="toggleFullscreen">fullscreen</button> (use "f" key to
-        toggle fullscreen)
-      </div>
-      <div>
-        theme:
-        <select v-model="themeOverride">
-          <option value="auto">auto (dark after sunset)</option>
-          <option value="light">light</option>
-          <option value="dark">dark</option>
-        </select>
-      </div>
-      <div>presets: (use → keys to go to the next stage)</div>
-      <div
-        v-for="preset in presets"
-        :key="preset.name"
-        :class="['preset', { selected: preset.name === selectedPreset }]"
-      >
-        {{ preset.name }}:
-        <button
-          v-for="stage in preset.stages"
-          :key="stage.name"
-          :class="[
-            'stage',
-            {
-              selected:
-                preset.name === selectedPreset &&
-                stage.name === selectedPresetStage,
-            },
-          ]"
-          @click="stage.set"
-        >
-          {{ stage.name }}
-        </button>
-      </div>
-      <div>
-        <button @click="reset">reset</button>
-      </div>
-
-      <details open>
-        <summary>content:</summary>
-        <div className="content-config gaps">
-          <div>
-            mode:
-            <label>
-              <input
-                type="radio"
-                :checked="mainContentState === 'qotd'"
-                @change="mainContentState = 'qotd'"
-              />
-              QOTD
-            </label>
-            <label>
-              <input
-                type="radio"
-                :checked="mainContentState === 'timer'"
-                @change="mainContentState = 'timer'"
-              />
-              timer
-            </label>
-            <label>
-              <input
-                type="radio"
-                :checked="mainContentState === 'text'"
-                @change="mainContentState = 'text'"
-              />
-              text
-            </label>
-          </div>
-
-          <details open>
-            <summary>QOTD:</summary>
-            <div class="gaps">
-              <div>
-                QOTD:
-                <div>
-                  <textarea v-model="qotd" />
-                </div>
-              </div>
-              <div>
-                QOTD Generator:
-                <QotdGenerator v-model:question="qotd" />
-              </div>
-            </div>
-          </details>
-
-          <details>
-            <summary>Timer:</summary>
-            <div class="gaps">
-              <div>
-                title:
-                <div>
-                  <textarea v-model="countdownTitle" />
-                </div>
-              </div>
-              <div>
-                countdown to:
-                <input type="time" v-model="countdownToTimeString" />
-              </div>
-            </div>
-          </details>
-
-          <details>
-            <summary>text:</summary>
-            <div>
-              text:
-              <div>
-                <textarea v-model="centerText" />
-              </div>
-            </div>
-          </details>
-        </div>
-      </details>
-      <details open>
-        <summary>notes:</summary>
-        <div class="notes-config">
-          <div>
-            top left:
-            <div>
-              <label>
-                <input type="checkbox" v-model="showTopLeftNotes" />
-                show
-              </label>
-            </div>
-            <div>markdown:</div>
-            <div>
-              <textarea v-model="topLeftNotes" />
-            </div>
-            <div>
-              size:
-              <input
-                type="range"
-                min="1"
-                max="3"
-                v-model.number="topLeftNotesSize"
-              />
-            </div>
-          </div>
-
-          <div>
-            top right:
-            <div>
-              <label>
-                <input type="checkbox" v-model="showTopRightNotes" />
-                show
-              </label>
-            </div>
-            <div>markdown:</div>
-            <div>
-              <textarea v-model="topRightNotes" />
-            </div>
-            <div>
-              size:
-              <input
-                type="range"
-                min="1"
-                max="3"
-                v-model.number="topRightNotesSize"
-              />
-            </div>
-          </div>
-        </div>
-
-        <div class="notes-config">
-          <div>
-            bottom left:
-            <div>
-              <label>
-                <input type="checkbox" v-model="showBottomLeftNotes" />
-                show
-              </label>
-            </div>
-            <div>markdown:</div>
-            <div>
-              <textarea v-model="bottomLeftNotes" />
-            </div>
-            <div>
-              size:
-              <input
-                type="range"
-                min="1"
-                max="3"
-                v-model.number="bottomLeftNotesSize"
-              />
-            </div>
-          </div>
-
-          <div>
-            bottom right:
-            <div>
-              <label>
-                <input type="checkbox" v-model="showBottomRightNotes" />
-                show
-              </label>
-            </div>
-            <div>markdown:</div>
-            <div>
-              <textarea v-model="bottomRightNotes" />
-            </div>
-            <div>
-              size:
-              <input
-                type="range"
-                min="1"
-                max="3"
-                v-model.number="bottomRightNotesSize"
-              />
-            </div>
-          </div>
-        </div>
-      </details>
-
-      <details>
-        <summary>pills:</summary>
-        <div class="pill-config">
-          <input class="top left" v-model="topLeftText" />
-          <input class="top right" v-model="topRightText" />
-          <input class="bottom left" v-model="bottomLeftText" />
-          <input class="bottom right" v-model="bottomRightText" />
-        </div>
-      </details>
-    </div>
   </div>
 </template>
 
@@ -711,11 +449,6 @@ const countdownToTimeString = computed({
 
     .session-board-content .light-container {
       display: none;
-    }
-
-    .session-board-config {
-      background-color: #1c1a18;
-      color: var(--session-text);
     }
   }
 
@@ -934,72 +667,6 @@ const countdownToTimeString = computed({
           inset: -1rem;
           z-index: -1;
           background: radial-gradient(var(--session-bg) 60%, transparent);
-        }
-      }
-    }
-  }
-
-  .gaps {
-    display: grid;
-    gap: 1rem;
-  }
-
-  .session-board-config {
-    background-color: white;
-    padding: 1rem;
-
-    .preset {
-      &.selected {
-        border: 1px solid #000;
-        padding: 4px;
-      }
-
-      button {
-        &.selected {
-          outline: 1px solid #000;
-          outline-offset: 2px;
-        }
-
-        margin: 4px;
-      }
-    }
-
-    textarea {
-      width: 500px;
-      height: 200px;
-    }
-
-    details details {
-      margin-left: 1rem;
-    }
-
-    .notes-config {
-      display: flex;
-      flex-direction: row;
-      gap: 1rem;
-      margin-top: 1rem;
-    }
-
-    .pill-config {
-      position: relative;
-      border: 1px solid #000;
-      width: 400px;
-      height: 200px;
-
-      & > input {
-        position: absolute;
-
-        &.top {
-          top: 0;
-        }
-        &.bottom {
-          bottom: 0;
-        }
-        &.left {
-          left: 0;
-        }
-        &.right {
-          right: 0;
         }
       }
     }

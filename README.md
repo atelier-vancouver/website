@@ -6,7 +6,7 @@ Check the notion for access to Cloudflare Pages.
 
 ## Session board
 
-Run `pnpm dev` and open `/session` for the original controls or `/session/new` for the experimental editor. Both use the same board, presets, and URL hash format. Keep `/session` as the default until the new editor is approved.
+Run `pnpm dev` and open `/session`. `/session/new` redirects there through `public/_redirects`, which only applies to the deployed site and `wrangler dev`, not `pnpm dev`.
 
 The merch artwork has black text on transparency. `MerchInkFilter.vue` inverts just the title and price-label bands in dark mode, preserving the photo colors. Update its band positions if the artwork changes.
 

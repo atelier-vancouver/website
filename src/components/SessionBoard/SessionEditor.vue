@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
-import QotdGenerator from "./QotdGenerator.vue";
 import RichTextEditor from "./RichTextEditor.vue";
 import {
   bottomLeftNotes,
@@ -155,16 +154,13 @@ function startTimer(minutes: number) {
             {{ mode.label }}
           </button>
         </div>
-        <template v-if="mainContentState === 'qotd'">
-          <label class="field"
-            >Question<textarea
-              v-model="qotd"
-              placeholder="What’s on your mind?"
-              rows="6"
-            />
-          </label>
-          <QotdGenerator v-model:question="qotd" compact />
-        </template>
+        <label v-if="mainContentState === 'qotd'" class="field"
+          >Question<textarea
+            v-model="qotd"
+            placeholder="What’s on your mind?"
+            rows="6"
+          />
+        </label>
         <template v-else-if="mainContentState === 'timer'">
           <label class="field">Title<input v-model="countdownTitle" /></label>
           <label class="field"

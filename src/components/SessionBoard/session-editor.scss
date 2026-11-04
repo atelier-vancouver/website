@@ -1,4 +1,4 @@
-.new-editor {
+.editor-layout {
   --editor-paper: #f6f2e9;
   --editor-surface: #fffdf7;
   --editor-ink: #292820;
@@ -59,16 +59,6 @@
     width: 1px;
     height: 25px;
     background: var(--editor-border);
-  }
-  .edition {
-    align-self: center;
-    font:
-      10px "IBM Plex Mono",
-      monospace;
-    border: 1px solid var(--editor-border);
-    border-radius: 20px;
-    padding: 4px 8px;
-    transform: rotate(-8deg);
   }
   button {
     font: inherit;
