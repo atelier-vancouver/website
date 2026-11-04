@@ -1,148 +1,163 @@
+// System 1 chrome. Keep all slide styling inside .session-board-content separate.
+@font-face {
+  font-family: "Session Chicago";
+  src: url("/fonts/system-1/ChiKareGo2.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 .editor-layout {
-  --editor-paper: #f6f2e9;
-  --editor-surface: #fffdf7;
-  --editor-ink: #292820;
-  --editor-muted: #77736a;
-  --editor-border: #d8d3c7;
-  --editor-hover: #eeebe0;
-  --editor-accent: #e8ecd9;
-  --editor-input: #f9f7f0;
+  --editor-paper: #fff;
+  --editor-surface: #fff;
+  --editor-ink: #000;
+  --editor-muted: #000;
+  --editor-border: #000;
+  --editor-hover: #fff;
+  --editor-accent: #000;
+  --editor-input: #fff;
+  --editor-font: "Session Chicago", monospace;
+  --title-stripes: repeating-linear-gradient(
+    to bottom,
+    var(--editor-ink) 0 1px,
+    var(--editor-surface) 1px 3px
+  );
 
   min-height: 100vh;
-  background: var(--editor-paper);
+  background: var(--editor-surface);
+  background-image: conic-gradient(
+    var(--editor-ink) 25%,
+    var(--editor-surface) 0 50%,
+    var(--editor-ink) 0 75%,
+    var(--editor-surface) 0
+  );
+  background-size: 2px 2px;
   color: var(--editor-ink);
-  font-family: "InterVariable", sans-serif;
-  line-height: 1.4;
-  background-image: radial-gradient(#77736a12 0.6px, transparent 0.6px);
-  background-size: 5px 5px;
+  color-scheme: light;
 
-  &.dark {
-    --editor-paper: #1b1a17;
-    --editor-surface: #23221e;
-    --editor-ink: #eee9dc;
-    --editor-muted: #a49e90;
-    --editor-border: #454238;
-    --editor-hover: #343229;
-    --editor-accent: #383e2e;
-    --editor-input: #1f1e1a;
+  @media (prefers-color-scheme: dark) {
+    --editor-paper: #000;
+    --editor-surface: #000;
+    --editor-ink: #fff;
+    --editor-muted: #fff;
+    --editor-border: #fff;
+    --editor-hover: #000;
+    --editor-accent: #fff;
+    --editor-input: #000;
+    color-scheme: dark;
   }
+  font: 24px/1 var(--editor-font);
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: grayscale;
 
   .editor-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 20px;
-    border-bottom: 1px solid var(--editor-border);
-    padding: 20px 40px;
+    gap: 16px;
+    min-height: 36px;
+    border-bottom: 1px solid var(--editor-ink);
+    padding: 0 20px;
     background: var(--editor-surface);
+    color: var(--editor-ink);
   }
-
   .editor-brand,
   .editor-actions {
     display: flex;
     align-items: center;
     gap: 20px;
   }
-  .editor-brand img {
-    width: 85px;
-    height: 42px;
-    object-fit: contain;
-    filter: var(--session-logo-filter);
+  .editor-brand a {
+    color: var(--editor-ink);
+  }
+  .editor-brand svg {
+    width: 22px;
+    height: 24px;
   }
   .editor-brand h1 {
-    font-family: Hahmlet, serif;
-    font-size: 25px;
-    font-weight: 500;
-    letter-spacing: -0.08em;
-  }
-  .brand-divider {
-    width: 1px;
-    height: 25px;
-    background: var(--editor-border);
+    font: inherit;
   }
   button {
     font: inherit;
-    color: inherit;
+    color: var(--editor-ink);
     cursor: pointer;
+    background: var(--editor-surface);
+    border: 1px solid var(--editor-ink);
+    border-radius: 4px;
+    padding: 3px 12px;
   }
-  .theme-buttons {
-    display: flex;
-    padding: 3px;
-    border: 1px solid var(--editor-border);
-    border-radius: 8px;
-  }
-  .theme-buttons button {
-    padding: 7px 11px;
-    border: 0;
-    border-radius: 5px;
-    background: transparent;
-    font-size: 12px;
-    text-transform: capitalize;
-  }
-  .theme-buttons button[aria-pressed="true"] {
-    background: var(--editor-hover);
+  button:active,
+  button[aria-pressed="true"] {
+    background: var(--editor-ink);
+    color: var(--editor-surface);
   }
   .present-button {
     display: flex;
     align-items: center;
-    gap: 9px;
-    padding: 10px 16px;
-    border: 1px solid var(--editor-ink);
-    border-radius: 6px;
-    background: var(--editor-accent);
-    box-shadow: 3px 3px 0 var(--editor-ink);
-    font-size: 13px;
-    transition:
-      transform 120ms,
-      box-shadow 120ms;
-  }
-  .present-button:hover {
-    transform: translate(1px, 1px);
-    box-shadow: 2px 2px 0 var(--editor-ink);
+    gap: 8px;
+    margin: 5px 3px;
+    padding: 1px 14px;
+    outline: 2px solid var(--editor-ink);
+    outline-offset: 2px;
+    border-radius: 4px;
   }
   .editor-workspace {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) 340px;
+    grid-template-columns: minmax(0, 1fr) 330px;
     align-items: start;
-    gap: 32px;
-    padding: 30px 40px 50px;
+    gap: 24px;
+    padding: 28px 28px 40px;
     max-width: 1680px;
     margin: 0 auto;
   }
   .preview-column {
     min-width: 0;
   }
+  .preview-window {
+    color: var(--editor-ink);
+    border: 1px solid var(--editor-ink);
+    background: var(--editor-surface);
+    box-shadow: 2px 2px 0 var(--editor-ink);
+    padding: 0 5px 5px;
+  }
   .preview-heading {
+    position: relative;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    min-height: 32px;
-    margin-bottom: 14px;
-    font:
-      11px "IBM Plex Mono",
-      monospace;
-    color: var(--editor-muted);
+    min-height: 30px;
+    border-bottom: 1px solid var(--editor-ink);
+    margin: 0 -5px 5px;
+    padding: 0 70px;
+    background: var(--title-stripes) 5px 7px / calc(100% - 10px) 16px no-repeat;
+  }
+  .preview-heading > span {
+    background: var(--editor-surface);
+    padding: 0 8px;
+    text-align: center;
   }
   .preview-stage {
     text-transform: capitalize;
-    margin-left: 12px;
-    padding-left: 12px;
-    border-left: 1px solid var(--editor-border);
-    color: var(--editor-ink);
+  }
+  .preview-stage::before {
+    content: " / ";
   }
   .slide-navigation {
+    position: absolute;
+    right: 7px;
+    top: 5px;
     display: flex;
-    gap: 6px;
+    gap: 3px;
+    background: var(--editor-surface);
+    padding-left: 4px;
   }
   .slide-navigation button {
     display: grid;
     place-items: center;
-    width: 30px;
-    height: 28px;
+    width: 20px;
+    height: 20px;
+    border-radius: 0;
     padding: 0;
-    border: 1px solid var(--editor-border);
-    border-radius: 5px;
-    background: var(--editor-surface);
   }
   .slide-navigation button:disabled {
     opacity: 0.35;
@@ -153,13 +168,15 @@
     isolation: isolate;
     aspect-ratio: 16 / 10;
     overflow: hidden;
-    border-radius: 9px;
     background-color: var(--session-bg);
-    box-shadow:
-      0 0 0 1px var(--editor-border),
-      0 12px 24px -16px #0003;
   }
   .session-board-content {
+    // Restore the original slideshow's inherited typography and smoothing.
+    color-scheme: light;
+    font-family: "InterVariable", sans-serif;
+    font-size: 16px;
+    -webkit-font-smoothing: auto;
+    -moz-osx-font-smoothing: auto;
     color: var(--session-text);
     background-color: var(--session-bg);
     isolation: isolate;
@@ -173,20 +190,12 @@
     display: flex;
     align-items: center;
     gap: 6px;
-    border: 1px solid var(--editor-border);
-    border-radius: 6px;
-    background: var(--editor-surface);
-    color: var(--editor-ink);
-    padding: 9px 12px;
-    font-size: 12px;
     opacity: 0;
-    transition: opacity 150ms;
   }
   .exit-presentation:hover,
   .exit-presentation:focus-visible {
     opacity: 1;
   }
-
   &.presenting {
     background: var(--session-bg);
     .editor-workspace {
@@ -194,83 +203,62 @@
       padding: 0;
       max-width: none;
     }
+    .preview-window {
+      padding: 0;
+      border: 0;
+      box-shadow: none;
+    }
     .board-preview {
       height: 100vh;
       aspect-ratio: auto;
-      border-radius: 0;
-      box-shadow: none;
     }
     .exit-presentation {
       opacity: 0.6;
     }
   }
-
-  @media (max-width: 1150px) {
-    .editor-header {
-      padding: 18px 24px;
-    }
+  button:focus-visible {
+    outline: 1px dotted var(--editor-ink);
+    outline-offset: 3px;
+  }
+  @media (max-width: 1100px) {
     .editor-workspace {
-      padding: 24px;
-      gap: 22px;
-      grid-template-columns: minmax(0, 1fr) 310px;
+      gap: 18px;
+      padding: 20px;
+      grid-template-columns: minmax(0, 1fr) 300px;
     }
   }
   @media (max-width: 860px) {
     .editor-workspace {
       grid-template-columns: minmax(0, 1fr);
     }
-    .preview-column {
-      display: contents;
-    }
-    .preview-heading {
-      order: 0;
-      margin-bottom: -8px;
-    }
-    .board-preview {
-      order: 1;
-    }
-    .session-editor {
-      order: 2;
-    }
-    .session-stages {
-      order: 3;
-      margin-top: 0;
-    }
   }
   @media (max-width: 540px) {
     .editor-header {
-      padding: 12px 16px;
+      padding: 0 10px;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 0;
     }
     .editor-brand {
-      gap: 12px;
-    }
-    .editor-brand img {
-      width: 70px;
-      height: 36px;
-    }
-    .editor-brand h1 {
-      font-size: 21px;
+      gap: 10px;
     }
     .editor-actions {
-      width: 100%;
-      justify-content: space-between;
+      gap: 10px;
+    }
+    .present-button {
+      padding: 1px 6px;
+    }
+    .present-button svg {
+      display: none;
     }
     .editor-workspace {
-      padding: 20px 16px;
+      padding: 16px 10px 24px;
+      gap: 18px;
     }
-  }
-
-  button:focus-visible {
-    outline: 2px solid var(--editor-ink);
-    outline-offset: 3px;
-  }
-  @media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-      transition: none !important;
+    .preview-heading {
+      padding-left: 8px;
+    }
+    .preview-stage {
+      display: none;
     }
   }
 }

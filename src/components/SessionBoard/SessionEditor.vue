@@ -200,10 +200,20 @@ function startTimer(minutes: number) {
             :aria-pressed="cornerIndex === index"
             @click="cornerIndex = index"
           >
-            <span
-              :class="['corner-mark', `corner-${index}`]"
+            <svg
+              class="corner-mark"
+              viewBox="0 0 17 13"
               aria-hidden="true"
-            ></span
+              shape-rendering="crispEdges"
+            >
+              <path d="M.5.5h16v12H.5z" fill="none" stroke="currentColor" />
+              <rect
+                :x="index % 2 ? 10 : 3"
+                :y="index > 1 ? 8 : 3"
+                width="4"
+                height="2"
+                fill="currentColor"
+              /></svg
             >{{ item.name }}
           </button>
         </div>
@@ -263,39 +273,28 @@ function startTimer(minutes: number) {
 .session-editor {
   align-self: start;
   position: sticky;
-  top: 24px;
+  top: 20px;
   min-width: 0;
-  border: 1px solid var(--editor-border);
-  border-radius: 12px;
+  border: 1px solid var(--editor-ink);
   background: var(--editor-surface);
-  overflow: hidden;
+  color: var(--editor-ink);
+  box-shadow: 2px 2px 0 var(--editor-ink);
 }
 .panel-heading {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 23px 22px 20px;
+  justify-content: center;
+  min-height: 30px;
+  margin: 0 5px;
+  background: var(--title-stripes) 0 7px / 100% 16px no-repeat;
 }
 h2 {
-  font-family: Hahmlet, serif;
-  font-size: 22px;
-  font-weight: 500;
-  letter-spacing: -0.06em;
+  padding: 0 8px;
+  background: var(--editor-surface);
+  font: inherit;
 }
 .live-badge {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  font:
-    10px "IBM Plex Mono",
-    monospace;
-  color: var(--editor-muted);
-}
-.live-badge span {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: #6b8759;
+  display: none;
 }
 button {
   font: inherit;
@@ -304,89 +303,77 @@ button {
 }
 .editor-tabs {
   display: flex;
-  gap: 23px;
-  padding: 0 22px;
-  border-bottom: 1px solid var(--editor-border);
+  padding: 10px 12px;
+  border-block: 1px solid var(--editor-ink);
 }
 .editor-tabs button {
-  background: transparent;
-  border: 0;
-  border-bottom: 2px solid transparent;
-  margin-bottom: -1px;
-  padding: 0 0 14px;
-  font-size: 13px;
-  color: var(--editor-muted);
+  flex: 1;
+  padding: 2px 6px;
+  background: var(--editor-surface);
+  border: 1px solid var(--editor-ink);
+  border-radius: 0;
+}
+.editor-tabs button + button {
+  border-left: 0;
 }
 .editor-tabs button[aria-selected="true"] {
-  color: var(--editor-ink);
-  border-color: currentColor;
+  background: var(--editor-ink);
+  color: var(--editor-surface);
 }
 .panel-body {
   display: grid;
-  gap: 22px;
-  padding: 22px;
+  gap: 20px;
+  padding: 18px 16px;
 }
 .mode-buttons,
 .size-buttons,
 .timer-buttons {
   display: flex;
-  gap: 5px;
+  gap: 8px;
 }
-.mode-buttons {
-  border: 1px solid var(--editor-border);
-  border-radius: 7px;
-  padding: 3px;
-}
-.mode-buttons button {
+.mode-buttons button,
+.timer-buttons button {
   flex: 1;
-  border: 0;
-  background: transparent;
-  padding: 9px 5px;
-  border-radius: 4px;
-  font-size: 12px;
 }
-.mode-buttons button[aria-pressed="true"] {
+button {
+  padding: 2px 8px;
+  border: 1px solid var(--editor-ink);
+  border-radius: 4px;
+  background: var(--editor-surface);
+}
+button:active,
+button[aria-pressed="true"] {
   background: var(--editor-ink);
-  color: var(--editor-paper);
+  color: var(--editor-surface);
 }
 .field {
   display: grid;
-  gap: 10px;
-  font-size: 12px;
-  line-height: 1.4;
+  gap: 8px;
+  line-height: 1;
 }
 input,
 textarea {
-  color: inherit;
+  color: var(--editor-ink);
   font: inherit;
-  font-size: 14px;
-  border: 1px solid var(--editor-border);
-  padding: 12px;
+  border: 1px solid var(--editor-ink);
+  padding: 8px;
   width: 100%;
-  border-radius: 6px;
-  background: var(--editor-input);
+  border-radius: 0;
+  background: var(--editor-surface);
   outline: none;
 }
 input:focus,
 textarea:focus {
-  border-color: var(--editor-ink);
-  box-shadow: 0 0 0 1px var(--editor-ink);
+  outline: 1px solid var(--editor-ink);
+  outline-offset: 1px;
 }
 textarea {
   resize: vertical;
   min-height: 120px;
-  line-height: 1.6;
+  line-height: 1.15;
 }
-.timer-buttons button,
-.clock-button {
-  border: 1px solid var(--editor-border);
-  border-radius: 6px;
-  background: transparent;
-  padding: 10px 12px;
-  font-size: 12px;
-}
-.timer-buttons button {
-  flex: 1;
+textarea::placeholder {
+  color: var(--editor-muted);
 }
 .clock-button {
   justify-self: start;
@@ -394,54 +381,19 @@ textarea {
 .corner-buttons {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 7px;
+  gap: 8px;
 }
 .corner-buttons button {
   display: flex;
   align-items: center;
-  gap: 9px;
+  gap: 8px;
   text-align: left;
-  padding: 12px 9px;
-  font-size: 11px;
-  border: 1px solid var(--editor-border);
-  border-radius: 6px;
-  background: transparent;
-}
-.corner-buttons button[aria-pressed="true"] {
-  background: var(--editor-accent);
-  border-color: var(--editor-ink);
+  padding: 4px 8px;
 }
 .corner-mark {
-  display: block;
-  position: relative;
   width: 17px;
   height: 13px;
-  border: 1px solid var(--editor-muted);
-  border-radius: 2px;
   flex-shrink: 0;
-}
-.corner-mark::after {
-  content: "";
-  position: absolute;
-  width: 5px;
-  height: 3px;
-  background: currentColor;
-}
-.corner-0::after {
-  top: 2px;
-  left: 2px;
-}
-.corner-1::after {
-  top: 2px;
-  right: 2px;
-}
-.corner-2::after {
-  bottom: 2px;
-  left: 2px;
-}
-.corner-3::after {
-  bottom: 2px;
-  right: 2px;
 }
 .note-heading,
 .field-row {
@@ -449,58 +401,25 @@ textarea {
   justify-content: space-between;
   align-items: center;
   gap: 10px;
-  font-size: 12px;
-}
-.visibility-toggle {
-  font-size: 11px;
-  background: var(--editor-hover);
-  border: 1px solid var(--editor-border);
-  padding: 6px 9px;
-  border-radius: 20px;
-}
-.visibility-toggle[aria-pressed="true"] {
-  background: var(--editor-accent);
-}
-.hint {
-  font:
-    10px "IBM Plex Mono",
-    monospace;
-  color: var(--editor-muted);
 }
 .size-buttons button {
-  background: transparent;
-  border: 1px solid var(--editor-border);
-  border-radius: 4px;
-  width: 30px;
-  height: 28px;
-  font-size: 11px;
-}
-.size-buttons button[aria-pressed="true"],
-.clock-button[aria-pressed="true"] {
-  background: var(--editor-ink);
-  color: var(--editor-paper);
+  width: 28px;
+  padding: 2px 0;
 }
 .panel-footer {
-  border-top: 1px solid var(--editor-border);
-  padding: 15px 22px;
-  font:
-    10px "IBM Plex Mono",
-    monospace;
-  color: var(--editor-muted);
-  line-height: 1.5;
+  border-top: 1px solid var(--editor-ink);
+  padding: 8px 16px;
+  line-height: 1;
+}
+.hint {
+  color: var(--editor-ink);
 }
 .html-source summary {
   cursor: pointer;
-  font:
-    10px "IBM Plex Mono",
-    monospace;
-  color: var(--editor-muted);
 }
 .html-source textarea {
-  margin-top: 12px;
-  font:
-    11px/1.6 "IBM Plex Mono",
-    monospace;
+  margin-top: 8px;
+  font: 12px/1.5 monospace;
 }
 .sr-only {
   position: absolute;
@@ -511,11 +430,8 @@ textarea {
   clip-path: inset(50%);
   white-space: nowrap;
 }
-button:hover {
-  filter: brightness(0.95);
-}
 button:focus-visible {
-  outline: 2px solid var(--editor-ink);
+  outline: 1px dotted var(--editor-ink);
   outline-offset: 3px;
 }
 @media (max-width: 860px) {

@@ -6,7 +6,9 @@ Check the notion for access to Cloudflare Pages.
 
 ## Session board
 
-Run `pnpm dev` and open `/session`. `/session/new` redirects there through `public/_redirects`, which only applies to the deployed site and `wrangler dev`, not `pnpm dev`.
+Run `pnpm dev --port 23576` and open `/session` (23576 is the permanent local port, randomly selected once). `/session/new` redirects there through `public/_redirects`, which only applies to the deployed site and `wrangler dev`, not `pnpm dev`.
+
+The `/session` editor uses System 1 chrome and the bundled Chicago bitmap recreation in `public/fonts/system-1`. Keep this theme confined to the editor; `.session-board-content` retains the original slideshow typography, colors, and artwork. The editor follows the system light/dark setting. Slides stay on automatic Vancouver sunrise/sunset timing, independently of the editor.
 
 The merch artwork has black text on transparency. `MerchInkFilter.vue` inverts just the title and price-label bands in dark mode, preserving the photo colors. Update its band positions if the artwork changes.
 

@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import showdown from "showdown";
 import { computed, onMounted, onUnmounted, ref, watchEffect } from "vue";
-import logoUrl from "@/assets/images/session-board/logo.svg?url";
 import { useElementSize } from "@vueuse/core";
 import AnimatedLogo from "./AnimatedLogo.vue";
 import CountDownText from "./CountDownText.vue";
@@ -70,14 +69,8 @@ onMounted(() => {
   }
 });
 
-// dark mode between Vancouver sunset and sunrise, unless overridden
-const isNight = useIsNight();
-const themeOverride = ref<"auto" | "light" | "dark">("auto");
-const isDark = computed(() =>
-  themeOverride.value === "auto"
-    ? isNight.value
-    : themeOverride.value === "dark",
-);
+// Slides keep the automatic Vancouver sunrise/sunset theme.
+const isDark = useIsNight();
 watchEffect(() => {
   document.documentElement.classList.toggle("session-board-dark", isDark.value);
 });
@@ -238,23 +231,21 @@ onMounted(() => {
     <MerchInkFilter />
     <header v-if="!isPresenting" class="editor-header">
       <div class="editor-brand">
-        <a href="/" aria-label="Atelier home"
-          ><img :src="logoUrl" alt="Atelier"
-        /></a>
-        <span class="brand-divider"></span>
+        <a href="/" aria-label="Atelier home">
+          <svg
+            viewBox="0 0 22 24"
+            fill="currentColor"
+            aria-hidden="true"
+            shape-rendering="crispEdges"
+          >
+            <path
+              d="M3 1h14v1h1v1h1v17h-1v1H3v-1H2V2h1zm1 2v16h13V4h-1V3zM6 5h9v8H6zm2 2v4h5V7zM8 15h1v1h3v-1h1v2H8zM1 22h19v1H1z"
+            />
+          </svg>
+        </a>
         <h1>Session</h1>
       </div>
       <div class="editor-actions">
-        <div class="theme-buttons" aria-label="Theme">
-          <button
-            v-for="theme in ['auto', 'light', 'dark'] as const"
-            :key="theme"
-            :aria-pressed="themeOverride === theme"
-            @click="themeOverride = theme"
-          >
-            {{ theme }}
-          </button>
-        </div>
         <button class="present-button" @click="toggleFullscreen">
           <EditorIcon name="present" />Present
         </button>
@@ -269,119 +260,123 @@ onMounted(() => {
     </button>
     <main class="editor-workspace">
       <div class="preview-column">
-        <div v-if="!isPresenting" class="preview-heading">
-          <span
-            >Preview
-            <span class="preview-stage">{{
-              selectedPresetStage?.replace("work session", "focus ")
-            }}</span></span
-          >
-          <div class="slide-navigation">
-            <button
-              aria-label="Previous slide"
-              :disabled="
-                !selectedPreset ||
-                selectedPresetStage ===
-                  presets.find((p) => p.name === selectedPreset)?.stages[0].name
-              "
-              @click="selectStage(-1)"
+        <div class="preview-window">
+          <div v-if="!isPresenting" class="preview-heading">
+            <span
+              >Preview
+              <span class="preview-stage">{{
+                selectedPresetStage?.replace("work session", "focus ")
+              }}</span></span
             >
-              <EditorIcon name="left" />
-            </button>
-            <button
-              aria-label="Next slide"
-              :disabled="
-                !selectedPreset ||
-                selectedPresetStage ===
-                  presets.find((p) => p.name === selectedPreset)?.stages.at(-1)
-                    ?.name
-              "
-              @click="selectStage(1)"
-            >
-              <EditorIcon name="right" />
-            </button>
+            <div class="slide-navigation">
+              <button
+                aria-label="Previous slide"
+                :disabled="
+                  !selectedPreset ||
+                  selectedPresetStage ===
+                    presets.find((p) => p.name === selectedPreset)?.stages[0]
+                      .name
+                "
+                @click="selectStage(-1)"
+              >
+                <EditorIcon name="left" />
+              </button>
+              <button
+                aria-label="Next slide"
+                :disabled="
+                  !selectedPreset ||
+                  selectedPresetStage ===
+                    presets
+                      .find((p) => p.name === selectedPreset)
+                      ?.stages.at(-1)?.name
+                "
+                @click="selectStage(1)"
+              >
+                <EditorIcon name="right" />
+              </button>
+            </div>
           </div>
-        </div>
-        <div ref="preview" class="board-preview">
-          <div
-            :style="previewStyle"
-            :class="[
-              'session-board-content',
-              { 'no-cursor': !isCursorVisible && isPresenting },
-            ]"
-          >
-            <Lines />
+          <div ref="preview" class="board-preview">
+            <div
+              :style="previewStyle"
+              :class="[
+                'session-board-content',
+                { 'no-cursor': !isCursorVisible && isPresenting },
+              ]"
+            >
+              <Lines />
 
-            <Pill position="top-left" :text="topLeftText" />
-            <Pill position="top-right" :text="topRightText" />
-            <Pill position="bottom-left" :text="bottomLeftText" />
-            <Pill position="bottom-right" :text="bottomRightText" />
+              <Pill position="top-left" :text="topLeftText" />
+              <Pill position="top-right" :text="topRightText" />
+              <Pill position="bottom-left" :text="bottomLeftText" />
+              <Pill position="bottom-right" :text="bottomRightText" />
 
-            <div class="logo-container">
-              <div class="logo-wrapper">
-                <AnimatedLogo class="logo" />
-              </div>
-            </div>
-
-            <div class="grain-container">
-              <slot name="grain" />
-            </div>
-            <div class="light-container">
-              <slot name="light" />
-            </div>
-
-            <div class="main-content">
-              <div class="qotd" v-if="mainContentState === 'qotd'">
-                <h1>QUESTION OF THE DAY</h1>
-                <p>{{ qotd }}</p>
-              </div>
-              <div class="timer" v-else-if="mainContentState === 'timer'">
-                <h1>{{ countdownTitle }}</h1>
-                <div class="countdown">
-                  <span class="tnum">
-                    <CountDownText
-                      :hour="countdownToTime.hour"
-                      :minute="countdownToTime.minute"
-                    />
-                  </span>
-                </div>
-                <div class="countdown-to">
-                  at
-                  <span class="tnum"
-                    >{{ countdownToTime.hour % 12 || 12 }}:{{
-                      countdownToTime.minute.toString().padStart(2, "0")
-                    }}</span
-                  >
+              <div class="logo-container">
+                <div class="logo-wrapper">
+                  <AnimatedLogo class="logo" />
                 </div>
               </div>
-              <div
-                class="text"
-                v-else-if="mainContentState === 'text'"
-                v-html="centerText"
-              ></div>
-            </div>
 
-            <div class="notes">
-              <div
-                v-if="topLeftNotesHtml && showTopLeftNotes"
-                :class="['top', 'left', `size-${topLeftNotesSize}`]"
-                v-html="topLeftNotesHtml"
-              />
-              <div
-                v-if="topRightNotesHtml && showTopRightNotes"
-                :class="['top', 'right', `size-${topRightNotesSize}`]"
-                v-html="topRightNotesHtml"
-              />
-              <div
-                v-if="bottomLeftNotesHtml && showBottomLeftNotes"
-                :class="['bottom', 'left', `size-${bottomLeftNotesSize}`]"
-                v-html="bottomLeftNotesHtml"
-              />
-              <div
-                v-if="bottomRightNotesHtml && showBottomRightNotes"
-                :class="['bottom', 'right', `size-${bottomRightNotesSize}`]"
-                v-html="bottomRightNotesHtml"
-              />
+              <div class="grain-container">
+                <slot name="grain" />
+              </div>
+              <div class="light-container">
+                <slot name="light" />
+              </div>
+
+              <div class="main-content">
+                <div class="qotd" v-if="mainContentState === 'qotd'">
+                  <h1>QUESTION OF THE DAY</h1>
+                  <p>{{ qotd }}</p>
+                </div>
+                <div class="timer" v-else-if="mainContentState === 'timer'">
+                  <h1>{{ countdownTitle }}</h1>
+                  <div class="countdown">
+                    <span class="tnum">
+                      <CountDownText
+                        :hour="countdownToTime.hour"
+                        :minute="countdownToTime.minute"
+                      />
+                    </span>
+                  </div>
+                  <div class="countdown-to">
+                    at
+                    <span class="tnum"
+                      >{{ countdownToTime.hour % 12 || 12 }}:{{
+                        countdownToTime.minute.toString().padStart(2, "0")
+                      }}</span
+                    >
+                  </div>
+                </div>
+                <div
+                  class="text"
+                  v-else-if="mainContentState === 'text'"
+                  v-html="centerText"
+                ></div>
+              </div>
+
+              <div class="notes">
+                <div
+                  v-if="topLeftNotesHtml && showTopLeftNotes"
+                  :class="['top', 'left', `size-${topLeftNotesSize}`]"
+                  v-html="topLeftNotesHtml"
+                />
+                <div
+                  v-if="topRightNotesHtml && showTopRightNotes"
+                  :class="['top', 'right', `size-${topRightNotesSize}`]"
+                  v-html="topRightNotesHtml"
+                />
+                <div
+                  v-if="bottomLeftNotesHtml && showBottomLeftNotes"
+                  :class="['bottom', 'left', `size-${bottomLeftNotesSize}`]"
+                  v-html="bottomLeftNotesHtml"
+                />
+                <div
+                  v-if="bottomRightNotesHtml && showBottomRightNotes"
+                  :class="['bottom', 'right', `size-${bottomRightNotesSize}`]"
+                  v-html="bottomRightNotesHtml"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -429,9 +424,11 @@ onMounted(() => {
     --session-logo-filter: invert(1);
     --session-grain-opacity: 0.35;
 
-    color-scheme: dark;
+    .session-board-content {
+      color-scheme: dark;
+    }
 
-    :deep(a) {
+    .session-board-content :deep(a) {
       color: #c9c0f2;
     }
 

@@ -45,7 +45,7 @@ watch(model, sync);
 <style scoped>
 .rich-editor {
   border: 1px solid var(--editor-border);
-  border-radius: 8px;
+  border-radius: 0;
   overflow: hidden;
   background: var(--editor-surface);
 }
@@ -58,15 +58,16 @@ watch(model, sync);
 button {
   color: inherit;
   font: inherit;
-  font-size: 12px;
-  border: 0;
-  border-radius: 4px;
+  font-size: inherit;
+  border: 1px solid var(--editor-border);
+  border-radius: 0;
   background: transparent;
-  padding: 7px 10px;
+  padding: 2px 8px;
   cursor: pointer;
 }
 button:hover {
-  background: var(--editor-hover);
+  background: var(--editor-ink);
+  color: var(--editor-surface);
 }
 .editable {
   /* Keeps absolutely positioned slide HTML (e.g. the photo logo) inside. */
@@ -75,8 +76,8 @@ button:hover {
   max-height: 360px;
   overflow: auto;
   padding: 16px;
-  font-size: 15px;
-  line-height: 1.6;
+  font-size: inherit;
+  line-height: 1.15;
   overflow-wrap: anywhere;
   outline: none;
 }

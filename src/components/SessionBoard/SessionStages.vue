@@ -27,7 +27,7 @@ const labels: Record<string, string> = {
 <template>
   <section class="session-stages" aria-label="Slides">
     <div class="stages-heading">
-      <h2>Slides</h2>
+      <h2><span>Slides</span></h2>
       <div class="preset-buttons" aria-label="Session preset">
         <button
           v-for="preset in presets"
@@ -64,26 +64,33 @@ const labels: Record<string, string> = {
 
 <style scoped>
 .session-stages {
-  margin-top: 28px;
+  margin-top: 24px;
+  border: 1px solid var(--editor-ink);
+  background: var(--editor-surface);
+  color: var(--editor-ink);
+  box-shadow: 2px 2px 0 var(--editor-ink);
 }
 .stages-heading {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 16px;
+  border-bottom: 1px solid var(--editor-ink);
 }
 h2 {
-  font-family: Hahmlet, serif;
-  font-size: 22px;
-  font-weight: 500;
-  letter-spacing: -0.06em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 30px;
+  margin: 0 5px;
+  font: inherit;
+  background: var(--title-stripes) 0 7px / 100% 16px no-repeat;
+}
+h2 span {
+  background: var(--editor-surface);
+  padding: 0 8px;
 }
 .preset-buttons {
   display: flex;
-  padding: 3px;
-  border: 1px solid var(--editor-border);
-  border-radius: 8px;
+  gap: 8px;
+  padding: 8px 12px;
+  border-top: 1px solid var(--editor-ink);
 }
 button {
   font: inherit;
@@ -91,68 +98,59 @@ button {
   cursor: pointer;
 }
 .preset-buttons button {
-  background: transparent;
-  border: 0;
-  border-radius: 5px;
-  padding: 7px 12px;
-  font-size: 12px;
+  background: var(--editor-surface);
+  border: 1px solid var(--editor-ink);
+  border-radius: 4px;
+  padding: 2px 12px;
 }
-.preset-buttons button[aria-pressed="true"] {
+.preset-buttons button[aria-pressed="true"],
+.preset-buttons button:active {
   background: var(--editor-ink);
-  color: var(--editor-paper);
+  color: var(--editor-surface);
 }
 .stage-list {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 9px;
+  gap: 0;
   list-style: none;
-  padding: 0;
+  padding: 8px;
   margin: 0;
 }
 .stage-list button {
   width: 100%;
   display: flex;
   align-items: center;
-  gap: 10px;
-  min-height: 52px;
-  padding: 12px;
-  border: 1px solid var(--editor-border);
-  border-radius: 7px;
+  gap: 8px;
+  min-height: 32px;
+  padding: 4px 8px;
+  border: 0;
+  border-radius: 0;
   background: var(--editor-surface);
   text-align: left;
-  font-size: 13px;
-  transition:
-    background 120ms,
-    transform 120ms;
 }
 .stage-list button:hover {
-  background: var(--editor-hover);
-  transform: translateY(-1px);
+  outline: 1px dotted var(--editor-ink);
+  outline-offset: -2px;
 }
 .stage-list button[aria-current="step"] {
-  border-color: var(--editor-ink);
-  background: var(--editor-accent);
-  box-shadow: 2px 2px 0 var(--editor-ink);
+  background: var(--editor-ink);
+  color: var(--editor-surface);
 }
 .stage-number {
-  font:
-    10px "IBM Plex Mono",
-    monospace;
-  color: var(--editor-muted);
+  font: inherit;
 }
 .current-dot {
-  height: 5px;
-  width: 5px;
+  height: 4px;
+  width: 4px;
   background: currentColor;
-  border-radius: 50%;
   margin-left: auto;
   flex-shrink: 0;
 }
 button:focus-visible {
-  outline: 2px solid var(--editor-ink);
-  outline-offset: 3px;
+  outline: 1px dotted var(--editor-ink);
+  outline-offset: 2px;
 }
-@media (max-width: 1150px) {
+@media (max-width: 1100px) {
   .stage-list {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
